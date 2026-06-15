@@ -18,9 +18,15 @@ export function Price({
   const final = discountedCents(priceCents, discount);
   // suppressHydrationWarning: server renders the default currency; the client may differ via cookie.
   return (
-    <div className={cn('tabular flex items-baseline gap-2', className)} suppressHydrationWarning>
-      <span className='font-semibold'>{format(final)}</span>
-      {discount > 0 && <span className='text-muted text-sm line-through'>{format(priceCents)}</span>}
+    <div className={cn('tabular flex items-baseline gap-2', className)}>
+      <span className='font-semibold' suppressHydrationWarning>
+        {format(final)}
+      </span>
+      {discount > 0 && (
+        <span className='text-muted text-sm line-through' suppressHydrationWarning>
+          {format(priceCents)}
+        </span>
+      )}
     </div>
   );
 }

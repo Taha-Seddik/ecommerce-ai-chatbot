@@ -8,11 +8,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   images: {
     // Seed data uses remote placeholder photography; swap for your own CDN/S3 host later.
-    remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com' },
-      { protocol: 'https', hostname: 'picsum.photos' },
-      { protocol: 'https', hostname: 'fastly.picsum.photos' },
-    ],
+    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
   },
 };
 

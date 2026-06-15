@@ -21,7 +21,37 @@ const client = createClient({
 });
 const db = drizzle(client, { schema, casing: 'snake_case' });
 
-const img = (seed: string, i: number) => `https://picsum.photos/seed/${seed}-${i}/900/900`;
+// Curated, hand-vetted furniture/interior photos (Unsplash CDN) — objects only, no people.
+const UNSPLASH = (id: string) => `https://images.unsplash.com/photo-${id}?w=900&q=80&auto=format&fit=crop`;
+
+const PHOTOS: Record<string, string[]> = {
+  sofas: ['1555041469-a586c61ea9bc', '1567016432779-094069958ea5', '1493663284031-b7e3aefcae8e'],
+  'coffee-tables': ['1542372147193-a7aca54189cd', '1600623050499-84929aad17c9', '1581428982868-e410dd047a90'],
+  armchairs: ['1580480055273-228ff5388ef8', '1567538096630-e0c55bd6374c', '1586023492125-27b2c045efd7'],
+  beds: ['1635594202056-9ea3b497e5c0', '1690957530220-98bacb3c1163', '1560185128-e173042f79dd'],
+  nightstands: ['1581428982868-e410dd047a90', '1600623050499-84929aad17c9', '1542372147193-a7aca54189cd'],
+  'dining-tables': ['1600623050499-84929aad17c9', '1581428982868-e410dd047a90', '1542372147193-a7aca54189cd'],
+  'dining-chairs': ['1581539250439-c96689b516dd', '1612372606404-0ab33e7187ee', '1598300042247-d088f8ab3a91'],
+  'pendant-lights': ['1580130281320-0ef0754f2bf7', '1585128719715-46776b56a0d1', '1517991104123-1d56a6e81ed9'],
+  'table-lamps': ['1517991104123-1d56a6e81ed9', '1585128719715-46776b56a0d1', '1580130281320-0ef0754f2bf7'],
+  rugs: ['1588421874990-1fe162747f9b', '1594040226829-7f251ab46d80', '1599503815079-dfb7085fc667'],
+  vases: ['1612196808214-b8e1d6145a8c', '1582131503261-fca1d1c0589f', '1631125915902-d8abe9225ff2'],
+  decor: ['1612196808214-b8e1d6145a8c', '1631125915902-d8abe9225ff2', '1582131503261-fca1d1c0589f'],
+  'living-room': ['1583847268964-b28dc8f51f92'],
+  bedroom: ['1598928506311-c55ded91a20c'],
+  dining: ['1600623050499-84929aad17c9'],
+  lighting: ['1585128719715-46776b56a0d1'],
+};
+
+function imagesFor(catSlug: string, offset: number, n = 3): string[] {
+  const pool = PHOTOS[catSlug] ?? PHOTOS.decor;
+  return Array.from({ length: n }, (_, i) => UNSPLASH(pool[(offset + i) % pool.length]));
+}
+
+function categoryImage(slug: string): string {
+  const pool = PHOTOS[slug] ?? PHOTOS.decor;
+  return UNSPLASH(pool[0]);
+}
 
 type CategorySeed = { slug: string; title: LocalizedText; parent?: string };
 
@@ -456,47 +486,49 @@ async function seed() {
   console.log('Seeding categories…');
   const categoryIds = new Map<string, string>();
   for (const c of categories) categoryIds.set(c.slug, createId());
-  await db.insert(schema.categories).values(
-    categories.map((c, i) => ({
+  const categoryRows: (typeof schema.categories.$inferInsert)[] = [];
+  for (const [i, c] of categories.entries()) {
+    categoryRows.push({
       id: categoryIds.get(c.slug)!,
       slug: c.slug,
       title: c.title,
       parentCategoryId: c.parent ? categoryIds.get(c.parent) : null,
       sortOrder: i,
-      image: img(`cat-${c.slug}`, 0),
-    })),
-  );
+      image: categoryImage(c.slug),
+    });
+  }
+  await db.insert(schema.categories).values(categoryRows);
 
-  console.log('Seeding products & images…');
-  const productRows = products.map((p) => ({
-    id: createId(),
-    reference: `NRD-${p.slug.slice(0, 6).toUpperCase()}`,
-    slug: p.slug,
-    title: p.title,
-    description: p.description,
-    thumbnail: img(p.slug, 0),
-    priceCents: p.priceCents,
-    currency: 'USD',
-    shippingCostCents: p.priceCents > 50000 ? 0 : 1500,
-    discountPercentage: p.discount ?? 0,
-    stock: p.stock ?? 10,
-    isFeatured: p.featured ?? false,
-    categoryId: categoryIds.get(p.cat)!,
-    createdById: admin.id,
-  }));
+  console.log('Seeding products & images (fetching furniture photos)…');
+  const productRows: (typeof schema.products.$inferInsert)[] = [];
+  const imageRows: (typeof schema.productImages.$inferInsert)[] = [];
+  const catOffset = new Map<string, number>();
+  for (const p of products) {
+    const id = createId();
+    const offset = catOffset.get(p.cat) ?? 0;
+    catOffset.set(p.cat, offset + 1);
+    const urls = imagesFor(p.cat, offset);
+    productRows.push({
+      id,
+      reference: `NRD-${p.slug.slice(0, 6).toUpperCase()}`,
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      thumbnail: urls[0],
+      priceCents: p.priceCents,
+      currency: 'USD',
+      shippingCostCents: p.priceCents > 50000 ? 0 : 1500,
+      discountPercentage: p.discount ?? 0,
+      stock: p.stock ?? 10,
+      isFeatured: p.featured ?? false,
+      categoryId: categoryIds.get(p.cat)!,
+      createdById: admin.id,
+    });
+    urls.forEach((url, i) =>
+      imageRows.push({ id: createId(), productId: id, url, alt: p.title.en, width: 800, height: 800, sortOrder: i }),
+    );
+  }
   await db.insert(schema.products).values(productRows);
-
-  const imageRows = productRows.flatMap((p) =>
-    [0, 1, 2].map((i) => ({
-      id: createId(),
-      productId: p.id,
-      url: img(p.slug, i),
-      alt: (p.title as LocalizedText).en,
-      width: 900,
-      height: 900,
-      sortOrder: i,
-    })),
-  );
   await db.insert(schema.productImages).values(imageRows);
 
   console.log('Seeding reviews…');
@@ -504,23 +536,24 @@ async function seed() {
   const reviewRows: (typeof schema.reviews.$inferInsert)[] = [];
   productRows.forEach((p, idx) => {
     if (idx % 2 !== 0) return; // review roughly half the catalog
+    const pid = p.id as string;
     const n = 1 + (idx % 3); // 1..3 reviews
     for (let i = 0; i < n; i++) {
       const reviewer = customers[(idx + i) % customers.length];
       const blurb = reviewBlurbs[(idx + i) % reviewBlurbs.length];
       reviewRows.push({
         id: createId(),
-        productId: p.id,
+        productId: pid,
         userId: reviewer.id,
         rating: blurb.rating,
         title: blurb.title,
         body: blurb.body,
         isVerifiedPurchase: true,
       });
-      const agg = ratingAgg.get(p.id) ?? { sum: 0, count: 0 };
+      const agg = ratingAgg.get(pid) ?? { sum: 0, count: 0 };
       agg.sum += blurb.rating;
       agg.count += 1;
-      ratingAgg.set(p.id, agg);
+      ratingAgg.set(pid, agg);
     }
   });
   if (reviewRows.length) await db.insert(schema.reviews).values(reviewRows);
@@ -540,13 +573,13 @@ async function seed() {
     key: 'homepage',
     settingsData: {
       hero: {
-        image: 'https://picsum.photos/seed/norden-hero/1600/1200',
+        image: UNSPLASH('1583847268964-b28dc8f51f92'),
         eyebrow: { en: 'New collection', fr: 'Nouvelle collection' },
       },
       carousel: [
-        { image: img('norden-slide', 1) },
-        { image: img('norden-slide', 2) },
-        { image: img('norden-slide', 3) },
+        { image: UNSPLASH('1618220179428-22790b461013') },
+        { image: UNSPLASH('1598928506311-c55ded91a20c') },
+        { image: categoryImage('sofas') },
       ],
       featuredProductSlugs: featuredSlugs,
       featuredCategorySlugs: ['living-room', 'lighting', 'bedroom', 'decor'],
