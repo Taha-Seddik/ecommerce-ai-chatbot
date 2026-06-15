@@ -7,6 +7,10 @@ import { ProductGallery } from '@/components/product/productGallery';
 import { ProductGrid } from '@/components/product/productGrid';
 import { RatingStars } from '@/components/product/ratingStars';
 import { ReviewList } from '@/components/product/reviewList';
+import { WishlistButton } from '@/features/wishlist/wishlistButton';
+import { ReviewForm } from '@/features/reviews/reviewForm';
+import { getSession } from '@/lib/auth/session';
+import { Link } from '@/i18n/navigation';
 import { Breadcrumb, type Crumb } from '@/components/ui/breadcrumb';
 import { Container } from '@/components/ui/container';
 import {
@@ -56,9 +60,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   if (!product) notFound();
 
   const t = await getTranslations();
-  const [related, reviews] = await Promise.all([
+  const [related, reviews, session] = await Promise.all([
     getRelatedProducts(product.categoryId, product.id, 4),
     getProductReviews(product.id),
+    getSession(),
   ]);
 
   const title = pickLocale(product.title, locale);
@@ -113,7 +118,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </span>
           </div>
 
-          <AddToCart productId={product.id} stock={product.stock} />
+          <div className='flex items-center gap-3'>
+            <div className='flex-1'>
+              <AddToCart productId={product.id} stock={product.stock} />
+            </div>
+            <WishlistButton productId={product.id} className='border-border size-11 border' />
+          </div>
 
           <dl className='border-border mt-2 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 border-t pt-5 text-sm'>
             <dt className='text-muted'>{t('product.sku')}</dt>
@@ -128,14 +138,22 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
-      {reviews.length > 0 && (
-        <section id='reviews' className='mt-16 max-w-2xl scroll-mt-24'>
-          <h2 className='font-display mb-6 text-2xl tracking-tight'>
-            {t('product.reviewsTitle')} · {t('product.reviews', { count: product.ratingCount })}
-          </h2>
-          <ReviewList reviews={reviews} />
-        </section>
-      )}
+      <section id='reviews' className='mt-16 max-w-2xl scroll-mt-24'>
+        <h2 className='font-display mb-6 text-2xl tracking-tight'>
+          {t('product.reviewsTitle')} · {t('product.reviews', { count: product.ratingCount })}
+        </h2>
+        {reviews.length > 0 && <ReviewList reviews={reviews} />}
+        {session ? (
+          <ReviewForm productId={product.id} />
+        ) : (
+          <p className='text-muted mt-6 text-sm'>
+            {t('product.signInToReview')}{' '}
+            <Link href='/login' className='text-accent font-medium'>
+              {t('auth.signIn')}
+            </Link>
+          </p>
+        )}
+      </section>
 
       {related.length > 0 && (
         <section className='mt-16'>

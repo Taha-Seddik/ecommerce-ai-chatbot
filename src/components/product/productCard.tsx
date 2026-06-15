@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import type { ProductCardData } from '@/features/products/products.repo';
+import { WishlistButton } from '@/features/wishlist/wishlistButton';
 import { pickLocale } from '@/lib/content';
 import { Price } from './price';
 import { RatingStars } from './ratingStars';
@@ -35,6 +36,7 @@ export async function ProductCard({ product, locale }: { product: ProductCardDat
             </span>
           )}
         </div>
+        <WishlistButton productId={product.id} className='absolute top-3 right-3' />
         {soldOut && (
           <div className='bg-background/55 absolute inset-0 grid place-items-center'>
             <span className='text-foreground text-sm font-medium tracking-wide uppercase'>{t('outOfStock')}</span>

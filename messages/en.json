@@ -13,6 +13,7 @@
     "categories": "Categories",
     "about": "About",
     "account": "Account",
+    "wishlist": "Wishlist",
     "cart": "Cart"
   },
   "theme": {
@@ -100,7 +101,14 @@
     "descriptionTitle": "Description",
     "relatedProducts": "You may also like",
     "reviewsTitle": "Reviews",
-    "verifiedPurchase": "Verified purchase"
+    "verifiedPurchase": "Verified purchase",
+    "writeReview": "Write a review",
+    "reviewTitle": "Title (optional)",
+    "reviewBody": "Share your thoughts (optional)",
+    "submitReview": "Submit review",
+    "reviewThanks": "Thanks for your review!",
+    "reviewError": "Could not submit. Please try again.",
+    "signInToReview": "Sign in to write a review."
   },
   "account": {
     "nav": {
@@ -127,6 +135,12 @@
     "saved": "Saved.",
     "saveError": "Something went wrong.",
     "shippingAddress": "Shipping address"
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty",
+    "emptyHint": "Tap the heart on any product to save it here.",
+    "browse": "Browse products"
   },
   "cart": {
     "title": "Cart",

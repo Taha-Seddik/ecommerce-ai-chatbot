@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { IconSearch, IconUser } from '@/components/ui/icons';
+import { IconHeart, IconSearch, IconUser } from '@/components/ui/icons';
 import { CartButton } from '@/features/cart/cartButton';
 import { Container } from '@/components/ui/container';
 import { ThemeToggle } from '@/components/ui/themeToggle';
@@ -45,6 +45,9 @@ export async function Navbar({ locale }: { locale: string }) {
           <CurrencySwitcher />
           <LocaleSwitcher />
           <ThemeToggle />
+          <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
+            <IconHeart />
+          </Link>
           <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
             <IconUser />
           </Link>

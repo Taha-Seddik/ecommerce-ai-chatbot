@@ -13,6 +13,7 @@
     "categories": "Catégories",
     "about": "À propos",
     "account": "Compte",
+    "wishlist": "Favoris",
     "cart": "Panier"
   },
   "theme": {
@@ -100,7 +101,14 @@
     "descriptionTitle": "Description",
     "relatedProducts": "Vous aimerez aussi",
     "reviewsTitle": "Avis",
-    "verifiedPurchase": "Achat vérifié"
+    "verifiedPurchase": "Achat vérifié",
+    "writeReview": "Écrire un avis",
+    "reviewTitle": "Titre (facultatif)",
+    "reviewBody": "Partagez votre avis (facultatif)",
+    "submitReview": "Publier l’avis",
+    "reviewThanks": "Merci pour votre avis !",
+    "reviewError": "Échec de l’envoi. Réessayez.",
+    "signInToReview": "Connectez-vous pour laisser un avis."
   },
   "account": {
     "nav": {
@@ -127,6 +135,12 @@
     "saved": "Enregistré.",
     "saveError": "Une erreur est survenue.",
     "shippingAddress": "Adresse de livraison"
+  },
+  "wishlist": {
+    "title": "Favoris",
+    "empty": "Votre liste de favoris est vide",
+    "emptyHint": "Touchez le cœur sur un produit pour l’enregistrer ici.",
+    "browse": "Voir les produits"
   },
   "cart": {
     "title": "Panier",

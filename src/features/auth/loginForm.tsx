@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl';
 import { useActionState, useEffect } from 'react';
 import { mergeGuestCartAction } from '@/features/cart/cart.actions';
 import { useGuestCart } from '@/features/cart/cart.store';
+import { mergeWishlistAction } from '@/features/wishlist/wishlist.actions';
+import { useWishlist } from '@/features/wishlist/wishlist.store';
 import { useRouter } from '@/i18n/navigation';
 import { loginAction } from './auth.actions';
 
@@ -18,9 +20,11 @@ export function LoginForm() {
 
   useEffect(() => {
     if (!state?.ok) return;
-    // Merge the guest cart into the user's DB cart, then continue.
-    mergeGuestCartAction(useGuestCart.getState().lines)
-      .then((merged) => useGuestCart.setState({ lines: merged }))
+    // Merge the guest cart + wishlist into the user's DB, then continue.
+    Promise.all([
+      mergeGuestCartAction(useGuestCart.getState().lines).then((m) => useGuestCart.setState({ lines: m })),
+      mergeWishlistAction(useWishlist.getState().ids).then((ids) => useWishlist.setState({ ids })),
+    ])
       .catch(() => {})
       .finally(() => router.replace('/account'));
   }, [state, router]);
