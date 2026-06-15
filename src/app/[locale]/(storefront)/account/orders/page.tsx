@@ -5,34 +5,38 @@ import { getSession } from '@/lib/auth/session';
 import { Link } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/money';
 
-export default async function AccountOverviewPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function AccountOrdersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const session = await getSession();
   const t = await getTranslations('account');
-  const orders = session ? (await getUserOrders(session.userId)).slice(0, 5) : [];
+  const orders = session ? await getUserOrders(session.userId) : [];
   const df = new Intl.DateTimeFormat(locale === 'fr' ? 'fr-FR' : 'en-US', { dateStyle: 'medium' });
 
   return (
     <div>
-      <h1 className='font-display text-2xl tracking-tight md:text-3xl'>{t('nav.overview')}</h1>
-      <p className='text-muted mt-1'>{t('welcome', { email: session?.email ?? '' })}</p>
-
-      <h2 className='font-display mt-8 mb-3 text-lg'>{t('recentOrders')}</h2>
+      <h1 className='font-display text-2xl tracking-tight md:text-3xl'>{t('nav.orders')}</h1>
       {orders.length === 0 ? (
-        <p className='text-muted text-sm'>{t('noOrders')}</p>
+        <p className='text-muted mt-4 text-sm'>
+          {t('noOrders')}{' '}
+          <Link href='/products' className='text-accent font-medium'>
+            {t('startShopping')}
+          </Link>
+        </p>
       ) : (
-        <ul className='divide-border divide-y'>
+        <ul className='divide-border mt-4 divide-y'>
           {orders.map((o) => (
-            <li key={o.id} className='flex items-center justify-between gap-4 py-3'>
+            <li key={o.id} className='flex items-center justify-between gap-4 py-4'>
               <div>
                 <Link
                   href={`/account/orders/${o.id}`}
                   className='hover:text-accent font-mono text-sm transition-colors'>
                   {o.reference}
                 </Link>
-                <p className='text-muted text-xs'>{df.format(o.createdAt)}</p>
+                <p className='text-muted text-xs'>
+                  {df.format(o.createdAt)} · {o.items.length} {t('items')}
+                </p>
               </div>
               <div className='flex items-center gap-3'>
                 <OrderStatusBadge status={o.status} />

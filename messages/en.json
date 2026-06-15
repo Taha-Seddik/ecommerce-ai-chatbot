@@ -88,6 +88,32 @@
     "reviewsTitle": "Reviews",
     "verifiedPurchase": "Verified purchase"
   },
+  "account": {
+    "nav": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "profile": "Profile",
+      "addresses": "Address",
+      "logout": "Sign out"
+    },
+    "welcome": "Signed in as {email}",
+    "recentOrders": "Recent orders",
+    "noOrders": "No orders yet.",
+    "startShopping": "Start shopping",
+    "items": "items",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "newPassword": "New password (leave blank to keep)",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Postal code",
+    "addressHint": "Used to prefill checkout.",
+    "save": "Save changes",
+    "saved": "Saved.",
+    "saveError": "Something went wrong.",
+    "shippingAddress": "Shipping address"
+  },
   "cart": {
     "title": "Cart",
     "empty": "Your cart is empty",

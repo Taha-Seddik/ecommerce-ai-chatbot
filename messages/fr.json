@@ -88,6 +88,32 @@
     "reviewsTitle": "Avis",
     "verifiedPurchase": "Achat vérifié"
   },
+  "account": {
+    "nav": {
+      "overview": "Aperçu",
+      "orders": "Commandes",
+      "profile": "Profil",
+      "addresses": "Adresse",
+      "logout": "Se déconnecter"
+    },
+    "welcome": "Connecté en tant que {email}",
+    "recentOrders": "Commandes récentes",
+    "noOrders": "Aucune commande pour l’instant.",
+    "startShopping": "Commencer mes achats",
+    "items": "articles",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "phone": "Téléphone",
+    "newPassword": "Nouveau mot de passe (laisser vide pour garder)",
+    "address": "Adresse",
+    "city": "Ville",
+    "zipCode": "Code postal",
+    "addressHint": "Utilisée pour préremplir le paiement.",
+    "save": "Enregistrer",
+    "saved": "Enregistré.",
+    "saveError": "Une erreur est survenue.",
+    "shippingAddress": "Adresse de livraison"
+  },
   "cart": {
     "title": "Panier",
     "empty": "Votre panier est vide",
