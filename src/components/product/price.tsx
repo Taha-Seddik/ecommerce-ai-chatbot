@@ -1,26 +1,26 @@
-import { cn } from '@/lib/cn';
-import { discountedCents, formatPrice } from '@/lib/money';
+'use client';
 
+import { useCurrency } from '@/features/currency/currencyProvider';
+import { cn } from '@/lib/cn';
+import { discountedCents } from '@/lib/money';
+
+/** Prices are stored in base (USD) cents; the active currency context handles conversion + formatting. */
 export function Price({
   priceCents,
   discount = 0,
-  currency = 'USD',
-  locale = 'en',
   className,
 }: {
   priceCents: number;
   discount?: number;
-  currency?: string;
-  locale?: string;
   className?: string;
 }) {
+  const { format } = useCurrency();
   const final = discountedCents(priceCents, discount);
+  // suppressHydrationWarning: server renders the default currency; the client may differ via cookie.
   return (
-    <div className={cn('tabular flex items-baseline gap-2', className)}>
-      <span className='font-semibold'>{formatPrice(final, currency, locale)}</span>
-      {discount > 0 && (
-        <span className='text-muted text-sm line-through'>{formatPrice(priceCents, currency, locale)}</span>
-      )}
+    <div className={cn('tabular flex items-baseline gap-2', className)} suppressHydrationWarning>
+      <span className='font-semibold'>{format(final)}</span>
+      {discount > 0 && <span className='text-muted text-sm line-through'>{format(priceCents)}</span>}
     </div>
   );
 }

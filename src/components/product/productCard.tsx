@@ -45,13 +45,7 @@ export async function ProductCard({ product, locale }: { product: ProductCardDat
       <div className='mt-3 flex flex-col gap-1'>
         <h3 className='leading-snug font-medium'>{title}</h3>
         {product.ratingCount > 0 && <RatingStars value={product.ratingAvg} count={product.ratingCount} />}
-        <Price
-          priceCents={product.priceCents}
-          discount={product.discountPercentage}
-          currency={product.currency}
-          locale={locale}
-          className='mt-0.5'
-        />
+        <Price priceCents={product.priceCents} discount={product.discountPercentage} className='mt-0.5' />
       </div>
     </Link>
   );

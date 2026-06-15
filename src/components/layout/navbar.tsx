@@ -3,6 +3,7 @@ import { IconSearch, IconUser } from '@/components/ui/icons';
 import { CartButton } from '@/features/cart/cartButton';
 import { Container } from '@/components/ui/container';
 import { ThemeToggle } from '@/components/ui/themeToggle';
+import { CurrencySwitcher } from '@/features/currency/currencySwitcher';
 import { getTopCategories } from '@/features/categories/categories.repo';
 import { Link } from '@/i18n/navigation';
 import { BRAND } from '@/lib/brand';
@@ -41,6 +42,7 @@ export async function Navbar({ locale }: { locale: string }) {
           <Link href='/search' aria-label={t('common.search')} className={iconBtn}>
             <IconSearch />
           </Link>
+          <CurrencySwitcher />
           <LocaleSwitcher />
           <ThemeToggle />
           <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>

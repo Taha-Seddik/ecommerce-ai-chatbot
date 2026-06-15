@@ -6,6 +6,7 @@ import { setUserCart } from '@/features/cart/cart.repo';
 import type { SimpleLine } from '@/features/cart/cart.types';
 import { createOrder, setOrderStripeSession } from '@/features/orders/orders.repo';
 import { getSession } from '@/lib/auth/session';
+import { type CurrencyCode, convertFromBase, isCurrency } from '@/lib/currency';
 import { env } from '@/lib/env';
 import { isStripeEnabled, stripe } from '@/lib/stripe';
 import { checkoutSchema } from './checkout.schema';
@@ -15,23 +16,29 @@ export type CheckoutResult =
   | { ok: true; kind: 'stripe'; url: string }
   | { ok: false; error: 'validation' | 'emptyCart' | 'stripeDisabled' | 'stripeError' };
 
-export async function placeOrderAction(rawLines: SimpleLine[], raw: Record<string, unknown>): Promise<CheckoutResult> {
+export async function placeOrderAction(
+  rawLines: SimpleLine[],
+  raw: Record<string, unknown>,
+  currencyInput: string,
+): Promise<CheckoutResult> {
   const parsed = checkoutSchema.safeParse(raw);
   if (!parsed.success) return { ok: false, error: 'validation' };
   const input = parsed.data;
 
   const locale = await getLocale();
   const session = await getSession();
+  const currency: CurrencyCode = isCurrency(currencyInput) ? currencyInput : 'USD';
   const view = await resolveCart(rawLines, locale);
   if (view.lines.length === 0) return { ok: false, error: 'emptyCart' };
 
-  const amountCents = view.subtotalCents;
+  // Convert base (USD) prices into the selected display currency at purchase time.
   const items = view.lines.map((l) => ({
     productId: l.productId,
     titleSnapshot: l.title,
-    unitPriceCents: l.unitPriceCents,
+    unitPriceCents: convertFromBase(l.unitPriceCents, currency),
     quantity: l.quantity,
   }));
+  const amountCents = items.reduce((sum, i) => sum + i.unitPriceCents * i.quantity, 0);
   const address = {
     fullName: input.fullName,
     email: input.email,
@@ -47,7 +54,7 @@ export async function placeOrderAction(rawLines: SimpleLine[], raw: Record<strin
     const order = await createOrder({
       userId: session?.userId ?? null,
       email: input.email,
-      currency: view.currency,
+      currency,
       amountCents,
       paymentMethod: 'OnlinePayment',
       onlinePaymentStatus: 'Pending',
@@ -61,8 +68,8 @@ export async function placeOrderAction(rawLines: SimpleLine[], raw: Record<strin
         line_items: view.lines.map((l) => ({
           quantity: l.quantity,
           price_data: {
-            currency: l.currency.toLowerCase(),
-            unit_amount: l.unitPriceCents,
+            currency: currency.toLowerCase(),
+            unit_amount: convertFromBase(l.unitPriceCents, currency),
             product_data: { name: l.title },
           },
         })),
@@ -83,7 +90,7 @@ export async function placeOrderAction(rawLines: SimpleLine[], raw: Record<strin
   const order = await createOrder({
     userId: session?.userId ?? null,
     email: input.email,
-    currency: view.currency,
+    currency,
     amountCents,
     paymentMethod: 'CashOnDelivery',
     status: 'PendingApproval',

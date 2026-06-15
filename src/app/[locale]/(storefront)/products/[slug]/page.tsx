@@ -92,13 +92,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </a>
           )}
 
-          <Price
-            priceCents={product.priceCents}
-            discount={product.discountPercentage}
-            currency={product.currency}
-            locale={locale}
-            className='text-2xl'
-          />
+          <Price priceCents={product.priceCents} discount={product.discountPercentage} className='text-2xl' />
 
           <p className='text-muted leading-relaxed'>{description}</p>
 

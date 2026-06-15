@@ -2,15 +2,16 @@
 
 import { ThemeProvider } from 'next-themes';
 import type { ReactNode } from 'react';
+import { CurrencyProvider } from '@/features/currency/currencyProvider';
 
 /**
- * Client providers. HeroUI v3 needs NO provider; we only wire next-themes for dark mode.
- * `attribute="class"` matches HeroUI's `.dark` selector and our Tailwind `dark:` variant.
+ * Client providers. HeroUI v3 needs NO provider; we wire next-themes (dark mode) and
+ * the currency context (display-currency conversion).
  */
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute='class' defaultTheme='light' enableSystem={false} disableTransitionOnChange>
-      {children}
+      <CurrencyProvider>{children}</CurrencyProvider>
     </ThemeProvider>
   );
 }

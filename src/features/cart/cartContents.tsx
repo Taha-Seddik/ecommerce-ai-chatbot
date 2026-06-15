@@ -7,13 +7,14 @@ import { IconBag } from '@/components/ui/icons';
 import { persistCartAction, resolveCart } from '@/features/cart/cart.actions';
 import { useGuestCart } from '@/features/cart/cart.store';
 import type { CartView } from '@/features/cart/cart.types';
+import { useCurrency } from '@/features/currency/currencyProvider';
 import { Link } from '@/i18n/navigation';
-import { formatPrice } from '@/lib/money';
 
 const stepBtn = 'grid size-8 place-items-center transition-colors hover:bg-surface-secondary disabled:opacity-40';
 
 export function CartContents({ locale, onNavigate }: { locale: string; onNavigate?: () => void }) {
   const t = useTranslations('cart');
+  const { format } = useCurrency();
   const lines = useGuestCart((s) => s.lines);
   const setQty = useGuestCart((s) => s.setQty);
   const remove = useGuestCart((s) => s.remove);
@@ -71,10 +72,12 @@ export function CartContents({ locale, onNavigate }: { locale: string; onNavigat
                   className='hover:text-accent leading-snug font-medium transition-colors'>
                   {l.title}
                 </Link>
-                <span className='tabular font-medium'>{formatPrice(l.lineTotalCents, l.currency, locale)}</span>
+                <span className='tabular font-medium' suppressHydrationWarning>
+                  {format(l.lineTotalCents)}
+                </span>
               </div>
-              <span className='text-muted text-sm'>
-                {formatPrice(l.unitPriceCents, l.currency, locale)} {t('each')}
+              <span className='text-muted text-sm' suppressHydrationWarning>
+                {format(l.unitPriceCents)} {t('each')}
               </span>
               <div className='mt-auto flex items-center justify-between pt-2'>
                 <div className='border-border flex items-center rounded-lg border'>
@@ -111,8 +114,8 @@ export function CartContents({ locale, onNavigate }: { locale: string; onNavigat
         <div className='border-border space-y-3 border-t pt-4'>
           <div className='flex items-center justify-between'>
             <span className='text-muted'>{t('subtotal')}</span>
-            <span className='tabular text-lg font-semibold'>
-              {formatPrice(view.subtotalCents, view.currency, locale)}
+            <span className='tabular text-lg font-semibold' suppressHydrationWarning>
+              {format(view.subtotalCents)}
             </span>
           </div>
           <p className='text-muted text-xs'>{t('shippingNote')}</p>

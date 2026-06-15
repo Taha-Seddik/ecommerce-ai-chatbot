@@ -7,9 +7,9 @@ import { resolveCart } from '@/features/cart/cart.actions';
 import { useGuestCart } from '@/features/cart/cart.store';
 import type { CartView } from '@/features/cart/cart.types';
 import { placeOrderAction } from '@/features/checkout/checkout.actions';
+import { useCurrency } from '@/features/currency/currencyProvider';
 import { useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
-import { formatPrice } from '@/lib/money';
 
 type Defaults = Partial<Record<'fullName' | 'email' | 'telephone' | 'adresse' | 'city' | 'zipCode', string>>;
 
@@ -50,6 +50,7 @@ export function CheckoutForm({
 }) {
   const t = useTranslations('checkout');
   const router = useRouter();
+  const { format, currency } = useCurrency();
   const lines = useGuestCart((s) => s.lines);
   const [view, setView] = useState<CartView | null>(null);
   const [method, setMethod] = useState<'cod' | 'card'>('cod');
@@ -73,7 +74,7 @@ export function CheckoutForm({
     setError(null);
     setPending(true);
     const raw = Object.fromEntries(new FormData(e.currentTarget));
-    const res = await placeOrderAction(useGuestCart.getState().lines, raw);
+    const res = await placeOrderAction(useGuestCart.getState().lines, raw, currency);
     if (!res.ok) {
       setError(res.error);
       setPending(false);
@@ -86,7 +87,7 @@ export function CheckoutForm({
     router.push(`/order/${res.orderId}/confirmation`);
   }
 
-  const total = view ? formatPrice(view.subtotalCents, view.currency, locale) : '—';
+  const total = view ? format(view.subtotalCents) : '—';
 
   return (
     <form onSubmit={onSubmit} className='grid items-start gap-10 lg:grid-cols-[1fr_360px]'>
@@ -152,7 +153,9 @@ export function CheckoutForm({
               <span className='text-muted'>
                 {l.title} × {l.quantity}
               </span>
-              <span className='tabular'>{formatPrice(l.lineTotalCents, l.currency, locale)}</span>
+              <span className='tabular' suppressHydrationWarning>
+                {format(l.lineTotalCents)}
+              </span>
             </li>
           ))}
         </ul>
