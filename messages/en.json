@@ -88,6 +88,17 @@
     "reviewsTitle": "Reviews",
     "verifiedPurchase": "Verified purchase"
   },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "emptyHint": "Add a few pieces you love.",
+    "continueShopping": "Continue shopping",
+    "subtotal": "Subtotal",
+    "shippingNote": "Shipping & taxes calculated at checkout.",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "each": "each"
+  },
   "footer": {
     "tagline": "Considered objects for the home.",
     "shop": "Shop",

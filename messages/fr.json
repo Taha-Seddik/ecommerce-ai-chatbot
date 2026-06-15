@@ -88,6 +88,17 @@
     "reviewsTitle": "Avis",
     "verifiedPurchase": "Achat vérifié"
   },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "emptyHint": "Ajoutez quelques pièces que vous aimez.",
+    "continueShopping": "Continuer mes achats",
+    "subtotal": "Sous-total",
+    "shippingNote": "Livraison et taxes calculées au paiement.",
+    "checkout": "Paiement",
+    "remove": "Retirer",
+    "each": "l’unité"
+  },
   "footer": {
     "tagline": "Des objets pensés pour la maison.",
     "shop": "Boutique",

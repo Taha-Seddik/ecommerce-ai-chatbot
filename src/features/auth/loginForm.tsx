@@ -3,6 +3,8 @@
 import { Button } from '@heroui/react';
 import { useTranslations } from 'next-intl';
 import { useActionState, useEffect } from 'react';
+import { mergeGuestCartAction } from '@/features/cart/cart.actions';
+import { useGuestCart } from '@/features/cart/cart.store';
 import { useRouter } from '@/i18n/navigation';
 import { loginAction } from './auth.actions';
 
@@ -15,7 +17,12 @@ export function LoginForm() {
   const [state, action, pending] = useActionState(loginAction, null);
 
   useEffect(() => {
-    if (state?.ok) router.replace('/account');
+    if (!state?.ok) return;
+    // Merge the guest cart into the user's DB cart, then continue.
+    mergeGuestCartAction(useGuestCart.getState().lines)
+      .then((merged) => useGuestCart.setState({ lines: merged }))
+      .catch(() => {})
+      .finally(() => router.replace('/account'));
   }, [state, router]);
 
   return (

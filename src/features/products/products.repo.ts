@@ -36,6 +36,11 @@ const cardColumns = {
   isFeatured: products.isFeatured,
 };
 
+export async function getProductsByIds(ids: string[]): Promise<ProductCardData[]> {
+  if (!ids.length) return [];
+  return db.select(cardColumns).from(products).where(inArray(products.id, ids)) as Promise<ProductCardData[]>;
+}
+
 export async function getFeaturedProducts(limit = 8): Promise<ProductCardData[]> {
   return db
     .select(cardColumns)

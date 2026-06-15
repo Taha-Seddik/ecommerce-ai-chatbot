@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import { IconBag, IconSearch, IconUser } from '@/components/ui/icons';
+import { IconSearch, IconUser } from '@/components/ui/icons';
+import { CartButton } from '@/features/cart/cartButton';
 import { Container } from '@/components/ui/container';
 import { ThemeToggle } from '@/components/ui/themeToggle';
 import { getTopCategories } from '@/features/categories/categories.repo';
@@ -45,9 +46,7 @@ export async function Navbar({ locale }: { locale: string }) {
           <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
             <IconUser />
           </Link>
-          <Link href='/cart' aria-label={t('nav.cart')} className={iconBtn}>
-            <IconBag />
-          </Link>
+          <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
         </div>
       </Container>
     </header>
