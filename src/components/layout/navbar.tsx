@@ -38,7 +38,7 @@ export async function Navbar({ locale }: { locale: string }) {
         </nav>
 
         <div className='ml-auto flex items-center gap-0.5'>
-          <Link href='/products' aria-label={t('common.search')} className={iconBtn}>
+          <Link href='/search' aria-label={t('common.search')} className={iconBtn}>
             <IconSearch />
           </Link>
           <LocaleSwitcher />

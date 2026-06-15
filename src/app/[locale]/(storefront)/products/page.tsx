@@ -44,7 +44,12 @@ export default async function ProductsPage({
         <EmptyState title={t('catalog.noResults')} hint={t('catalog.noResultsHint')} />
       )}
 
-      <Pagination page={current} pageCount={pageCount} basePath='/products' sort={sort} />
+      <Pagination
+        page={current}
+        pageCount={pageCount}
+        basePath='/products'
+        params={sort !== 'newest' ? { sort } : {}}
+      />
     </Container>
   );
 }

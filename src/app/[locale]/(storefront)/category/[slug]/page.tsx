@@ -75,7 +75,12 @@ export default async function CategoryPage({
         <EmptyState title={t('catalog.noResults')} hint={t('catalog.noResultsHint')} />
       )}
 
-      <Pagination page={current} pageCount={pageCount} basePath={`/category/${slug}`} sort={sort} />
+      <Pagination
+        page={current}
+        pageCount={pageCount}
+        basePath={`/category/${slug}`}
+        params={sort !== 'newest' ? { sort } : {}}
+      />
     </Container>
   );
 }

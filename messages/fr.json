@@ -68,6 +68,20 @@
     "next": "Suivant",
     "page": "Page {page} sur {total}"
   },
+  "search": {
+    "title": "Recherche",
+    "placeholder": "Rechercher des produits…",
+    "resultsFor": "{count, plural, =0 {Aucun résultat} one {# résultat} other {# résultats}} pour « {q} »",
+    "noResults": "Aucune correspondance",
+    "noResultsHint": "Essayez une autre recherche ou moins de filtres.",
+    "categories": "Catégorie",
+    "price": "Prix",
+    "min": "Min",
+    "max": "Max",
+    "apply": "Appliquer",
+    "inStock": "En stock seulement",
+    "clear": "Réinitialiser"
+  },
   "product": {
     "from": "À partir de",
     "outOfStock": "Rupture de stock",

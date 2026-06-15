@@ -6,20 +6,19 @@ export function Pagination({
   page,
   pageCount,
   basePath,
-  sort,
+  params = {},
 }: {
   page: number;
   pageCount: number;
   basePath: string;
-  sort?: string;
+  params?: Record<string, string>;
 }) {
   if (pageCount <= 1) return null;
 
   const href = (p: number) => {
-    const params = new URLSearchParams();
-    if (sort && sort !== 'newest') params.set('sort', sort);
-    if (p > 1) params.set('page', String(p));
-    const qs = params.toString();
+    const sp = new URLSearchParams(params);
+    if (p > 1) sp.set('page', String(p));
+    const qs = sp.toString();
     return qs ? `${basePath}?${qs}` : basePath;
   };
 
