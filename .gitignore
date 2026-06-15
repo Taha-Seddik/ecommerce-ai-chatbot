@@ -32,6 +32,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# local database (SQLite file) & uploaded media — persisted on the VPS, never committed
+/data
+/public/uploads
 
 # vercel
 .vercel

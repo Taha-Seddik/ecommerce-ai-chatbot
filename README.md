@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Norden — modern ecommerce (demo)
 
-## Getting Started
+A production-quality, bilingual (EN/FR) ecommerce storefront + admin, built as a portfolio piece.
+Premium "Editorial Atelier" design, server-rendered product pages, and a clean, typed architecture.
 
-First, run the development server:
+> Generic demo with a placeholder brand (**Norden**). A modern rebuild of an older Express/Sequelize SSR shop.
+
+## Tech stack
+
+- **Next.js 16** (App Router, RSC, Server Actions) + **React 19** + **TypeScript** (strict)
+- **HeroUI v3** + **Tailwind CSS v4** (CSS-first theming, light/dark)
+- **Drizzle ORM** + **libSQL** (file-based SQLite — just a file, no DB server; Turso-ready)
+- Custom **JWT** auth (`jose` + httpOnly cookies + `bcryptjs`, user/admin roles)
+- **Stripe** (test mode) + Cash on Delivery
+- **next-intl** (EN/FR routing) + multi-currency
+- Zod + drizzle-zod, react-hook-form, Zustand, nuqs
+
+See [`CLAUDE.md`](./CLAUDE.md) for conventions and [`design.md`](./design.md) for the design system.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env        # adjust values as needed
+npm run db:migrate          # create the SQLite schema   (after Phase 1)
+npm run db:seed             # load demo catalog          (after Phase 1)
+npm run dev                 # http://localhost:3000 → /en
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script                                                 | Purpose                              |
+| ------------------------------------------------------ | ------------------------------------ |
+| `dev` / `build` / `start`                              | develop / build (standalone) / serve |
+| `type-check` / `lint` / `format`                       | `tsc --noEmit` / ESLint / Prettier   |
+| `db:generate` / `db:migrate` / `db:seed` / `db:studio` | Drizzle workflows                    |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+- **Hostinger VPS:** `next build` (standalone) + PM2 + Nginx. `data/app.db` and `public/uploads/` live
+  outside the build artifact and persist across redeploys; run `npm run db:migrate` before reload.
+- **Vercel:** swap the libSQL file URL for a Turso URL and set `STORAGE_DRIVER=s3`.
 
-To learn more about Next.js, take a look at the following resources:
+## Roadmap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built feature-by-feature: scaffold → schema/seed → catalog → product detail → auth → cart → checkout
+(Stripe + COD) → account → search/facets → admin → i18n/currency → enhancements (wishlist, reviews) →
+SEO/a11y → tests/CI. See the project plan for details.

@@ -1,0 +1,27 @@
+{
+  "common": {
+    "shopNow": "Acheter",
+    "addToCart": "Ajouter au panier",
+    "search": "Rechercher",
+    "menu": "Menu",
+    "loading": "Chargement…"
+  },
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "categories": "Catégories",
+    "about": "À propos"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "home": {
+    "eyebrow": "Nouvelle collection",
+    "title": "Des objets pensés pour la maison.",
+    "subtitle": "Du mobilier et des pièces art de vivre, choisis avec soin et conçus pour durer.",
+    "cta": "Découvrir la collection",
+    "secondaryCta": "Notre histoire"
+  }
+}

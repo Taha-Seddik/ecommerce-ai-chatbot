@@ -1,26 +1,100 @@
-@import "tailwindcss";
+/* HeroUI v3 brings in Tailwind v4 + tw-animate-css + base/components/theme. Keep this first. */
+@import '@heroui/styles';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Make Tailwind's `dark:` variant follow the next-themes `.dark` class (not prefers-color-scheme). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens exposed as Tailwind utilities (font-display, font-sans, shadow-soft, …). */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --shadow-soft: 0 1px 2px rgba(21, 20, 15, 0.04), 0 8px 24px rgba(21, 20, 15, 0.06);
+  --shadow-lifted: 0 12px 40px rgba(21, 20, 15, 0.12);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/*
+ * Brand themes — "Editorial Atelier" (light) & "Nocturne Luxe" (dark).
+ * Declared UNLAYERED so they override HeroUI's @layer theme defaults.
+ * `--accent` is HeroUI v3's primary/brand color (used by Button variant="primary").
+ */
+:root,
+.light,
+[data-theme='light'] {
+  --radius: 0.625rem;
+
+  --background: #f7f6f3;
+  --foreground: #24221c;
+
+  --surface: #ffffff;
+  --surface-secondary: #edebe6;
+  --surface-tertiary: #ddd9d0;
+
+  --overlay: #ffffff;
+  --overlay-foreground: #24221c;
+
+  --muted: #6e6757;
+
+  --default: #edebe6;
+  --default-foreground: #24221c;
+
+  --accent: #c2613a;
+  --accent-foreground: #ffffff;
+
+  --success: #2f7d5b;
+  --success-foreground: #ffffff;
+  --warning: #c2902b;
+  --warning-foreground: #ffffff;
+  --danger: #b23a38;
+  --danger-foreground: #ffffff;
+
+  --border: #e6e2d9;
+  --separator: #ece9e2;
+  --focus: var(--accent);
+  --link: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark,
+[data-theme='dark'] {
+  --background: #15140f;
+  --foreground: #f1efe8;
+
+  --surface: #1f1d17;
+  --surface-secondary: #28251d;
+  --surface-tertiary: #322e24;
+
+  --overlay: #1f1d17;
+  --overlay-foreground: #f1efe8;
+
+  --muted: #a39c8b;
+
+  --default: #28251d;
+  --default-foreground: #f1efe8;
+
+  --accent: #d4a24c;
+  --accent-foreground: #15140f;
+
+  --success: #3e9c73;
+  --success-foreground: #15140f;
+  --warning: #d4a24c;
+  --warning-foreground: #15140f;
+  --danger: #d46a66;
+  --danger-foreground: #15140f;
+
+  --border: #2e2a20;
+  --separator: #28251d;
+  --focus: var(--accent);
+  --link: var(--foreground);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prices and numeric tables read better with lining/tabular figures. */
+.tabular {
+  font-variant-numeric: tabular-nums;
 }

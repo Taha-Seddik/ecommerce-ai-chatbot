@@ -1,0 +1,27 @@
+{
+  "common": {
+    "shopNow": "Shop now",
+    "addToCart": "Add to cart",
+    "search": "Search",
+    "menu": "Menu",
+    "loading": "Loading…"
+  },
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "categories": "Categories",
+    "about": "About"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "home": {
+    "eyebrow": "New collection",
+    "title": "Considered objects for the home.",
+    "subtitle": "Furniture and lifestyle pieces, chosen with care and built to last.",
+    "cta": "Explore the collection",
+    "secondaryCta": "Our story"
+  }
+}
