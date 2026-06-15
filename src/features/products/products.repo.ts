@@ -1,7 +1,8 @@
 import 'server-only';
-import { type SQL, and, asc, desc, eq, inArray, sql } from 'drizzle-orm';
+import { cache } from 'react';
+import { type SQL, and, asc, desc, eq, inArray, ne, sql } from 'drizzle-orm';
 import { db } from '@/db';
-import { products } from '@/db/schema';
+import { products, reviews, users } from '@/db/schema';
 import { PAGE_SIZE, type ProductCardData, type ProductSort } from './products.types';
 
 export { PAGE_SIZE };
@@ -91,4 +92,71 @@ export async function listProducts(opts: ListProductsOptions = {}): Promise<List
     pageSize,
     pageCount: Math.max(1, Math.ceil(total / pageSize)),
   };
+}
+
+// --- Product detail ---
+
+// Wrapped in React cache() so generateMetadata + the page share one query per request.
+const detailBySlug = cache((slug: string) =>
+  db.query.products.findFirst({
+    where: eq(products.slug, slug),
+    with: {
+      images: { orderBy: (img, { asc }) => [asc(img.sortOrder)] },
+      category: true,
+    },
+  }),
+);
+
+export type ProductDetail = NonNullable<Awaited<ReturnType<typeof detailBySlug>>>;
+
+export function getProductBySlug(slug: string) {
+  return detailBySlug(slug);
+}
+
+export async function getAllProductSlugs(): Promise<string[]> {
+  const rows = await db.select({ slug: products.slug }).from(products).where(eq(products.isPublished, true));
+  return rows.map((r) => r.slug);
+}
+
+export async function getRelatedProducts(
+  categoryId: string | null,
+  excludeId: string,
+  limit = 4,
+): Promise<ProductCardData[]> {
+  if (!categoryId) return [];
+  return db
+    .select(cardColumns)
+    .from(products)
+    .where(and(eq(products.isPublished, true), eq(products.categoryId, categoryId), ne(products.id, excludeId)))
+    .orderBy(desc(products.ratingAvg))
+    .limit(limit) as Promise<ProductCardData[]>;
+}
+
+export type ProductReview = {
+  id: string;
+  rating: number;
+  title: string | null;
+  body: string | null;
+  createdAt: Date;
+  isVerifiedPurchase: boolean;
+  firstName: string;
+  lastName: string;
+};
+
+export async function getProductReviews(productId: string): Promise<ProductReview[]> {
+  return db
+    .select({
+      id: reviews.id,
+      rating: reviews.rating,
+      title: reviews.title,
+      body: reviews.body,
+      createdAt: reviews.createdAt,
+      isVerifiedPurchase: reviews.isVerifiedPurchase,
+      firstName: users.firstName,
+      lastName: users.lastName,
+    })
+    .from(reviews)
+    .innerJoin(users, eq(reviews.userId, users.id))
+    .where(and(eq(reviews.productId, productId), eq(reviews.isApproved, true)))
+    .orderBy(desc(reviews.createdAt));
 }

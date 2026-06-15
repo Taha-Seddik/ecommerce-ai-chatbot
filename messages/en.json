@@ -54,7 +54,18 @@
     "lowStock": "Only {count} left",
     "reviews": "{count, plural, =0 {No reviews} one {# review} other {# reviews}}",
     "sale": "Sale",
-    "new": "New"
+    "new": "New",
+    "addToCart": "Add to cart",
+    "added": "Added ✓",
+    "details": "Details",
+    "dimensions": "Dimensions",
+    "shipping": "Shipping",
+    "freeShipping": "Free shipping",
+    "sku": "SKU",
+    "descriptionTitle": "Description",
+    "relatedProducts": "You may also like",
+    "reviewsTitle": "Reviews",
+    "verifiedPurchase": "Verified purchase"
   },
   "footer": {
     "tagline": "Considered objects for the home.",
