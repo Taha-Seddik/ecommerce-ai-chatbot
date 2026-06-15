@@ -58,46 +58,330 @@ type ProductSeed = {
 
 const products: ProductSeed[] = [
   // Sofas
-  { cat: 'sofas', slug: 'haven-3-seater-sofa', title: { en: 'Haven 3-Seater Sofa', fr: 'Canapé 3 places Haven' }, description: { en: 'A deep, low-slung sofa in bouclé with solid oak feet.', fr: 'Un canapé profond et bas en bouclette, pieds en chêne massif.' }, priceCents: 189900, stock: 12, featured: true },
-  { cat: 'sofas', slug: 'lina-modular-sofa', title: { en: 'Lina Modular Sofa', fr: 'Canapé modulable Lina' }, description: { en: 'Reconfigurable modular seating for any room shape.', fr: 'Assise modulable et reconfigurable pour toute pièce.' }, priceCents: 244900, discount: 15, stock: 7 },
-  { cat: 'sofas', slug: 'noak-leather-loveseat', title: { en: 'Noak Leather Loveseat', fr: 'Causeuse en cuir Noak' }, description: { en: 'Full-grain tan leather that ages beautifully.', fr: 'Cuir pleine fleur fauve qui se patine avec le temps.' }, priceCents: 159900, stock: 5 },
+  {
+    cat: 'sofas',
+    slug: 'haven-3-seater-sofa',
+    title: { en: 'Haven 3-Seater Sofa', fr: 'Canapé 3 places Haven' },
+    description: {
+      en: 'A deep, low-slung sofa in bouclé with solid oak feet.',
+      fr: 'Un canapé profond et bas en bouclette, pieds en chêne massif.',
+    },
+    priceCents: 189900,
+    stock: 12,
+    featured: true,
+  },
+  {
+    cat: 'sofas',
+    slug: 'lina-modular-sofa',
+    title: { en: 'Lina Modular Sofa', fr: 'Canapé modulable Lina' },
+    description: {
+      en: 'Reconfigurable modular seating for any room shape.',
+      fr: 'Assise modulable et reconfigurable pour toute pièce.',
+    },
+    priceCents: 244900,
+    discount: 15,
+    stock: 7,
+  },
+  {
+    cat: 'sofas',
+    slug: 'noak-leather-loveseat',
+    title: { en: 'Noak Leather Loveseat', fr: 'Causeuse en cuir Noak' },
+    description: {
+      en: 'Full-grain tan leather that ages beautifully.',
+      fr: 'Cuir pleine fleur fauve qui se patine avec le temps.',
+    },
+    priceCents: 159900,
+    stock: 5,
+  },
   // Coffee tables
-  { cat: 'coffee-tables', slug: 'fjord-oak-coffee-table', title: { en: 'Fjord Oak Coffee Table', fr: 'Table basse en chêne Fjord' }, description: { en: 'Sculpted solid oak with a soft matte finish.', fr: 'Chêne massif sculpté, finition mate douce.' }, priceCents: 64900, stock: 20, featured: true },
-  { cat: 'coffee-tables', slug: 'mara-travertine-table', title: { en: 'Mara Travertine Table', fr: 'Table en travertin Mara' }, description: { en: 'Honed travertine with a warm, organic grain.', fr: 'Travertin adouci au grain chaud et organique.' }, priceCents: 89900, discount: 10, stock: 9 },
-  { cat: 'coffee-tables', slug: 'orbit-nesting-tables', title: { en: 'Orbit Nesting Tables', fr: 'Tables gigognes Orbit' }, description: { en: 'A pair of nesting tables in powder-coated steel.', fr: 'Paire de tables gigognes en acier thermolaqué.' }, priceCents: 42900, stock: 18 },
+  {
+    cat: 'coffee-tables',
+    slug: 'fjord-oak-coffee-table',
+    title: { en: 'Fjord Oak Coffee Table', fr: 'Table basse en chêne Fjord' },
+    description: {
+      en: 'Sculpted solid oak with a soft matte finish.',
+      fr: 'Chêne massif sculpté, finition mate douce.',
+    },
+    priceCents: 64900,
+    stock: 20,
+    featured: true,
+  },
+  {
+    cat: 'coffee-tables',
+    slug: 'mara-travertine-table',
+    title: { en: 'Mara Travertine Table', fr: 'Table en travertin Mara' },
+    description: {
+      en: 'Honed travertine with a warm, organic grain.',
+      fr: 'Travertin adouci au grain chaud et organique.',
+    },
+    priceCents: 89900,
+    discount: 10,
+    stock: 9,
+  },
+  {
+    cat: 'coffee-tables',
+    slug: 'orbit-nesting-tables',
+    title: { en: 'Orbit Nesting Tables', fr: 'Tables gigognes Orbit' },
+    description: {
+      en: 'A pair of nesting tables in powder-coated steel.',
+      fr: 'Paire de tables gigognes en acier thermolaqué.',
+    },
+    priceCents: 42900,
+    stock: 18,
+  },
   // Armchairs
-  { cat: 'armchairs', slug: 'pebble-lounge-chair', title: { en: 'Pebble Lounge Chair', fr: 'Fauteuil lounge Pebble' }, description: { en: 'An enveloping lounge chair in soft wool.', fr: 'Fauteuil lounge enveloppant en laine douce.' }, priceCents: 99900, stock: 14, featured: true },
-  { cat: 'armchairs', slug: 'sling-accent-chair', title: { en: 'Sling Accent Chair', fr: "Fauteuil d'appoint Sling" }, description: { en: 'Leather sling seat on a bentwood frame.', fr: 'Assise en cuir suspendu sur cadre en bois courbé.' }, priceCents: 74900, discount: 20, stock: 6 },
+  {
+    cat: 'armchairs',
+    slug: 'pebble-lounge-chair',
+    title: { en: 'Pebble Lounge Chair', fr: 'Fauteuil lounge Pebble' },
+    description: { en: 'An enveloping lounge chair in soft wool.', fr: 'Fauteuil lounge enveloppant en laine douce.' },
+    priceCents: 99900,
+    stock: 14,
+    featured: true,
+  },
+  {
+    cat: 'armchairs',
+    slug: 'sling-accent-chair',
+    title: { en: 'Sling Accent Chair', fr: "Fauteuil d'appoint Sling" },
+    description: {
+      en: 'Leather sling seat on a bentwood frame.',
+      fr: 'Assise en cuir suspendu sur cadre en bois courbé.',
+    },
+    priceCents: 74900,
+    discount: 20,
+    stock: 6,
+  },
   // Beds
-  { cat: 'beds', slug: 'dune-platform-bed', title: { en: 'Dune Platform Bed', fr: 'Lit plateforme Dune' }, description: { en: 'A low platform bed with an upholstered headboard.', fr: 'Lit plateforme bas avec tête de lit rembourrée.' }, priceCents: 134900, stock: 8, featured: true },
-  { cat: 'beds', slug: 'ash-canopy-bed', title: { en: 'Ash Canopy Bed', fr: 'Lit à baldaquin Ash' }, description: { en: 'Minimal four-poster in solid ash.', fr: 'Lit à baldaquin minimaliste en frêne massif.' }, priceCents: 179900, stock: 4 },
+  {
+    cat: 'beds',
+    slug: 'dune-platform-bed',
+    title: { en: 'Dune Platform Bed', fr: 'Lit plateforme Dune' },
+    description: {
+      en: 'A low platform bed with an upholstered headboard.',
+      fr: 'Lit plateforme bas avec tête de lit rembourrée.',
+    },
+    priceCents: 134900,
+    stock: 8,
+    featured: true,
+  },
+  {
+    cat: 'beds',
+    slug: 'ash-canopy-bed',
+    title: { en: 'Ash Canopy Bed', fr: 'Lit à baldaquin Ash' },
+    description: { en: 'Minimal four-poster in solid ash.', fr: 'Lit à baldaquin minimaliste en frêne massif.' },
+    priceCents: 179900,
+    stock: 4,
+  },
   // Nightstands
-  { cat: 'nightstands', slug: 'tide-nightstand', title: { en: 'Tide Nightstand', fr: 'Table de chevet Tide' }, description: { en: 'A compact nightstand with a single soft-close drawer.', fr: 'Table de chevet compacte, tiroir à fermeture douce.' }, priceCents: 34900, stock: 25 },
-  { cat: 'nightstands', slug: 'cane-bedside-table', title: { en: 'Cane Bedside Table', fr: 'Table de chevet Cannage' }, description: { en: 'Woven cane front with a warm oak frame.', fr: 'Façade en cannage tressé, structure en chêne chaud.' }, priceCents: 39900, discount: 10, stock: 16 },
+  {
+    cat: 'nightstands',
+    slug: 'tide-nightstand',
+    title: { en: 'Tide Nightstand', fr: 'Table de chevet Tide' },
+    description: {
+      en: 'A compact nightstand with a single soft-close drawer.',
+      fr: 'Table de chevet compacte, tiroir à fermeture douce.',
+    },
+    priceCents: 34900,
+    stock: 25,
+  },
+  {
+    cat: 'nightstands',
+    slug: 'cane-bedside-table',
+    title: { en: 'Cane Bedside Table', fr: 'Table de chevet Cannage' },
+    description: {
+      en: 'Woven cane front with a warm oak frame.',
+      fr: 'Façade en cannage tressé, structure en chêne chaud.',
+    },
+    priceCents: 39900,
+    discount: 10,
+    stock: 16,
+  },
   // Dining tables
-  { cat: 'dining-tables', slug: 'grove-dining-table', title: { en: 'Grove Dining Table', fr: 'Table à manger Grove' }, description: { en: 'Seats six around a single solid-oak plank top.', fr: 'Six convives autour d’un plateau en chêne massif.' }, priceCents: 154900, stock: 6, featured: true },
-  { cat: 'dining-tables', slug: 'pillar-round-table', title: { en: 'Pillar Round Table', fr: 'Table ronde Pillar' }, description: { en: 'A pedestal round table in micro-cement.', fr: 'Table ronde sur pied central en micro-ciment.' }, priceCents: 119900, stock: 7 },
+  {
+    cat: 'dining-tables',
+    slug: 'grove-dining-table',
+    title: { en: 'Grove Dining Table', fr: 'Table à manger Grove' },
+    description: {
+      en: 'Seats six around a single solid-oak plank top.',
+      fr: 'Six convives autour d’un plateau en chêne massif.',
+    },
+    priceCents: 154900,
+    stock: 6,
+    featured: true,
+  },
+  {
+    cat: 'dining-tables',
+    slug: 'pillar-round-table',
+    title: { en: 'Pillar Round Table', fr: 'Table ronde Pillar' },
+    description: { en: 'A pedestal round table in micro-cement.', fr: 'Table ronde sur pied central en micro-ciment.' },
+    priceCents: 119900,
+    stock: 7,
+  },
   // Dining chairs
-  { cat: 'dining-chairs', slug: 'wren-dining-chair', title: { en: 'Wren Dining Chair', fr: 'Chaise Wren' }, description: { en: 'A curved, stackable chair in molded plywood.', fr: 'Chaise galbée et empilable en contreplaqué moulé.' }, priceCents: 18900, stock: 40 },
-  { cat: 'dining-chairs', slug: 'spindle-side-chair', title: { en: 'Spindle Side Chair', fr: 'Chaise Spindle' }, description: { en: 'A modern take on the classic spindle-back.', fr: 'Réinterprétation moderne du dossier à barreaux.' }, priceCents: 22900, discount: 15, stock: 30 },
+  {
+    cat: 'dining-chairs',
+    slug: 'wren-dining-chair',
+    title: { en: 'Wren Dining Chair', fr: 'Chaise Wren' },
+    description: {
+      en: 'A curved, stackable chair in molded plywood.',
+      fr: 'Chaise galbée et empilable en contreplaqué moulé.',
+    },
+    priceCents: 18900,
+    stock: 40,
+  },
+  {
+    cat: 'dining-chairs',
+    slug: 'spindle-side-chair',
+    title: { en: 'Spindle Side Chair', fr: 'Chaise Spindle' },
+    description: {
+      en: 'A modern take on the classic spindle-back.',
+      fr: 'Réinterprétation moderne du dossier à barreaux.',
+    },
+    priceCents: 22900,
+    discount: 15,
+    stock: 30,
+  },
   // Pendant lights
-  { cat: 'pendant-lights', slug: 'halo-pendant-light', title: { en: 'Halo Pendant Light', fr: 'Suspension Halo' }, description: { en: 'A frosted glass globe on a slim brass stem.', fr: 'Globe en verre dépoli sur tige fine en laiton.' }, priceCents: 24900, stock: 22, featured: true },
-  { cat: 'pendant-lights', slug: 'paper-cloud-pendant', title: { en: 'Paper Cloud Pendant', fr: 'Suspension Paper Cloud' }, description: { en: 'A sculptural rice-paper shade that diffuses softly.', fr: 'Abat-jour sculptural en papier de riz, lumière douce.' }, priceCents: 16900, stock: 28 },
+  {
+    cat: 'pendant-lights',
+    slug: 'halo-pendant-light',
+    title: { en: 'Halo Pendant Light', fr: 'Suspension Halo' },
+    description: {
+      en: 'A frosted glass globe on a slim brass stem.',
+      fr: 'Globe en verre dépoli sur tige fine en laiton.',
+    },
+    priceCents: 24900,
+    stock: 22,
+    featured: true,
+  },
+  {
+    cat: 'pendant-lights',
+    slug: 'paper-cloud-pendant',
+    title: { en: 'Paper Cloud Pendant', fr: 'Suspension Paper Cloud' },
+    description: {
+      en: 'A sculptural rice-paper shade that diffuses softly.',
+      fr: 'Abat-jour sculptural en papier de riz, lumière douce.',
+    },
+    priceCents: 16900,
+    stock: 28,
+  },
   // Table lamps
-  { cat: 'table-lamps', slug: 'mushroom-table-lamp', title: { en: 'Mushroom Table Lamp', fr: 'Lampe champignon' }, description: { en: 'A retro dome lamp in glazed ceramic.', fr: 'Lampe dôme rétro en céramique émaillée.' }, priceCents: 12900, discount: 10, stock: 35 },
-  { cat: 'table-lamps', slug: 'arc-reading-lamp', title: { en: 'Arc Reading Lamp', fr: 'Lampe de lecture Arc' }, description: { en: 'An adjustable arc lamp with a warm dimmable LED.', fr: 'Lampe arc réglable, LED chaude et variable.' }, priceCents: 14900, stock: 19 },
+  {
+    cat: 'table-lamps',
+    slug: 'mushroom-table-lamp',
+    title: { en: 'Mushroom Table Lamp', fr: 'Lampe champignon' },
+    description: { en: 'A retro dome lamp in glazed ceramic.', fr: 'Lampe dôme rétro en céramique émaillée.' },
+    priceCents: 12900,
+    discount: 10,
+    stock: 35,
+  },
+  {
+    cat: 'table-lamps',
+    slug: 'arc-reading-lamp',
+    title: { en: 'Arc Reading Lamp', fr: 'Lampe de lecture Arc' },
+    description: {
+      en: 'An adjustable arc lamp with a warm dimmable LED.',
+      fr: 'Lampe arc réglable, LED chaude et variable.',
+    },
+    priceCents: 14900,
+    stock: 19,
+  },
   // Rugs
-  { cat: 'rugs', slug: 'dune-wool-rug', title: { en: 'Dune Wool Rug', fr: 'Tapis en laine Dune' }, description: { en: 'A hand-tufted wool rug in warm sand tones.', fr: 'Tapis en laine tufté main, tons sable chauds.' }, priceCents: 49900, stock: 15, featured: true },
-  { cat: 'rugs', slug: 'grid-flatweave-rug', title: { en: 'Grid Flatweave Rug', fr: 'Tapis tissé plat Grid' }, description: { en: 'A low-pile flatweave with a subtle grid motif.', fr: 'Tissage plat ras au motif de grille discret.' }, priceCents: 34900, discount: 25, stock: 11 },
+  {
+    cat: 'rugs',
+    slug: 'dune-wool-rug',
+    title: { en: 'Dune Wool Rug', fr: 'Tapis en laine Dune' },
+    description: {
+      en: 'A hand-tufted wool rug in warm sand tones.',
+      fr: 'Tapis en laine tufté main, tons sable chauds.',
+    },
+    priceCents: 49900,
+    stock: 15,
+    featured: true,
+  },
+  {
+    cat: 'rugs',
+    slug: 'grid-flatweave-rug',
+    title: { en: 'Grid Flatweave Rug', fr: 'Tapis tissé plat Grid' },
+    description: {
+      en: 'A low-pile flatweave with a subtle grid motif.',
+      fr: 'Tissage plat ras au motif de grille discret.',
+    },
+    priceCents: 34900,
+    discount: 25,
+    stock: 11,
+  },
   // Vases
-  { cat: 'vases', slug: 'ripple-stoneware-vase', title: { en: 'Ripple Stoneware Vase', fr: 'Vase en grès Ripple' }, description: { en: 'A wheel-thrown vase with a rippled reactive glaze.', fr: 'Vase tourné à la main, émail réactif ondulé.' }, priceCents: 8900, stock: 50 },
-  { cat: 'vases', slug: 'totem-ceramic-vase', title: { en: 'Totem Ceramic Vase', fr: 'Vase céramique Totem' }, description: { en: 'A sculptural stacked-form vase in matte clay.', fr: 'Vase sculptural en argile mate, formes empilées.' }, priceCents: 10900, stock: 33 },
-  { cat: 'vases', slug: 'bud-glass-vase-set', title: { en: 'Bud Glass Vase Set', fr: 'Set de vases soliflores' }, description: { en: 'A trio of hand-blown bud vases in smoked glass.', fr: 'Trio de soliflores soufflés bouche, verre fumé.' }, priceCents: 6900, stock: 44 },
+  {
+    cat: 'vases',
+    slug: 'ripple-stoneware-vase',
+    title: { en: 'Ripple Stoneware Vase', fr: 'Vase en grès Ripple' },
+    description: {
+      en: 'A wheel-thrown vase with a rippled reactive glaze.',
+      fr: 'Vase tourné à la main, émail réactif ondulé.',
+    },
+    priceCents: 8900,
+    stock: 50,
+  },
+  {
+    cat: 'vases',
+    slug: 'totem-ceramic-vase',
+    title: { en: 'Totem Ceramic Vase', fr: 'Vase céramique Totem' },
+    description: {
+      en: 'A sculptural stacked-form vase in matte clay.',
+      fr: 'Vase sculptural en argile mate, formes empilées.',
+    },
+    priceCents: 10900,
+    stock: 33,
+  },
+  {
+    cat: 'vases',
+    slug: 'bud-glass-vase-set',
+    title: { en: 'Bud Glass Vase Set', fr: 'Set de vases soliflores' },
+    description: {
+      en: 'A trio of hand-blown bud vases in smoked glass.',
+      fr: 'Trio de soliflores soufflés bouche, verre fumé.',
+    },
+    priceCents: 6900,
+    stock: 44,
+  },
   // A few more for breadth
-  { cat: 'sofas', slug: 'cloud-daybed', title: { en: 'Cloud Daybed', fr: 'Méridienne Cloud' }, description: { en: 'A versatile daybed for lounging or guests.', fr: 'Méridienne polyvalente pour se détendre ou recevoir.' }, priceCents: 129900, stock: 6 },
-  { cat: 'coffee-tables', slug: 'plinth-side-table', title: { en: 'Plinth Side Table', fr: "Table d'appoint Plinth" }, description: { en: 'A monolithic side table in solid timber.', fr: "Table d'appoint monolithique en bois massif." }, priceCents: 29900, stock: 21 },
-  { cat: 'decor', slug: 'linen-throw-blanket', title: { en: 'Linen Throw Blanket', fr: 'Plaid en lin' }, description: { en: 'A stonewashed linen throw with fringed edges.', fr: 'Plaid en lin lavé à bords frangés.' }, priceCents: 11900, discount: 10, stock: 60 },
-  { cat: 'decor', slug: 'walnut-wall-mirror', title: { en: 'Walnut Wall Mirror', fr: 'Miroir mural noyer' }, description: { en: 'A round mirror framed in solid walnut.', fr: 'Miroir rond encadré de noyer massif.' }, priceCents: 22900, stock: 17 },
+  {
+    cat: 'sofas',
+    slug: 'cloud-daybed',
+    title: { en: 'Cloud Daybed', fr: 'Méridienne Cloud' },
+    description: {
+      en: 'A versatile daybed for lounging or guests.',
+      fr: 'Méridienne polyvalente pour se détendre ou recevoir.',
+    },
+    priceCents: 129900,
+    stock: 6,
+  },
+  {
+    cat: 'coffee-tables',
+    slug: 'plinth-side-table',
+    title: { en: 'Plinth Side Table', fr: "Table d'appoint Plinth" },
+    description: { en: 'A monolithic side table in solid timber.', fr: "Table d'appoint monolithique en bois massif." },
+    priceCents: 29900,
+    stock: 21,
+  },
+  {
+    cat: 'decor',
+    slug: 'linen-throw-blanket',
+    title: { en: 'Linen Throw Blanket', fr: 'Plaid en lin' },
+    description: { en: 'A stonewashed linen throw with fringed edges.', fr: 'Plaid en lin lavé à bords frangés.' },
+    priceCents: 11900,
+    discount: 10,
+    stock: 60,
+  },
+  {
+    cat: 'decor',
+    slug: 'walnut-wall-mirror',
+    title: { en: 'Walnut Wall Mirror', fr: 'Miroir mural noyer' },
+    description: { en: 'A round mirror framed in solid walnut.', fr: 'Miroir rond encadré de noyer massif.' },
+    priceCents: 22900,
+    stock: 17,
+  },
 ];
 
 const reviewBlurbs = [
@@ -154,11 +438,13 @@ async function seed() {
       city: 'Copenhagen',
     })),
   );
-  await db.insert(schema.userRoles).values([
-    { userId: admin.id, roleId: roleIds.admin },
-    { userId: admin.id, roleId: roleIds.user },
-    ...customers.map((c) => ({ userId: c.id, roleId: roleIds.user })),
-  ]);
+  await db
+    .insert(schema.userRoles)
+    .values([
+      { userId: admin.id, roleId: roleIds.admin },
+      { userId: admin.id, roleId: roleIds.user },
+      ...customers.map((c) => ({ userId: c.id, roleId: roleIds.user })),
+    ]);
 
   console.log('Seeding currencies…');
   await db.insert(schema.currencies).values([
