@@ -20,6 +20,27 @@
     "light": "Light",
     "dark": "Dark"
   },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "loginSubtitle": "Welcome back.",
+    "registerSubtitle": "Create your Norden account.",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "noAccount": "New to Norden?",
+    "haveAccount": "Already have an account?",
+    "logout": "Sign out",
+    "accountTitle": "Your account",
+    "welcome": "Signed in as {email}",
+    "demoHint": "Demo login: admin@norden.example / password123",
+    "error": {
+      "validation": "Please check the form and try again.",
+      "emailTaken": "An account with this email already exists.",
+      "invalidCredentials": "Incorrect email or password."
+    }
+  },
   "home": {
     "eyebrow": "New collection",
     "title": "Considered objects for the home.",

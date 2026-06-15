@@ -20,6 +20,27 @@
     "light": "Clair",
     "dark": "Sombre"
   },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "loginSubtitle": "Bon retour.",
+    "registerSubtitle": "Créez votre compte Norden.",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "noAccount": "Nouveau chez Norden ?",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "logout": "Se déconnecter",
+    "accountTitle": "Votre compte",
+    "welcome": "Connecté en tant que {email}",
+    "demoHint": "Connexion démo : admin@norden.example / password123",
+    "error": {
+      "validation": "Veuillez vérifier le formulaire et réessayer.",
+      "emailTaken": "Un compte existe déjà avec cet e-mail.",
+      "invalidCredentials": "E-mail ou mot de passe incorrect."
+    }
+  },
   "home": {
     "eyebrow": "Nouvelle collection",
     "title": "Des objets pensés pour la maison.",
