@@ -99,6 +99,52 @@
     "remove": "Retirer",
     "each": "l’unité"
   },
+  "checkout": {
+    "title": "Paiement",
+    "shipping": "Adresse de livraison",
+    "fullName": "Nom complet",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "zipCode": "Code postal",
+    "notes": "Remarques (facultatif)",
+    "payment": "Paiement",
+    "cod": "Paiement à la livraison",
+    "codDesc": "Payez en espèces à la réception.",
+    "card": "Paiement par carte",
+    "cardDesc": "Paiement sécurisé via Stripe.",
+    "cardDisabled": "Ajoutez des clés de test Stripe pour activer la carte.",
+    "summary": "Récapitulatif",
+    "subtotal": "Sous-total",
+    "shippingFee": "Livraison",
+    "free": "Offerte",
+    "total": "Total",
+    "placeOrder": "Commander",
+    "payNow": "Payer",
+    "error": {
+      "validation": "Veuillez vérifier vos informations.",
+      "emptyCart": "Votre panier est vide.",
+      "stripeDisabled": "Le paiement par carte n’est pas configuré. Choisissez le paiement à la livraison.",
+      "stripeError": "Le paiement n’a pas pu démarrer. Réessayez."
+    }
+  },
+  "order": {
+    "confirmed": "Commande confirmée",
+    "thankYou": "Merci — nous avons bien reçu votre commande.",
+    "reference": "Référence",
+    "status": "Statut",
+    "total": "Total",
+    "continueShopping": "Continuer mes achats",
+    "statuses": {
+      "PendingApproval": "En attente de validation",
+      "Approved": "Validée",
+      "ShippingInProgress": "Expédition en cours",
+      "Delivered": "Livrée",
+      "Cancelled": "Annulée",
+      "Failed": "Échouée"
+    }
+  },
   "footer": {
     "tagline": "Des objets pensés pour la maison.",
     "shop": "Boutique",

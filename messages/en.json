@@ -99,6 +99,52 @@
     "remove": "Remove",
     "each": "each"
   },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping details",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Postal code",
+    "notes": "Order notes (optional)",
+    "payment": "Payment",
+    "cod": "Cash on delivery",
+    "codDesc": "Pay in cash when your order arrives.",
+    "card": "Card payment",
+    "cardDesc": "Secure payment via Stripe.",
+    "cardDisabled": "Add Stripe test keys to enable card payments.",
+    "summary": "Order summary",
+    "subtotal": "Subtotal",
+    "shippingFee": "Shipping",
+    "free": "Free",
+    "total": "Total",
+    "placeOrder": "Place order",
+    "payNow": "Pay now",
+    "error": {
+      "validation": "Please check your details and try again.",
+      "emptyCart": "Your cart is empty.",
+      "stripeDisabled": "Card payments aren’t configured. Choose cash on delivery.",
+      "stripeError": "Payment could not be started. Please try again."
+    }
+  },
+  "order": {
+    "confirmed": "Order confirmed",
+    "thankYou": "Thank you — we’ve received your order.",
+    "reference": "Reference",
+    "status": "Status",
+    "total": "Total",
+    "continueShopping": "Continue shopping",
+    "statuses": {
+      "PendingApproval": "Pending approval",
+      "Approved": "Approved",
+      "ShippingInProgress": "Shipping in progress",
+      "Delivered": "Delivered",
+      "Cancelled": "Cancelled",
+      "Failed": "Failed"
+    }
+  },
   "footer": {
     "tagline": "Considered objects for the home.",
     "shop": "Shop",
