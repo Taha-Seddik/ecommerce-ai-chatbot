@@ -31,8 +31,9 @@ export function CartButton({ locale, label, title }: { locale: string; label: st
         <IconBag />
         {/* empty:hidden + suppressHydrationWarning avoids an SSR/client count mismatch */}
         <span
+          key={count}
           suppressHydrationWarning
-          className='bg-accent text-accent-foreground absolute -top-0.5 -right-0.5 grid min-w-4 place-items-center rounded-full px-1 text-[10px] font-semibold empty:hidden'>
+          className='bg-accent text-accent-foreground animate-in zoom-in-50 absolute -top-0.5 -right-0.5 grid min-w-4 place-items-center rounded-full px-1 text-[10px] font-semibold duration-200 empty:hidden'>
           {count > 0 ? count : ''}
         </span>
       </button>

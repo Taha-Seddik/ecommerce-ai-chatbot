@@ -3,11 +3,11 @@ import { IconHeart, IconUser } from '@/components/ui/icons';
 import { Container } from '@/components/ui/container';
 import { CartButton } from '@/features/cart/cartButton';
 import { CurrencySwitcher } from '@/features/currency/currencySwitcher';
-import { getTopCategories } from '@/features/categories/categories.repo';
+import { getNavCategories } from '@/features/categories/categories.repo';
 import { SearchModal } from '@/features/search/searchModal';
 import { Link } from '@/i18n/navigation';
 import { BRAND } from '@/lib/brand';
-import { pickLocale } from '@/lib/content';
+import { CategoryNav } from './categoryNav';
 import { LocaleSwitcher } from './localeSwitcher';
 
 const iconBtn =
@@ -15,7 +15,13 @@ const iconBtn =
 
 export async function Navbar({ locale }: { locale: string }) {
   const t = await getTranslations();
-  const categories = await getTopCategories();
+  const categories = await getNavCategories();
+  const navCategories = categories.map((c) => ({
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    children: c.children.map((ch) => ({ id: ch.id, slug: ch.slug, title: ch.title })),
+  }));
 
   return (
     <header className='bg-surface border-border sticky top-0 z-40 border-b'>
@@ -42,18 +48,8 @@ export async function Navbar({ locale }: { locale: string }) {
       </Container>
 
       <div className='border-border hidden border-t md:block'>
-        <Container className='flex h-11 items-center gap-6 text-sm'>
-          <Link href='/products' className='hover:text-accent font-medium transition-colors'>
-            {t('nav.shop')}
-          </Link>
-          {categories.map((c) => (
-            <Link
-              key={c.id}
-              href={`/category/${c.slug}`}
-              className='text-muted hover:text-foreground transition-colors'>
-              {pickLocale(c.title, locale)}
-            </Link>
-          ))}
+        <Container>
+          <CategoryNav categories={navCategories} shopLabel={t('nav.shop')} />
         </Container>
       </div>
     </header>

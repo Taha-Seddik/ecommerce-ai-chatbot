@@ -42,11 +42,16 @@ export async function resolveCart(lines: SimpleLine[], locale: string): Promise<
   };
 }
 
-/** Persist the cart to the DB for logged-in users; no-op for guests. */
+/** Persist the cart to the DB for logged-in users; no-op for guests. Best-effort: the client store stays
+ *  the source of truth for the session, so a transient DB/session issue never breaks add-to-cart. */
 export async function persistCartAction(lines: SimpleLine[]): Promise<void> {
   const session = await getSession();
   if (!session) return;
-  await setUserCart(session.userId, lines);
+  try {
+    await setUserCart(session.userId, lines);
+  } catch (err) {
+    console.error('persistCartAction failed; keeping client cart', err);
+  }
 }
 
 /** Merge the guest cart into the user's DB cart on login; returns the merged lines. */

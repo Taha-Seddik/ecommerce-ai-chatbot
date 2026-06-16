@@ -4,6 +4,7 @@ import { ProductGrid } from '@/components/product/productGrid';
 import { ButtonLink } from '@/components/ui/buttonLink';
 import { Container } from '@/components/ui/container';
 import { IconArrowRight } from '@/components/ui/icons';
+import { Reveal } from '@/components/ui/reveal';
 import { getTopCategories } from '@/features/categories/categories.repo';
 import { getFeaturedProducts } from '@/features/products/products.repo';
 import { getHomepageSettings } from '@/features/settings/settings.repo';
@@ -27,7 +28,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* Hero */}
       <section>
         <Container className='grid items-center gap-10 py-16 md:grid-cols-2 md:py-24'>
-          <div className='flex flex-col items-start gap-6'>
+          <Reveal className='flex flex-col items-start gap-6'>
             <span className='text-muted text-xs font-semibold tracking-[0.18em] uppercase'>{t('eyebrow')}</span>
             <h1 className='font-display text-5xl leading-[1.05] tracking-tight text-balance md:text-6xl lg:text-7xl'>
               {t('title')}
@@ -42,7 +43,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 {t('secondaryCta')}
               </ButtonLink>
             </div>
-          </div>
+          </Reveal>
 
           <div className='bg-surface-secondary shadow-soft relative aspect-[4/5] w-full overflow-hidden rounded-2xl md:aspect-square'>
             {heroImage && (
@@ -73,7 +74,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <IconArrowRight className='size-4' />
               </Link>
             </div>
-            <ProductGrid products={featured} locale={locale} priorityCount={4} />
+            <Reveal>
+              <ProductGrid products={featured} locale={locale} priorityCount={4} />
+            </Reveal>
           </Container>
         </section>
       )}
@@ -82,7 +85,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section>
         <Container className='py-12 md:py-16'>
           <h2 className='font-display mb-8 text-3xl tracking-tight md:text-4xl'>{t('shopByCategory')}</h2>
-          <div className='grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6'>
+          <Reveal className='grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6'>
             {categories.slice(0, 4).map((c) => (
               <Link
                 key={c.id}
@@ -103,7 +106,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </span>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>
