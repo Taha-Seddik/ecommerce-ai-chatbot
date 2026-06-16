@@ -1,10 +1,10 @@
 import { getTranslations } from 'next-intl/server';
-import { IconHeart, IconSearch, IconUser } from '@/components/ui/icons';
-import { CartButton } from '@/features/cart/cartButton';
+import { IconHeart, IconUser } from '@/components/ui/icons';
 import { Container } from '@/components/ui/container';
-import { ThemeToggle } from '@/components/ui/themeToggle';
+import { CartButton } from '@/features/cart/cartButton';
 import { CurrencySwitcher } from '@/features/currency/currencySwitcher';
 import { getTopCategories } from '@/features/categories/categories.repo';
+import { SearchModal } from '@/features/search/searchModal';
 import { Link } from '@/i18n/navigation';
 import { BRAND } from '@/lib/brand';
 import { pickLocale } from '@/lib/content';
@@ -18,14 +18,32 @@ export async function Navbar({ locale }: { locale: string }) {
   const categories = await getTopCategories();
 
   return (
-    <header className='bg-background/80 border-border sticky top-0 z-40 border-b backdrop-blur-md'>
-      <Container className='flex h-16 items-center gap-6'>
-        <Link href='/' className='font-display text-xl font-medium tracking-tight'>
+    <header className='bg-surface border-border sticky top-0 z-40 border-b'>
+      <Container className='flex h-16 items-center gap-4'>
+        <Link href='/' className='font-display shrink-0 text-xl font-semibold tracking-tight'>
           {BRAND.name}
         </Link>
 
-        <nav className='hidden items-center gap-5 text-sm md:flex'>
-          <Link href='/products' className='hover:text-accent transition-colors'>
+        <div className='flex flex-1 justify-center px-1 md:px-8'>
+          <SearchModal placeholder={t('search.placeholder')} />
+        </div>
+
+        <div className='flex shrink-0 items-center gap-1'>
+          <CurrencySwitcher />
+          <LocaleSwitcher />
+          <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
+            <IconHeart />
+          </Link>
+          <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
+            <IconUser />
+          </Link>
+          <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
+        </div>
+      </Container>
+
+      <div className='border-border hidden border-t md:block'>
+        <Container className='flex h-11 items-center gap-6 text-sm'>
+          <Link href='/products' className='hover:text-accent font-medium transition-colors'>
             {t('nav.shop')}
           </Link>
           {categories.map((c) => (
@@ -36,24 +54,8 @@ export async function Navbar({ locale }: { locale: string }) {
               {pickLocale(c.title, locale)}
             </Link>
           ))}
-        </nav>
-
-        <div className='ml-auto flex items-center gap-0.5'>
-          <Link href='/search' aria-label={t('common.search')} className={iconBtn}>
-            <IconSearch />
-          </Link>
-          <CurrencySwitcher />
-          <LocaleSwitcher />
-          <ThemeToggle />
-          <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
-            <IconHeart />
-          </Link>
-          <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
-            <IconUser />
-          </Link>
-          <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
-        </div>
-      </Container>
+        </Container>
+      </div>
     </header>
   );
 }

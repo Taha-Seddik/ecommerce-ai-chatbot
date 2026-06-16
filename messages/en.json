@@ -82,7 +82,9 @@
     "max": "Max",
     "apply": "Apply",
     "inStock": "In stock only",
-    "clear": "Clear filters"
+    "clear": "Clear filters",
+    "hint": "Search for sofas, lamps, rugs…",
+    "seeAll": "See all results for “{q}”"
   },
   "product": {
     "from": "From",

@@ -1,16 +1,16 @@
 # Norden — modern ecommerce (demo)
 
 A production-quality, **bilingual (EN/FR)**, **multi-currency** ecommerce storefront **+ admin panel**, built as a
-portfolio piece. Premium "Editorial Atelier" design, server-rendered & SEO-optimized product pages, and a clean,
-fully-typed architecture.
+portfolio piece. Clean, retail-grade design, server-rendered & SEO-optimized product pages, and a fully-typed
+architecture.
 
 > Generic demo with a placeholder brand (**Norden**, home & lifestyle goods) — a modern rebuild of an older
-> Express/Sequelize/MySQL SSR shop. Light **and** dark themes.
+> Express/Sequelize/MySQL SSR shop.
 
 ## Tech stack
 
 - **Next.js 16** (App Router, React Server Components, Server Actions) + **React 19** + **TypeScript** (strict)
-- **HeroUI v3** + **Tailwind CSS v4** — CSS-first theming, light/dark
+- **HeroUI v3** + **Tailwind CSS v4** — CSS-first theming
 - **Drizzle ORM** + **libSQL** (file-based SQLite — ships as a single file, no DB server; Turso-ready)
 - Custom **JWT** auth — `jose` + httpOnly cookies + `bcryptjs`, user/admin roles, proxy route guards
 - **Stripe** (test mode) + Cash on Delivery, webhook-confirmed orders
@@ -29,8 +29,8 @@ order confirmation & history, **wishlist**, **product reviews**, accounts (profi
 **Admin** (`/admin`, role-guarded) — dashboard KPIs, products CRUD (localized EN/FR, image upload, publish/feature),
 categories CRUD (hierarchy), orders management (status updates), customers, low-stock & revenue at a glance.
 
-**Platform** — bilingual routing + multi-currency, sitemap/robots, structured data, accessible (skip link, focus,
-ARIA, keyboard), light/dark, optimized images, CI (typecheck + lint + tests + build).
+**Platform** — bilingual routing + multi-currency, instant search popup, sitemap/robots, structured data, accessible
+(skip link, focus, ARIA, keyboard), optimized images, CI (typecheck + lint + tests + build).
 
 ## Getting started
 

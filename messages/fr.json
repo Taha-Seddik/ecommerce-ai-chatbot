@@ -82,7 +82,9 @@
     "max": "Max",
     "apply": "Appliquer",
     "inStock": "En stock seulement",
-    "clear": "Réinitialiser"
+    "clear": "Réinitialiser",
+    "hint": "Cherchez canapés, lampes, tapis…",
+    "seeAll": "Voir tous les résultats pour « {q} »"
   },
   "product": {
     "from": "À partir de",

@@ -26,8 +26,7 @@ export function WishlistButton({ productId, className }: { productId: string; cl
       aria-pressed={active}
       suppressHydrationWarning
       className={cn(
-        'grid size-9 place-items-center rounded-full backdrop-blur transition-colors',
-        'bg-background/70 hover:bg-background',
+        'bg-surface/90 shadow-soft hover:bg-surface grid size-9 place-items-center rounded-full transition-colors',
         active ? 'text-accent' : 'text-foreground',
         className,
       )}>

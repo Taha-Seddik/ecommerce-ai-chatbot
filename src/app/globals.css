@@ -1,89 +1,52 @@
 /* HeroUI v3 brings in Tailwind v4 + tw-animate-css + base/components/theme. Keep this first. */
 @import '@heroui/styles';
 
-/* Make Tailwind's `dark:` variant follow the next-themes `.dark` class (not prefers-color-scheme). */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* Design tokens exposed as Tailwind utilities (font-display, font-sans, shadow-soft, …). */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  --shadow-soft: 0 1px 2px rgba(21, 20, 15, 0.04), 0 8px 24px rgba(21, 20, 15, 0.06);
-  --shadow-lifted: 0 12px 40px rgba(21, 20, 15, 0.12);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(0, 0, 0, 0.06);
+  --shadow-lifted: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /*
- * Brand themes — "Editorial Atelier" (light) & "Nocturne Luxe" (dark).
- * Declared UNLAYERED so they override HeroUI's @layer theme defaults.
- * `--accent` is HeroUI v3's primary/brand color (used by Button variant="primary").
+ * Brand theme — clean retail palette (light only). Declared UNLAYERED so it overrides
+ * HeroUI's @layer theme defaults. `--accent` is HeroUI v3's primary/brand color.
  */
 :root,
 .light,
 [data-theme='light'] {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  --background: #f7f6f3;
-  --foreground: #24221c;
+  --background: #ffffff;
+  --foreground: #18181b;
 
   --surface: #ffffff;
-  --surface-secondary: #edebe6;
-  --surface-tertiary: #ddd9d0;
+  --surface-secondary: #f5f5f6;
+  --surface-tertiary: #ececef;
 
   --overlay: #ffffff;
-  --overlay-foreground: #24221c;
+  --overlay-foreground: #18181b;
 
-  --muted: #6e6757;
+  --muted: #71717a;
 
-  --default: #edebe6;
-  --default-foreground: #24221c;
+  --default: #f4f4f5;
+  --default-foreground: #18181b;
 
   --accent: #c2613a;
   --accent-foreground: #ffffff;
 
-  --success: #2f7d5b;
+  --success: #15803d;
   --success-foreground: #ffffff;
-  --warning: #c2902b;
+  --warning: #b45309;
   --warning-foreground: #ffffff;
-  --danger: #b23a38;
+  --danger: #dc2626;
   --danger-foreground: #ffffff;
 
-  --border: #e6e2d9;
-  --separator: #ece9e2;
-  --focus: var(--accent);
-  --link: var(--foreground);
-}
-
-.dark,
-[data-theme='dark'] {
-  --background: #15140f;
-  --foreground: #f1efe8;
-
-  --surface: #1f1d17;
-  --surface-secondary: #28251d;
-  --surface-tertiary: #322e24;
-
-  --overlay: #1f1d17;
-  --overlay-foreground: #f1efe8;
-
-  --muted: #a39c8b;
-
-  --default: #28251d;
-  --default-foreground: #f1efe8;
-
-  --accent: #d4a24c;
-  --accent-foreground: #15140f;
-
-  --success: #3e9c73;
-  --success-foreground: #15140f;
-  --warning: #d4a24c;
-  --warning-foreground: #15140f;
-  --danger: #d46a66;
-  --danger-foreground: #15140f;
-
-  --border: #2e2a20;
-  --separator: #28251d;
+  --border: #e4e4e7;
+  --separator: #efeff1;
   --focus: var(--accent);
   --link: var(--foreground);
 }

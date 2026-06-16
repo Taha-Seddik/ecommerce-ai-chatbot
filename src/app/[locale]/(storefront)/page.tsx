@@ -73,7 +73,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <IconArrowRight className='size-4' />
               </Link>
             </div>
-            <ProductGrid products={featured} locale={locale} />
+            <ProductGrid products={featured} locale={locale} priorityCount={4} />
           </Container>
         </section>
       )}

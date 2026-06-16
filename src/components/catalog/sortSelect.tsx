@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { ChangeEvent } from 'react';
+import { Select } from '@/components/ui/select';
 import { PRODUCT_SORTS, type ProductSort } from '@/features/products/products.types';
 import { useRouter } from '@/i18n/navigation';
 
@@ -17,29 +17,21 @@ export function SortSelect({
 }) {
   const t = useTranslations('catalog');
   const router = useRouter();
+  const options = PRODUCT_SORTS.map((s) => ({ value: s, label: t(`sort.${s}`) }));
 
-  function onChange(e: ChangeEvent<HTMLSelectElement>) {
+  function onChange(v: string) {
     const sp = new URLSearchParams(params);
-    if (e.target.value === 'newest') sp.delete('sort');
-    else sp.set('sort', e.target.value);
+    if (v === 'newest') sp.delete('sort');
+    else sp.set('sort', v);
     sp.delete('page');
     const qs = sp.toString();
     router.push(qs ? `${basePath}?${qs}` : basePath);
   }
 
   return (
-    <label className='flex items-center gap-2 text-sm'>
-      <span className='text-muted'>{t('sortBy')}</span>
-      <select
-        value={value}
-        onChange={onChange}
-        className='border-border bg-surface focus:border-accent rounded-lg border px-3 py-1.5 text-sm transition-colors outline-none'>
-        {PRODUCT_SORTS.map((s) => (
-          <option key={s} value={s}>
-            {t(`sort.${s}`)}
-          </option>
-        ))}
-      </select>
-    </label>
+    <div className='flex items-center gap-2 text-sm'>
+      <span className='text-muted hidden sm:inline'>{t('sortBy')}</span>
+      <Select value={value} options={options} onChange={onChange} ariaLabel={t('sortBy')} align='end' />
+    </div>
   );
 }

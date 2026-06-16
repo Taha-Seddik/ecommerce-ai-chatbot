@@ -7,7 +7,15 @@ import { pickLocale } from '@/lib/content';
 import { Price } from './price';
 import { RatingStars } from './ratingStars';
 
-export async function ProductCard({ product, locale }: { product: ProductCardData; locale: string }) {
+export async function ProductCard({
+  product,
+  locale,
+  priority = false,
+}: {
+  product: ProductCardData;
+  locale: string;
+  priority?: boolean;
+}) {
   const t = await getTranslations('product');
   const title = pickLocale(product.title, locale);
   const soldOut = product.stock <= 0;
@@ -20,8 +28,9 @@ export async function ProductCard({ product, locale }: { product: ProductCardDat
             src={product.thumbnail}
             alt={title}
             fill
+            priority={priority}
             sizes='(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw'
-            className='object-cover transition-transform duration-500 ease-out group-hover:scale-105'
+            className='object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]'
           />
         )}
         <div className='absolute top-3 left-3 flex flex-col gap-1.5'>
