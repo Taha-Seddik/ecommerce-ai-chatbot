@@ -1,5 +1,5 @@
 import 'server-only';
-import { desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, ne, sql } from 'drizzle-orm';
 import { db } from '@/db';
 import {
   type OnlinePaymentStatus,
@@ -87,15 +87,17 @@ export async function getUserOrders(userId: string) {
 /** Webhook entry point: mark paid, decrement stock, clear the user's cart. Idempotent. */
 export async function markOrderPaid(orderId: string, paymentIntentId?: string): Promise<void> {
   await db.transaction(async (tx) => {
-    const order = await tx.query.orders.findFirst({ where: eq(orders.id, orderId), with: { items: true } });
-    if (!order || order.status === 'Approved') return; // already processed
-
-    await tx
+    // Atomically claim the order — only the first delivery flips it to Approved, so concurrent
+    // webhook retries can't double-decrement stock (the conditional WHERE + returning is the lock).
+    const claimed = await tx
       .update(orders)
       .set({ status: 'Approved', onlinePaymentStatus: 'Success', stripePaymentIntentId: paymentIntentId })
-      .where(eq(orders.id, orderId));
+      .where(and(eq(orders.id, orderId), ne(orders.status, 'Approved')))
+      .returning({ userId: orders.userId });
+    if (claimed.length === 0) return; // already processed
 
-    for (const item of order.items) {
+    const items = await tx.select().from(orderItems).where(eq(orderItems.orderId, orderId));
+    for (const item of items) {
       if (item.productId) {
         await tx
           .update(products)
@@ -104,9 +106,18 @@ export async function markOrderPaid(orderId: string, paymentIntentId?: string): 
       }
     }
 
-    if (order.userId) {
-      const [cart] = await tx.select({ id: carts.id }).from(carts).where(eq(carts.userId, order.userId)).limit(1);
+    const userId = claimed[0]?.userId;
+    if (userId) {
+      const [cart] = await tx.select({ id: carts.id }).from(carts).where(eq(carts.userId, userId)).limit(1);
       if (cart) await tx.delete(cartItems).where(eq(cartItems.cartId, cart.id));
     }
   });
+}
+
+/** Mark a pending online order as failed (session expired / payment declined). Never touches a paid order. */
+export async function markOrderFailed(orderId: string): Promise<void> {
+  await db
+    .update(orders)
+    .set({ status: 'Failed', onlinePaymentStatus: 'Failed' })
+    .where(and(eq(orders.id, orderId), ne(orders.status, 'Approved')));
 }

@@ -20,11 +20,6 @@
     "currency": "Currency",
     "admin": "Admin"
   },
-  "theme": {
-    "toggle": "Toggle theme",
-    "light": "Light",
-    "dark": "Dark"
-  },
   "auth": {
     "signIn": "Sign in",
     "signUp": "Create account",

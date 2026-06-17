@@ -5,11 +5,16 @@ import { verifySession } from './lib/jwt';
 
 const intlMiddleware = createMiddleware(routing);
 
-// Match /account/** (auth required) and /admin/** (admin role required), with or without a locale prefix.
-const PROTECTED = /^\/(?:en|fr)?\/?(?:account|admin)(?:\/|$)/;
-const ADMIN = /^\/(?:en|fr)?\/?admin(?:\/|$)/;
+// Match /account/** (auth required) and /admin/** (admin role required), with or without a locale
+// prefix. The locale alternation is derived from routing.locales so new locales stay covered.
+const localeAlt = routing.locales.join('|');
+const PROTECTED = new RegExp(`^/(?:${localeAlt})?/?(?:account|admin)(?:/|$)`);
+const ADMIN = new RegExp(`^/(?:${localeAlt})?/?admin(?:/|$)`);
 
-const localeOf = (pathname: string) => (pathname.split('/')[1] === 'fr' ? 'fr' : 'en');
+const localeOf = (pathname: string) => {
+  const seg = pathname.split('/')[1];
+  return (routing.locales as readonly string[]).includes(seg) ? seg : routing.defaultLocale;
+};
 
 export default async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;

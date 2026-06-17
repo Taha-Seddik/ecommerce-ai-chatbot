@@ -4,6 +4,7 @@ import { ButtonLink } from '@/components/ui/buttonLink';
 import { Container } from '@/components/ui/container';
 import { ClearGuestCart } from '@/features/cart/clearGuestCart';
 import { getOrderById } from '@/features/orders/orders.repo';
+import { getSession } from '@/lib/auth/session';
 import { formatPrice } from '@/lib/money';
 
 export default async function OrderConfirmationPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
@@ -12,6 +13,9 @@ export default async function OrderConfirmationPage({ params }: { params: Promis
 
   const order = await getOrderById(id);
   if (!order) notFound();
+  // A user's order is only visible to that user; guest orders (no userId) are reachable by their id.
+  const session = await getSession();
+  if (order.userId && order.userId !== session?.userId) notFound();
 
   const t = await getTranslations('order');
 

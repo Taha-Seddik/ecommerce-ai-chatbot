@@ -20,11 +20,6 @@
     "currency": "Devise",
     "admin": "Admin"
   },
-  "theme": {
-    "toggle": "Changer de thème",
-    "light": "Clair",
-    "dark": "Sombre"
-  },
   "auth": {
     "signIn": "Se connecter",
     "signUp": "Créer un compte",

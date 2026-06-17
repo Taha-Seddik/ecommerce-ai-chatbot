@@ -6,7 +6,7 @@ import { setUserCart } from '@/features/cart/cart.repo';
 import type { SimpleLine } from '@/features/cart/cart.types';
 import { createOrder, setOrderStripeSession } from '@/features/orders/orders.repo';
 import { getSession } from '@/lib/auth/session';
-import { type CurrencyCode, convertFromBase, isCurrency } from '@/lib/currency';
+import { type CurrencyCode, convertFromBase, isCurrency, toStripeMinorUnits } from '@/lib/currency';
 import { env } from '@/lib/env';
 import { isStripeEnabled, stripe } from '@/lib/stripe';
 import { checkoutSchema } from './checkout.schema';
@@ -69,7 +69,7 @@ export async function placeOrderAction(
           quantity: l.quantity,
           price_data: {
             currency: currency.toLowerCase(),
-            unit_amount: convertFromBase(l.unitPriceCents, currency),
+            unit_amount: toStripeMinorUnits(convertFromBase(l.unitPriceCents, currency), currency),
             product_data: { name: l.title },
           },
         })),

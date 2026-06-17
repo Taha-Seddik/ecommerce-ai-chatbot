@@ -97,6 +97,7 @@ export function SearchModal({ placeholder }: { placeholder: string }) {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder={placeholder}
+                  aria-label={placeholder}
                   className='flex-1 bg-transparent text-base outline-none'
                 />
                 <kbd className='text-muted border-border hidden rounded border px-1.5 py-0.5 text-xs sm:inline'>

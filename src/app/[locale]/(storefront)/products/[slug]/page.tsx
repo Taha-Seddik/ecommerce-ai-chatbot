@@ -8,9 +8,7 @@ import { ProductGrid } from '@/components/product/productGrid';
 import { RatingStars } from '@/components/product/ratingStars';
 import { ReviewList } from '@/components/product/reviewList';
 import { WishlistButton } from '@/features/wishlist/wishlistButton';
-import { ReviewForm } from '@/features/reviews/reviewForm';
-import { getSession } from '@/lib/auth/session';
-import { Link } from '@/i18n/navigation';
+import { ReviewGate } from '@/features/reviews/reviewGate';
 import { Breadcrumb, type Crumb } from '@/components/ui/breadcrumb';
 import { Container } from '@/components/ui/container';
 import {
@@ -60,10 +58,9 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   if (!product) notFound();
 
   const t = await getTranslations();
-  const [related, reviews, session] = await Promise.all([
+  const [related, reviews] = await Promise.all([
     getRelatedProducts(product.categoryId, product.id, 4),
     getProductReviews(product.id),
-    getSession(),
   ]);
 
   const title = pickLocale(product.title, locale);
@@ -143,16 +140,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           {t('product.reviewsTitle')} · {t('product.reviews', { count: product.ratingCount })}
         </h2>
         {reviews.length > 0 && <ReviewList reviews={reviews} />}
-        {session ? (
-          <ReviewForm productId={product.id} />
-        ) : (
-          <p className='text-muted mt-6 text-sm'>
-            {t('product.signInToReview')}{' '}
-            <Link href='/login' className='text-accent font-medium'>
-              {t('auth.signIn')}
-            </Link>
-          </p>
-        )}
+        <ReviewGate
+          productId={product.id}
+          signInPrompt={t('product.signInToReview')}
+          signInLabel={t('auth.signIn')}
+        />
       </section>
 
       {related.length > 0 && (

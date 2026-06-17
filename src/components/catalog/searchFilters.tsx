@@ -102,8 +102,13 @@ export async function SearchFilters({
         </form>
       </div>
 
-      <Link href={build({ inStock: current.inStock ? undefined : true })} className='flex items-center gap-2'>
+      <Link
+        href={build({ inStock: current.inStock ? undefined : true })}
+        role='checkbox'
+        aria-checked={current.inStock ?? false}
+        className='flex items-center gap-2'>
         <span
+          aria-hidden
           className={cn(
             'grid size-4 place-items-center rounded border text-[10px]',
             current.inStock ? 'bg-accent border-accent text-accent-foreground' : 'border-border',
