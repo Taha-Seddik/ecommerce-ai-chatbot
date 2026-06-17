@@ -23,7 +23,7 @@ const envSchema = z
     JWT_EXPIRES_IN: z.string().default('7d'),
 
     // App
-    NEXT_PUBLIC_BASE_URL: z.string().default('http://localhost:3000'),
+    NEXT_PUBLIC_BASE_URL: z.string().default('http://localhost:4000'),
     DEFAULT_LOCALE: z.string().default('en'),
     DEFAULT_CURRENCY: z.string().default('USD'),
 
