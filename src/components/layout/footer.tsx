@@ -8,7 +8,7 @@ import { pickLocale } from '@/lib/content';
 export async function Footer({ locale }: { locale: string }) {
   const t = await getTranslations('footer');
   const categories = await getTopCategories();
-  const tagline = locale === 'fr' ? BRAND.taglineFr : BRAND.taglineEn;
+  const tagline = locale === 'fr' ? BRAND.taglineFr : locale === 'ar' ? BRAND.taglineAr : BRAND.taglineEn;
 
   return (
     <footer className='bg-ink text-ink-foreground mt-20'>

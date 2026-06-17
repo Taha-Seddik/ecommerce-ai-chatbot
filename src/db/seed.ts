@@ -56,23 +56,23 @@ function categoryImage(slug: string): string {
 type CategorySeed = { slug: string; title: LocalizedText; parent?: string };
 
 const categories: CategorySeed[] = [
-  { slug: 'living-room', title: { en: 'Living Room', fr: 'Salon' } },
-  { slug: 'bedroom', title: { en: 'Bedroom', fr: 'Chambre' } },
-  { slug: 'dining', title: { en: 'Dining', fr: 'Salle à manger' } },
-  { slug: 'lighting', title: { en: 'Lighting', fr: 'Luminaires' } },
-  { slug: 'decor', title: { en: 'Decor & Accessories', fr: 'Décoration & Accessoires' } },
+  { slug: 'living-room', title: { en: 'Living Room', fr: 'Salon', ar: 'غرفة المعيشة' } },
+  { slug: 'bedroom', title: { en: 'Bedroom', fr: 'Chambre', ar: 'غرفة النوم' } },
+  { slug: 'dining', title: { en: 'Dining', fr: 'Salle à manger', ar: 'غرفة الطعام' } },
+  { slug: 'lighting', title: { en: 'Lighting', fr: 'Luminaires', ar: 'الإضاءة' } },
+  { slug: 'decor', title: { en: 'Decor & Accessories', fr: 'Décoration & Accessoires', ar: 'الديكور والإكسسوارات' } },
   // sub-categories
-  { slug: 'sofas', title: { en: 'Sofas', fr: 'Canapés' }, parent: 'living-room' },
-  { slug: 'coffee-tables', title: { en: 'Coffee Tables', fr: 'Tables basses' }, parent: 'living-room' },
-  { slug: 'armchairs', title: { en: 'Armchairs', fr: 'Fauteuils' }, parent: 'living-room' },
-  { slug: 'beds', title: { en: 'Beds', fr: 'Lits' }, parent: 'bedroom' },
-  { slug: 'nightstands', title: { en: 'Nightstands', fr: 'Tables de chevet' }, parent: 'bedroom' },
-  { slug: 'dining-tables', title: { en: 'Dining Tables', fr: 'Tables à manger' }, parent: 'dining' },
-  { slug: 'dining-chairs', title: { en: 'Dining Chairs', fr: 'Chaises' }, parent: 'dining' },
-  { slug: 'pendant-lights', title: { en: 'Pendant Lights', fr: 'Suspensions' }, parent: 'lighting' },
-  { slug: 'table-lamps', title: { en: 'Table Lamps', fr: 'Lampes de table' }, parent: 'lighting' },
-  { slug: 'rugs', title: { en: 'Rugs', fr: 'Tapis' }, parent: 'decor' },
-  { slug: 'vases', title: { en: 'Vases', fr: 'Vases' }, parent: 'decor' },
+  { slug: 'sofas', title: { en: 'Sofas', fr: 'Canapés', ar: 'أرائك' }, parent: 'living-room' },
+  { slug: 'coffee-tables', title: { en: 'Coffee Tables', fr: 'Tables basses', ar: 'طاولات قهوة' }, parent: 'living-room' },
+  { slug: 'armchairs', title: { en: 'Armchairs', fr: 'Fauteuils', ar: 'كراسي بذراعين' }, parent: 'living-room' },
+  { slug: 'beds', title: { en: 'Beds', fr: 'Lits', ar: 'أسرّة' }, parent: 'bedroom' },
+  { slug: 'nightstands', title: { en: 'Nightstands', fr: 'Tables de chevet', ar: 'طاولات جانبية للسرير' }, parent: 'bedroom' },
+  { slug: 'dining-tables', title: { en: 'Dining Tables', fr: 'Tables à manger', ar: 'طاولات طعام' }, parent: 'dining' },
+  { slug: 'dining-chairs', title: { en: 'Dining Chairs', fr: 'Chaises', ar: 'كراسي طعام' }, parent: 'dining' },
+  { slug: 'pendant-lights', title: { en: 'Pendant Lights', fr: 'Suspensions', ar: 'إضاءة معلّقة' }, parent: 'lighting' },
+  { slug: 'table-lamps', title: { en: 'Table Lamps', fr: 'Lampes de table', ar: 'مصابيح طاولة' }, parent: 'lighting' },
+  { slug: 'rugs', title: { en: 'Rugs', fr: 'Tapis', ar: 'سجّاد' }, parent: 'decor' },
+  { slug: 'vases', title: { en: 'Vases', fr: 'Vases', ar: 'مزهريات' }, parent: 'decor' },
 ];
 
 type ProductSeed = {
@@ -91,10 +91,11 @@ const products: ProductSeed[] = [
   {
     cat: 'sofas',
     slug: 'haven-3-seater-sofa',
-    title: { en: 'Haven 3-Seater Sofa', fr: 'Canapé 3 places Haven' },
+    title: { en: 'Haven 3-Seater Sofa', fr: 'Canapé 3 places Haven', ar: 'أريكة هايفن بثلاثة مقاعد' },
     description: {
       en: 'A deep, low-slung sofa in bouclé with solid oak feet.',
       fr: 'Un canapé profond et bas en bouclette, pieds en chêne massif.',
+      ar: 'أريكة عميقة ومنخفضة من قماش البوكليه بأرجل من خشب البلوط الصلب.',
     },
     priceCents: 189900,
     stock: 12,
@@ -103,10 +104,11 @@ const products: ProductSeed[] = [
   {
     cat: 'sofas',
     slug: 'lina-modular-sofa',
-    title: { en: 'Lina Modular Sofa', fr: 'Canapé modulable Lina' },
+    title: { en: 'Lina Modular Sofa', fr: 'Canapé modulable Lina', ar: 'أريكة لينا المعيارية' },
     description: {
       en: 'Reconfigurable modular seating for any room shape.',
       fr: 'Assise modulable et reconfigurable pour toute pièce.',
+      ar: 'مقاعد معيارية قابلة لإعادة التشكيل لتناسب أي شكل من أشكال الغرف.',
     },
     priceCents: 244900,
     discount: 15,
@@ -115,10 +117,11 @@ const products: ProductSeed[] = [
   {
     cat: 'sofas',
     slug: 'noak-leather-loveseat',
-    title: { en: 'Noak Leather Loveseat', fr: 'Causeuse en cuir Noak' },
+    title: { en: 'Noak Leather Loveseat', fr: 'Causeuse en cuir Noak', ar: 'أريكة نواك الجلدية بمقعدين' },
     description: {
       en: 'Full-grain tan leather that ages beautifully.',
       fr: 'Cuir pleine fleur fauve qui se patine avec le temps.',
+      ar: 'جلد طبيعي كامل الحبيبات بلون بنّي يزداد جمالاً مع مرور الوقت.',
     },
     priceCents: 159900,
     stock: 5,
@@ -127,10 +130,11 @@ const products: ProductSeed[] = [
   {
     cat: 'coffee-tables',
     slug: 'fjord-oak-coffee-table',
-    title: { en: 'Fjord Oak Coffee Table', fr: 'Table basse en chêne Fjord' },
+    title: { en: 'Fjord Oak Coffee Table', fr: 'Table basse en chêne Fjord', ar: 'طاولة قهوة فيورد من خشب البلوط' },
     description: {
       en: 'Sculpted solid oak with a soft matte finish.',
       fr: 'Chêne massif sculpté, finition mate douce.',
+      ar: 'خشب بلوط صلب منحوت بلمسة نهائية مطفية ناعمة.',
     },
     priceCents: 64900,
     stock: 20,
@@ -139,10 +143,11 @@ const products: ProductSeed[] = [
   {
     cat: 'coffee-tables',
     slug: 'mara-travertine-table',
-    title: { en: 'Mara Travertine Table', fr: 'Table en travertin Mara' },
+    title: { en: 'Mara Travertine Table', fr: 'Table en travertin Mara', ar: 'طاولة مارا من حجر الترافرتين' },
     description: {
       en: 'Honed travertine with a warm, organic grain.',
       fr: 'Travertin adouci au grain chaud et organique.',
+      ar: 'حجر ترافرتين مصقول بعروق دافئة وطبيعية.',
     },
     priceCents: 89900,
     discount: 10,
@@ -151,10 +156,11 @@ const products: ProductSeed[] = [
   {
     cat: 'coffee-tables',
     slug: 'orbit-nesting-tables',
-    title: { en: 'Orbit Nesting Tables', fr: 'Tables gigognes Orbit' },
+    title: { en: 'Orbit Nesting Tables', fr: 'Tables gigognes Orbit', ar: 'طاولات أوربت المتداخلة' },
     description: {
       en: 'A pair of nesting tables in powder-coated steel.',
       fr: 'Paire de tables gigognes en acier thermolaqué.',
+      ar: 'زوج من الطاولات المتداخلة من الفولاذ المطلي بالبودرة.',
     },
     priceCents: 42900,
     stock: 18,
@@ -163,8 +169,8 @@ const products: ProductSeed[] = [
   {
     cat: 'armchairs',
     slug: 'pebble-lounge-chair',
-    title: { en: 'Pebble Lounge Chair', fr: 'Fauteuil lounge Pebble' },
-    description: { en: 'An enveloping lounge chair in soft wool.', fr: 'Fauteuil lounge enveloppant en laine douce.' },
+    title: { en: 'Pebble Lounge Chair', fr: 'Fauteuil lounge Pebble', ar: 'كرسي استرخاء بيبل' },
+    description: { en: 'An enveloping lounge chair in soft wool.', fr: 'Fauteuil lounge enveloppant en laine douce.', ar: 'كرسي استرخاء محتضِن من الصوف الناعم.' },
     priceCents: 99900,
     stock: 14,
     featured: true,
@@ -172,10 +178,11 @@ const products: ProductSeed[] = [
   {
     cat: 'armchairs',
     slug: 'sling-accent-chair',
-    title: { en: 'Sling Accent Chair', fr: "Fauteuil d'appoint Sling" },
+    title: { en: 'Sling Accent Chair', fr: "Fauteuil d'appoint Sling", ar: 'كرسي سلينغ الزخرفي' },
     description: {
       en: 'Leather sling seat on a bentwood frame.',
       fr: 'Assise en cuir suspendu sur cadre en bois courbé.',
+      ar: 'مقعد جلدي معلّق على هيكل من الخشب المنحني.',
     },
     priceCents: 74900,
     discount: 20,
@@ -185,10 +192,11 @@ const products: ProductSeed[] = [
   {
     cat: 'beds',
     slug: 'dune-platform-bed',
-    title: { en: 'Dune Platform Bed', fr: 'Lit plateforme Dune' },
+    title: { en: 'Dune Platform Bed', fr: 'Lit plateforme Dune', ar: 'سرير ديون بمنصة' },
     description: {
       en: 'A low platform bed with an upholstered headboard.',
       fr: 'Lit plateforme bas avec tête de lit rembourrée.',
+      ar: 'سرير منخفض بمنصة مع لوح رأس منجّد.',
     },
     priceCents: 134900,
     stock: 8,
@@ -197,8 +205,8 @@ const products: ProductSeed[] = [
   {
     cat: 'beds',
     slug: 'ash-canopy-bed',
-    title: { en: 'Ash Canopy Bed', fr: 'Lit à baldaquin Ash' },
-    description: { en: 'Minimal four-poster in solid ash.', fr: 'Lit à baldaquin minimaliste en frêne massif.' },
+    title: { en: 'Ash Canopy Bed', fr: 'Lit à baldaquin Ash', ar: 'سرير آش بمظلّة' },
+    description: { en: 'Minimal four-poster in solid ash.', fr: 'Lit à baldaquin minimaliste en frêne massif.', ar: 'سرير بأربعة أعمدة بتصميم بسيط من خشب الدردار الصلب.' },
     priceCents: 179900,
     stock: 4,
   },
@@ -206,10 +214,11 @@ const products: ProductSeed[] = [
   {
     cat: 'nightstands',
     slug: 'tide-nightstand',
-    title: { en: 'Tide Nightstand', fr: 'Table de chevet Tide' },
+    title: { en: 'Tide Nightstand', fr: 'Table de chevet Tide', ar: 'طاولة جانبية للسرير تايد' },
     description: {
       en: 'A compact nightstand with a single soft-close drawer.',
       fr: 'Table de chevet compacte, tiroir à fermeture douce.',
+      ar: 'طاولة جانبية مدمجة بدرج واحد ذي إغلاق هادئ.',
     },
     priceCents: 34900,
     stock: 25,
@@ -217,10 +226,11 @@ const products: ProductSeed[] = [
   {
     cat: 'nightstands',
     slug: 'cane-bedside-table',
-    title: { en: 'Cane Bedside Table', fr: 'Table de chevet Cannage' },
+    title: { en: 'Cane Bedside Table', fr: 'Table de chevet Cannage', ar: 'طاولة سرير جانبية من الخيزران' },
     description: {
       en: 'Woven cane front with a warm oak frame.',
       fr: 'Façade en cannage tressé, structure en chêne chaud.',
+      ar: 'واجهة من الخيزران المنسوج مع هيكل من خشب البلوط الدافئ.',
     },
     priceCents: 39900,
     discount: 10,
@@ -230,10 +240,11 @@ const products: ProductSeed[] = [
   {
     cat: 'dining-tables',
     slug: 'grove-dining-table',
-    title: { en: 'Grove Dining Table', fr: 'Table à manger Grove' },
+    title: { en: 'Grove Dining Table', fr: 'Table à manger Grove', ar: 'طاولة طعام غروف' },
     description: {
       en: 'Seats six around a single solid-oak plank top.',
       fr: 'Six convives autour d’un plateau en chêne massif.',
+      ar: 'تتسع لستة أشخاص حول سطح من لوح واحد من خشب البلوط الصلب.',
     },
     priceCents: 154900,
     stock: 6,
@@ -242,8 +253,8 @@ const products: ProductSeed[] = [
   {
     cat: 'dining-tables',
     slug: 'pillar-round-table',
-    title: { en: 'Pillar Round Table', fr: 'Table ronde Pillar' },
-    description: { en: 'A pedestal round table in micro-cement.', fr: 'Table ronde sur pied central en micro-ciment.' },
+    title: { en: 'Pillar Round Table', fr: 'Table ronde Pillar', ar: 'طاولة بيلار المستديرة' },
+    description: { en: 'A pedestal round table in micro-cement.', fr: 'Table ronde sur pied central en micro-ciment.', ar: 'طاولة مستديرة بقاعدة مركزية من الميكرو إسمنت.' },
     priceCents: 119900,
     stock: 7,
   },
@@ -251,10 +262,11 @@ const products: ProductSeed[] = [
   {
     cat: 'dining-chairs',
     slug: 'wren-dining-chair',
-    title: { en: 'Wren Dining Chair', fr: 'Chaise Wren' },
+    title: { en: 'Wren Dining Chair', fr: 'Chaise Wren', ar: 'كرسي طعام رِن' },
     description: {
       en: 'A curved, stackable chair in molded plywood.',
       fr: 'Chaise galbée et empilable en contreplaqué moulé.',
+      ar: 'كرسي منحني قابل للتكديس من الخشب الرقائقي المقولب.',
     },
     priceCents: 18900,
     stock: 40,
@@ -262,10 +274,11 @@ const products: ProductSeed[] = [
   {
     cat: 'dining-chairs',
     slug: 'spindle-side-chair',
-    title: { en: 'Spindle Side Chair', fr: 'Chaise Spindle' },
+    title: { en: 'Spindle Side Chair', fr: 'Chaise Spindle', ar: 'كرسي سبيندل الجانبي' },
     description: {
       en: 'A modern take on the classic spindle-back.',
       fr: 'Réinterprétation moderne du dossier à barreaux.',
+      ar: 'رؤية عصرية لظهر الكرسي الكلاسيكي ذي القضبان.',
     },
     priceCents: 22900,
     discount: 15,
@@ -275,10 +288,11 @@ const products: ProductSeed[] = [
   {
     cat: 'pendant-lights',
     slug: 'halo-pendant-light',
-    title: { en: 'Halo Pendant Light', fr: 'Suspension Halo' },
+    title: { en: 'Halo Pendant Light', fr: 'Suspension Halo', ar: 'إضاءة معلّقة هالو' },
     description: {
       en: 'A frosted glass globe on a slim brass stem.',
       fr: 'Globe en verre dépoli sur tige fine en laiton.',
+      ar: 'كرة من الزجاج المصنفر على ساق نحيلة من النحاس الأصفر.',
     },
     priceCents: 24900,
     stock: 22,
@@ -287,10 +301,11 @@ const products: ProductSeed[] = [
   {
     cat: 'pendant-lights',
     slug: 'paper-cloud-pendant',
-    title: { en: 'Paper Cloud Pendant', fr: 'Suspension Paper Cloud' },
+    title: { en: 'Paper Cloud Pendant', fr: 'Suspension Paper Cloud', ar: 'إضاءة معلّقة بيبر كلاود' },
     description: {
       en: 'A sculptural rice-paper shade that diffuses softly.',
       fr: 'Abat-jour sculptural en papier de riz, lumière douce.',
+      ar: 'غطاء فني من ورق الأرز ينشر الضوء بنعومة.',
     },
     priceCents: 16900,
     stock: 28,
@@ -299,8 +314,8 @@ const products: ProductSeed[] = [
   {
     cat: 'table-lamps',
     slug: 'mushroom-table-lamp',
-    title: { en: 'Mushroom Table Lamp', fr: 'Lampe champignon' },
-    description: { en: 'A retro dome lamp in glazed ceramic.', fr: 'Lampe dôme rétro en céramique émaillée.' },
+    title: { en: 'Mushroom Table Lamp', fr: 'Lampe champignon', ar: 'مصباح طاولة على شكل فطر' },
+    description: { en: 'A retro dome lamp in glazed ceramic.', fr: 'Lampe dôme rétro en céramique émaillée.', ar: 'مصباح قبّة بطراز كلاسيكي من السيراميك المزجّج.' },
     priceCents: 12900,
     discount: 10,
     stock: 35,
@@ -308,10 +323,11 @@ const products: ProductSeed[] = [
   {
     cat: 'table-lamps',
     slug: 'arc-reading-lamp',
-    title: { en: 'Arc Reading Lamp', fr: 'Lampe de lecture Arc' },
+    title: { en: 'Arc Reading Lamp', fr: 'Lampe de lecture Arc', ar: 'مصباح قراءة آرك' },
     description: {
       en: 'An adjustable arc lamp with a warm dimmable LED.',
       fr: 'Lampe arc réglable, LED chaude et variable.',
+      ar: 'مصباح مقوّس قابل للتعديل بإضاءة LED دافئة قابلة للتعتيم.',
     },
     priceCents: 14900,
     stock: 19,
@@ -320,10 +336,11 @@ const products: ProductSeed[] = [
   {
     cat: 'rugs',
     slug: 'dune-wool-rug',
-    title: { en: 'Dune Wool Rug', fr: 'Tapis en laine Dune' },
+    title: { en: 'Dune Wool Rug', fr: 'Tapis en laine Dune', ar: 'سجادة صوف ديون' },
     description: {
       en: 'A hand-tufted wool rug in warm sand tones.',
       fr: 'Tapis en laine tufté main, tons sable chauds.',
+      ar: 'سجادة صوف منسوجة يدوياً بدرجات رملية دافئة.',
     },
     priceCents: 49900,
     stock: 15,
@@ -332,10 +349,11 @@ const products: ProductSeed[] = [
   {
     cat: 'rugs',
     slug: 'grid-flatweave-rug',
-    title: { en: 'Grid Flatweave Rug', fr: 'Tapis tissé plat Grid' },
+    title: { en: 'Grid Flatweave Rug', fr: 'Tapis tissé plat Grid', ar: 'سجادة منسوجة مسطحة غريد' },
     description: {
       en: 'A low-pile flatweave with a subtle grid motif.',
       fr: 'Tissage plat ras au motif de grille discret.',
+      ar: 'سجادة مسطحة قصيرة الوبر بنقشة شبكية خفيفة.',
     },
     priceCents: 34900,
     discount: 25,
@@ -345,10 +363,11 @@ const products: ProductSeed[] = [
   {
     cat: 'vases',
     slug: 'ripple-stoneware-vase',
-    title: { en: 'Ripple Stoneware Vase', fr: 'Vase en grès Ripple' },
+    title: { en: 'Ripple Stoneware Vase', fr: 'Vase en grès Ripple', ar: 'مزهرية ريبل من الخزف الحجري' },
     description: {
       en: 'A wheel-thrown vase with a rippled reactive glaze.',
       fr: 'Vase tourné à la main, émail réactif ondulé.',
+      ar: 'مزهرية مشكّلة على عجلة الفخار بطلاء تفاعلي متموّج.',
     },
     priceCents: 8900,
     stock: 50,
@@ -356,10 +375,11 @@ const products: ProductSeed[] = [
   {
     cat: 'vases',
     slug: 'totem-ceramic-vase',
-    title: { en: 'Totem Ceramic Vase', fr: 'Vase céramique Totem' },
+    title: { en: 'Totem Ceramic Vase', fr: 'Vase céramique Totem', ar: 'مزهرية توتيم من السيراميك' },
     description: {
       en: 'A sculptural stacked-form vase in matte clay.',
       fr: 'Vase sculptural en argile mate, formes empilées.',
+      ar: 'مزهرية فنية بأشكال متراكمة من الطين المطفي.',
     },
     priceCents: 10900,
     stock: 33,
@@ -367,10 +387,11 @@ const products: ProductSeed[] = [
   {
     cat: 'vases',
     slug: 'bud-glass-vase-set',
-    title: { en: 'Bud Glass Vase Set', fr: 'Set de vases soliflores' },
+    title: { en: 'Bud Glass Vase Set', fr: 'Set de vases soliflores', ar: 'طقم مزهريات زجاجية صغيرة' },
     description: {
       en: 'A trio of hand-blown bud vases in smoked glass.',
       fr: 'Trio de soliflores soufflés bouche, verre fumé.',
+      ar: 'ثلاثية من المزهريات الصغيرة المنفوخة يدوياً من الزجاج المدخّن.',
     },
     priceCents: 6900,
     stock: 44,
@@ -379,10 +400,11 @@ const products: ProductSeed[] = [
   {
     cat: 'sofas',
     slug: 'cloud-daybed',
-    title: { en: 'Cloud Daybed', fr: 'Méridienne Cloud' },
+    title: { en: 'Cloud Daybed', fr: 'Méridienne Cloud', ar: 'أريكة استلقاء كلاود' },
     description: {
       en: 'A versatile daybed for lounging or guests.',
       fr: 'Méridienne polyvalente pour se détendre ou recevoir.',
+      ar: 'أريكة استلقاء متعددة الاستخدامات للراحة أو استقبال الضيوف.',
     },
     priceCents: 129900,
     stock: 6,
@@ -390,16 +412,16 @@ const products: ProductSeed[] = [
   {
     cat: 'coffee-tables',
     slug: 'plinth-side-table',
-    title: { en: 'Plinth Side Table', fr: "Table d'appoint Plinth" },
-    description: { en: 'A monolithic side table in solid timber.', fr: "Table d'appoint monolithique en bois massif." },
+    title: { en: 'Plinth Side Table', fr: "Table d'appoint Plinth", ar: 'طاولة جانبية بلينث' },
+    description: { en: 'A monolithic side table in solid timber.', fr: "Table d'appoint monolithique en bois massif.", ar: 'طاولة جانبية أحادية الكتلة من الخشب الصلب.' },
     priceCents: 29900,
     stock: 21,
   },
   {
     cat: 'decor',
     slug: 'linen-throw-blanket',
-    title: { en: 'Linen Throw Blanket', fr: 'Plaid en lin' },
-    description: { en: 'A stonewashed linen throw with fringed edges.', fr: 'Plaid en lin lavé à bords frangés.' },
+    title: { en: 'Linen Throw Blanket', fr: 'Plaid en lin', ar: 'بطانية كتان' },
+    description: { en: 'A stonewashed linen throw with fringed edges.', fr: 'Plaid en lin lavé à bords frangés.', ar: 'بطانية من الكتان المغسول بحجر ذات حواف مهدّبة.' },
     priceCents: 11900,
     discount: 10,
     stock: 60,
@@ -407,8 +429,8 @@ const products: ProductSeed[] = [
   {
     cat: 'decor',
     slug: 'walnut-wall-mirror',
-    title: { en: 'Walnut Wall Mirror', fr: 'Miroir mural noyer' },
-    description: { en: 'A round mirror framed in solid walnut.', fr: 'Miroir rond encadré de noyer massif.' },
+    title: { en: 'Walnut Wall Mirror', fr: 'Miroir mural noyer', ar: 'مرآة حائط من خشب الجوز' },
+    description: { en: 'A round mirror framed in solid walnut.', fr: 'Miroir rond encadré de noyer massif.', ar: 'مرآة مستديرة بإطار من خشب الجوز الصلب.' },
     priceCents: 22900,
     stock: 17,
   },
@@ -574,7 +596,7 @@ async function seed() {
     settingsData: {
       hero: {
         image: UNSPLASH('1583847268964-b28dc8f51f92'),
-        eyebrow: { en: 'New collection', fr: 'Nouvelle collection' },
+        eyebrow: { en: 'New collection', fr: 'Nouvelle collection', ar: 'مجموعة جديدة' },
       },
       carousel: [
         { image: UNSPLASH('1618220179428-22790b461013') },

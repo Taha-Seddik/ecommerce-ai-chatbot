@@ -1,8 +1,9 @@
 import { createId } from '@paralleldrive/cuid2';
 import { integer, text } from 'drizzle-orm/sqlite-core';
 
-/** Translatable text stored as a single JSON column, selected by locale in the repo layer. */
-export type LocalizedText = { en: string; fr: string };
+/** Translatable text stored as a single JSON column, selected by locale in the repo layer.
+ *  `ar` is optional so admin-created content (en/fr) stays valid; pickLocale falls back to `en`. */
+export type LocalizedText = { en: string; fr: string; ar?: string };
 
 /** cuid2 primary key — generated in app code, identical on file SQLite and Turso. */
 export const pk = () =>

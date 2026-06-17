@@ -16,13 +16,18 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jet
 // Arabic-capable family, applied for the `ar` locale (see globals.css html[lang='ar']).
 const cairo = Cairo({ subsets: ['arabic', 'latin'], variable: '--font-cairo', display: 'swap' });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_BASE_URL),
-  title: { default: `${BRAND.name} — ${BRAND.taglineEn}`, template: `%s · ${BRAND.name}` },
-  description: BRAND.descriptionEn,
-  alternates: { languages: { en: '/en', fr: '/fr' } },
-  openGraph: { type: 'website', siteName: BRAND.name },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const tagline = locale === 'fr' ? BRAND.taglineFr : locale === 'ar' ? BRAND.taglineAr : BRAND.taglineEn;
+  const description = locale === 'fr' ? BRAND.descriptionFr : locale === 'ar' ? BRAND.descriptionAr : BRAND.descriptionEn;
+  return {
+    metadataBase: new URL(env.NEXT_PUBLIC_BASE_URL),
+    title: { default: `${BRAND.name} — ${tagline}`, template: `%s · ${BRAND.name}` },
+    description,
+    alternates: { languages: { en: '/en', fr: '/fr', ar: '/ar' } },
+    openGraph: { type: 'website', siteName: BRAND.name },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
