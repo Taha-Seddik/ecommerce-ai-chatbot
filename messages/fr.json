@@ -15,7 +15,9 @@
     "about": "À propos",
     "account": "Compte",
     "wishlist": "Favoris",
-    "cart": "Panier"
+    "cart": "Panier",
+    "language": "Langue",
+    "currency": "Devise"
   },
   "theme": {
     "toggle": "Changer de thème",

@@ -15,7 +15,9 @@
     "about": "من نحن",
     "account": "الحساب",
     "wishlist": "قائمة الرغبات",
-    "cart": "السلة"
+    "cart": "السلة",
+    "language": "اللغة",
+    "currency": "العملة"
   },
   "theme": {
     "toggle": "تبديل المظهر",

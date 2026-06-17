@@ -55,6 +55,14 @@ export function IconStar({ className = 'size-4', filled = false, ...props }: Ico
   );
 }
 
+export function IconMenu({ className = 'size-6', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M4 6h16M4 12h16M4 18h16' />
+    </svg>
+  );
+}
+
 export function IconChevronDown({ className = 'size-4', ...props }: IconProps) {
   return (
     <svg className={className} {...base} {...props}>

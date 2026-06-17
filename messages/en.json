@@ -15,7 +15,9 @@
     "about": "About",
     "account": "Account",
     "wishlist": "Wishlist",
-    "cart": "Cart"
+    "cart": "Cart",
+    "language": "Language",
+    "currency": "Currency"
   },
   "theme": {
     "toggle": "Toggle theme",

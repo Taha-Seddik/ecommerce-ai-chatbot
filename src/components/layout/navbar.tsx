@@ -9,6 +9,7 @@ import { Link } from '@/i18n/navigation';
 import { BRAND } from '@/lib/brand';
 import { CategoryNav } from './categoryNav';
 import { LocaleSwitcher } from './localeSwitcher';
+import { MobileMenu } from './mobileMenu';
 
 const iconBtn =
   'grid size-9 place-items-center rounded-md text-white/85 transition-colors hover:bg-white/10 hover:text-white';
@@ -28,25 +29,35 @@ export async function Navbar({ locale }: { locale: string }) {
     <header className='shadow-lifted sticky top-0 z-40'>
       <div className='bg-ink text-white'>
         <Container className='grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3 md:gap-6'>
-          <Link
-            href='/'
-            className='font-display justify-self-start text-2xl font-bold tracking-tight text-white'>
-            {BRAND.name}
-          </Link>
+          <div className='flex items-center gap-1 justify-self-start'>
+            <MobileMenu
+              categories={navCategories}
+              shopLabel={t('nav.shop')}
+              accountLabel={t('nav.account')}
+              wishlistLabel={t('nav.wishlist')}
+              languageLabel={t('nav.language')}
+              currencyLabel={t('nav.currency')}
+            />
+            <Link href='/' className='font-display text-xl font-bold tracking-tight text-white md:text-2xl'>
+              {BRAND.name}
+            </Link>
+          </div>
 
           <div className='flex justify-center'>
             <SearchModal placeholder={t('search.placeholder')} />
           </div>
 
           <div className='flex items-center justify-self-end gap-0.5 md:gap-1'>
-            <CurrencySwitcher />
-            <LocaleSwitcher />
-            <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
-              <IconHeart />
-            </Link>
-            <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
-              <IconUser />
-            </Link>
+            <div className='hidden items-center gap-0.5 md:flex md:gap-1'>
+              <CurrencySwitcher />
+              <LocaleSwitcher />
+              <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
+                <IconHeart />
+              </Link>
+              <Link href='/account' aria-label={t('nav.account')} className={iconBtn}>
+                <IconUser />
+              </Link>
+            </div>
             <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
           </div>
         </Container>

@@ -83,3 +83,14 @@ html[lang='ar'] .font-display {
 .tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/* Hide native number-input spinners for our custom price fields. */
+.no-spin::-webkit-outer-spin-button,
+.no-spin::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spin {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}

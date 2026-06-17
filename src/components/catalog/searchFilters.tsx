@@ -68,29 +68,35 @@ export async function SearchFilters({
 
       <div>
         <h3 className='mb-2 font-medium'>{t('price')}</h3>
-        <form action={`/${locale}/search`} method='get' className='flex items-center gap-2'>
+        <form action={`/${locale}/search`} method='get' className='flex flex-col gap-2'>
           {current.q && <input type='hidden' name='q' value={current.q} />}
           {current.categorySlug && <input type='hidden' name='category' value={current.categorySlug} />}
           {current.inStock && <input type='hidden' name='inStock' value='1' />}
           {current.sort && current.sort !== 'newest' && <input type='hidden' name='sort' value={current.sort} />}
-          <input
-            name='min'
-            type='number'
-            min='0'
-            defaultValue={current.minPrice}
-            placeholder={t('min')}
-            className='border-border bg-surface w-20 rounded-lg border px-2 py-1'
-          />
-          <span className='text-muted'>–</span>
-          <input
-            name='max'
-            type='number'
-            min='0'
-            defaultValue={current.maxPrice}
-            placeholder={t('max')}
-            className='border-border bg-surface w-20 rounded-lg border px-2 py-1'
-          />
-          <button type='submit' className='border-border hover:bg-surface-secondary rounded-lg border px-2.5 py-1'>
+          <div className='flex items-center gap-2'>
+            <input
+              name='min'
+              type='number'
+              min='0'
+              inputMode='numeric'
+              defaultValue={current.minPrice}
+              placeholder={t('min')}
+              className='border-border bg-surface focus:border-accent no-spin w-full min-w-0 rounded-lg border px-2.5 py-1.5 outline-none'
+            />
+            <span className='text-muted shrink-0'>–</span>
+            <input
+              name='max'
+              type='number'
+              min='0'
+              inputMode='numeric'
+              defaultValue={current.maxPrice}
+              placeholder={t('max')}
+              className='border-border bg-surface focus:border-accent no-spin w-full min-w-0 rounded-lg border px-2.5 py-1.5 outline-none'
+            />
+          </div>
+          <button
+            type='submit'
+            className='border-border hover:bg-surface-secondary w-full rounded-lg border px-3 py-1.5 font-medium transition-colors'>
             {t('apply')}
           </button>
         </form>
