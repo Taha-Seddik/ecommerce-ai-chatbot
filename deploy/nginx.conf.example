@@ -1,0 +1,23 @@
+# Norden — Nginx reverse proxy.
+# Install: copy to /etc/nginx/sites-available/norden, symlink into sites-enabled,
+#          then `sudo nginx -t && sudo systemctl reload nginx`.
+server {
+    listen 80;
+    server_name YOUR_DOMAIN;        # e.g. norden.yourdomain.com
+
+    client_max_body_size 6M;        # product image uploads are capped at 5MB
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;   # matches ecosystem.config.cjs PORT
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+# After DNS points at the VPS, add HTTPS with Let's Encrypt:
+#   sudo certbot --nginx -d YOUR_DOMAIN
