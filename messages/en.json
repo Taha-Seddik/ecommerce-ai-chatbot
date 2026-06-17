@@ -17,7 +17,8 @@
     "wishlist": "Wishlist",
     "cart": "Cart",
     "language": "Language",
-    "currency": "Currency"
+    "currency": "Currency",
+    "admin": "Admin"
   },
   "theme": {
     "toggle": "Toggle theme",
@@ -39,6 +40,9 @@
     "accountTitle": "Your account",
     "welcome": "Signed in as {email}",
     "demoHint": "Demo login: admin@norden.example / password123",
+    "demoTitle": "Or try a demo account",
+    "demoCustomer": "Customer demo",
+    "demoAdmin": "Admin demo",
     "error": {
       "validation": "Please check the form and try again.",
       "emailTaken": "An account with this email already exists.",

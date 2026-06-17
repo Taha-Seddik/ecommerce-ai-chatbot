@@ -17,7 +17,8 @@
     "wishlist": "Favoris",
     "cart": "Panier",
     "language": "Langue",
-    "currency": "Devise"
+    "currency": "Devise",
+    "admin": "Admin"
   },
   "theme": {
     "toggle": "Changer de thème",
@@ -39,6 +40,9 @@
     "accountTitle": "Votre compte",
     "welcome": "Connecté en tant que {email}",
     "demoHint": "Connexion démo : admin@norden.example / password123",
+    "demoTitle": "Ou essayez un compte démo",
+    "demoCustomer": "Démo client",
+    "demoAdmin": "Démo admin",
     "error": {
       "validation": "Veuillez vérifier le formulaire et réessayer.",
       "emailTaken": "Un compte existe déjà avec cet e-mail.",

@@ -17,7 +17,8 @@
     "wishlist": "قائمة الرغبات",
     "cart": "السلة",
     "language": "اللغة",
-    "currency": "العملة"
+    "currency": "العملة",
+    "admin": "لوحة التحكم"
   },
   "theme": {
     "toggle": "تبديل المظهر",
@@ -39,6 +40,9 @@
     "accountTitle": "حسابك",
     "welcome": "مسجَّل الدخول باسم {email}",
     "demoHint": "دخول تجريبي: admin@norden.example / password123",
+    "demoTitle": "أو جرّب حسابًا تجريبيًا",
+    "demoCustomer": "حساب عميل",
+    "demoAdmin": "حساب مدير",
     "error": {
       "validation": "يرجى التحقق من النموذج والمحاولة مرة أخرى.",
       "emailTaken": "يوجد حساب مسجَّل بهذا البريد الإلكتروني بالفعل.",

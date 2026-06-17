@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { getLocale } from 'next-intl/server';
 import { db } from '@/db';
 import { roles, userRoles, users } from '@/db/schema';
-import { clearSessionCookie, setSessionCookie } from '@/lib/auth/session';
+import { clearSessionCookie, getSession, setSessionCookie } from '@/lib/auth/session';
 import { hashPassword, verifyPassword } from '@/lib/password';
 import { loginSchema, registerSchema } from './auth.schema';
 
@@ -59,4 +59,10 @@ export async function logoutAction(): Promise<void> {
   await clearSessionCookie();
   const locale = await getLocale();
   redirect(`/${locale}`);
+}
+
+/** Lightweight session summary for client header hydration (keeps pages static). */
+export async function getAccountSummaryAction(): Promise<{ email: string; isAdmin: boolean } | null> {
+  const session = await getSession();
+  return session ? { email: session.email, isAdmin: session.roles.includes('admin') } : null;
 }

@@ -5,6 +5,8 @@ import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { IconMenu } from '@/components/ui/icons';
+import { useAccount } from '@/features/auth/account.store';
+import { logoutAction } from '@/features/auth/auth.actions';
 import { useCurrency } from '@/features/currency/currencyProvider';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { BRAND } from '@/lib/brand';
@@ -34,6 +36,7 @@ export function MobileMenu({
   wishlistLabel,
   languageLabel,
   currencyLabel,
+  logoutLabel,
 }: {
   categories: NavCategory[];
   shopLabel: string;
@@ -41,12 +44,14 @@ export function MobileMenu({
   wishlistLabel: string;
   languageLabel: string;
   currencyLabel: string;
+  logoutLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const { currency, setCurrency } = useCurrency();
+  const account = useAccount((s) => s.account);
 
   useEffect(() => {
     if (!open) return;
@@ -76,7 +81,7 @@ export function MobileMenu({
         createPortal(
           <div className='fixed inset-0 z-50 md:hidden' role='dialog' aria-modal='true'>
             <button type='button' aria-label='Close' className='animate-in fade-in absolute inset-0 bg-black/50' onClick={close} />
-            <div className='bg-ink animate-in ltr:slide-in-from-left rtl:slide-in-from-right absolute inset-y-0 start-0 flex w-[85vw] max-w-xs flex-col overflow-y-auto p-5 text-white duration-300'>
+            <div className='bg-ink animate-in ltr:slide-in-from-left rtl:slide-in-from-right absolute inset-y-0 inset-s-0 flex w-[85vw] max-w-xs flex-col overflow-y-auto p-5 text-white duration-300'>
               <div className='flex items-center justify-between pb-4'>
                 <span className='font-display text-xl font-bold'>{BRAND.name}</span>
                 <button
@@ -163,12 +168,22 @@ export function MobileMenu({
               </div>
 
               <div className='mt-4 flex flex-col gap-0.5 border-t border-white/10 pt-4 text-sm'>
+                {account && <div className='truncate px-2 pb-1 text-xs text-white/50'>{account.email}</div>}
                 <Link href='/account' onClick={close} className='rounded-lg px-2 py-2 hover:bg-white/10'>
                   {accountLabel}
                 </Link>
                 <Link href='/wishlist' onClick={close} className='rounded-lg px-2 py-2 hover:bg-white/10'>
                   {wishlistLabel}
                 </Link>
+                {account && (
+                  <form action={logoutAction}>
+                    <button
+                      type='submit'
+                      className='text-danger w-full rounded-lg px-2 py-2 text-start hover:bg-white/10'>
+                      {logoutLabel}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>,
