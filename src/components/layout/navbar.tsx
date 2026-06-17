@@ -27,14 +27,14 @@ export async function Navbar({ locale }: { locale: string }) {
     /* Sticky chrome: dark action row + light category bar */
     <header className='shadow-lifted sticky top-0 z-40'>
       <div className='bg-ink text-white'>
-        <Container className='grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-4'>
+        <Container className='grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3 md:gap-6'>
           <Link
             href='/'
             className='font-display justify-self-start text-2xl font-bold tracking-tight text-white'>
             {BRAND.name}
           </Link>
 
-          <div className='flex justify-center px-1'>
+          <div className='flex justify-center'>
             <SearchModal placeholder={t('search.placeholder')} />
           </div>
 

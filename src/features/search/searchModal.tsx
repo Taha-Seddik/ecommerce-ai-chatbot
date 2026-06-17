@@ -75,7 +75,7 @@ export function SearchModal({ placeholder }: { placeholder: string }) {
         type='button'
         onClick={() => setOpen(true)}
         aria-label={placeholder}
-        className='flex h-10 items-center gap-2 rounded-full bg-white px-3 text-zinc-500 shadow-sm transition-colors hover:bg-zinc-100 md:w-80 md:px-4'>
+        className='flex h-10 w-full items-center gap-2 rounded-full bg-white px-3 text-zinc-500 shadow-sm transition-colors hover:bg-zinc-100 md:max-w-xl md:px-4'>
         <IconSearch className='size-5 shrink-0' />
         <span className='hidden text-sm md:inline'>{placeholder}</span>
       </button>
