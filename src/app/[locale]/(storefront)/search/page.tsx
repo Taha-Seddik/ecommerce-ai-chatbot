@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { EmptyState } from '@/components/catalog/emptyState';
+import { GridDensityToggle } from '@/components/catalog/gridDensityToggle';
 import { Pagination } from '@/components/catalog/pagination';
 import { SearchBar } from '@/components/catalog/searchBar';
 import { SearchFilters } from '@/components/catalog/searchFilters';
@@ -70,7 +71,10 @@ export default async function SearchPage({
             <p className='text-muted text-sm'>
               {q ? t('search.resultsFor', { q, count: total }) : t('catalog.results', { count: total })}
             </p>
-            <SortSelect value={sort} basePath='/search' params={filterParams} />
+            <div className='flex items-center gap-2'>
+              <GridDensityToggle />
+              <SortSelect value={sort} basePath='/search' params={filterParams} />
+            </div>
           </div>
 
           {rows.length ? (

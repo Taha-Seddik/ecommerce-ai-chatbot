@@ -1,5 +1,6 @@
 import type { ProductCardData } from '@/features/products/products.types';
 import { ProductCard } from './productCard';
+import { ProductGridShell } from './productGridShell';
 
 export function ProductGrid({
   products,
@@ -11,11 +12,11 @@ export function ProductGrid({
   priorityCount?: number;
 }) {
   return (
-    <div className='grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4'>
+    <ProductGridShell>
       {products.map((p, i) => (
         <ProductCard key={p.id} product={p} locale={locale} priority={i < priorityCount} />
       ))}
-    </div>
+    </ProductGridShell>
   );
 }
 
