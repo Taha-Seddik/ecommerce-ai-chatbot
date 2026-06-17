@@ -12,6 +12,7 @@ export function Select({
   onChange,
   ariaLabel,
   align = 'start',
+  tone = 'light',
   className,
 }: {
   value: string;
@@ -19,6 +20,7 @@ export function Select({
   onChange: (value: string) => void;
   ariaLabel?: string;
   align?: 'start' | 'end';
+  tone?: 'light' | 'onDark';
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -48,9 +50,19 @@ export function Select({
         aria-haspopup='listbox'
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className='border-border bg-surface hover:border-foreground/40 flex h-9 items-center gap-1.5 rounded-lg border px-3 text-sm transition-colors'>
+        className={cn(
+          'flex h-9 items-center gap-1.5 rounded-md border px-3 text-sm transition-colors',
+          tone === 'onDark'
+            ? 'border-white/25 bg-white/10 text-white hover:bg-white/20'
+            : 'border-border bg-surface hover:border-foreground/40',
+        )}>
         <span>{current?.label ?? ''}</span>
-        <svg viewBox='0 0 24 24' className='text-muted size-4' fill='none' stroke='currentColor' strokeWidth='1.8'>
+        <svg
+          viewBox='0 0 24 24'
+          className={cn('size-4', tone === 'onDark' ? 'text-white/70' : 'text-muted')}
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='1.8'>
           <path d='m6 9 6 6 6-6' strokeLinecap='round' strokeLinejoin='round' />
         </svg>
       </button>
@@ -58,7 +70,7 @@ export function Select({
         <ul
           role='listbox'
           className={cn(
-            'border-border bg-overlay shadow-lifted absolute z-50 mt-1 min-w-[10rem] overflow-hidden rounded-lg border py-1',
+            'border-border bg-overlay shadow-lifted absolute z-50 mt-1 min-w-40 overflow-hidden rounded-md border py-1',
             align === 'end' ? 'right-0' : 'left-0',
           )}>
           {options.map((o) => (

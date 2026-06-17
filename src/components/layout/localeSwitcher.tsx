@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@heroui/react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/navigation';
 
@@ -12,12 +11,12 @@ export function LocaleSwitcher() {
   const next = locale === 'en' ? 'fr' : 'en';
 
   return (
-    <Button
-      variant='ghost'
-      size='sm'
+    <button
+      type='button'
       aria-label='Change language'
-      onPress={() => router.replace(pathname, { locale: next })}>
-      <span className='font-mono text-xs tracking-wide'>{next.toUpperCase()}</span>
-    </Button>
+      onClick={() => router.replace(pathname, { locale: next })}
+      className='grid h-9 w-9 place-items-center rounded-md text-white/85 transition-colors hover:bg-white/10 hover:text-white'>
+      <span className='font-mono text-xs font-medium tracking-wide'>{next.toUpperCase()}</span>
+    </button>
   );
 }

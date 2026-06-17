@@ -23,7 +23,7 @@ export async function ProductCard({
 
   return (
     <Link href={`/products/${product.slug}`} className='group block'>
-      <div className='bg-surface-secondary relative aspect-square overflow-hidden rounded-xl'>
+      <div className='bg-surface-secondary relative aspect-square overflow-hidden rounded-lg'>
         {product.thumbnail && (
           <Image
             src={product.thumbnail}
@@ -36,12 +36,12 @@ export async function ProductCard({
         )}
         <div className='absolute top-3 left-3 flex flex-col gap-1.5'>
           {product.discountPercentage > 0 && (
-            <span className='bg-danger text-danger-foreground rounded-full px-2 py-0.5 text-xs font-semibold'>
+            <span className='bg-sale text-sale-foreground rounded-full px-2 py-0.5 text-xs font-bold'>
               −{product.discountPercentage}%
             </span>
           )}
           {product.isFeatured && product.discountPercentage === 0 && (
-            <span className='bg-foreground text-background rounded-full px-2 py-0.5 text-xs font-semibold'>
+            <span className='bg-ink text-ink-foreground rounded-full px-2 py-0.5 text-xs font-bold tracking-wide uppercase'>
               {t('new')}
             </span>
           )}

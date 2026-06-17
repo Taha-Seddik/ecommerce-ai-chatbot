@@ -15,7 +15,9 @@
     "about": "About",
     "account": "Account",
     "wishlist": "Wishlist",
-    "cart": "Cart"
+    "cart": "Cart",
+    "promo": "Free delivery over $150  ·  Cash on delivery available  ·  Easy 30-day returns",
+    "allProducts": "All products"
   },
   "theme": {
     "toggle": "Toggle theme",
@@ -49,9 +51,22 @@
     "subtitle": "Furniture and lifestyle pieces, chosen with care and built to last.",
     "cta": "Explore the collection",
     "secondaryCta": "Our story",
+    "heroPromo": "Up to 30% off this week",
     "featured": "Featured",
     "featuredSubtitle": "A few pieces we’re loving right now.",
-    "shopByCategory": "Shop by category"
+    "shopByCategory": "Shop by category",
+    "vpDelivery": "Free delivery",
+    "vpDeliverySub": "On orders over $150",
+    "vpCod": "Cash on delivery",
+    "vpCodSub": "Pay when it arrives",
+    "vpReturns": "30-day returns",
+    "vpReturnsSub": "Easy & free",
+    "vpWarranty": "2-year warranty",
+    "vpWarrantySub": "On every piece",
+    "saleEyebrow": "Limited time",
+    "saleTitle": "Summer event",
+    "saleSubtitle": "Up to 30% off a curated selection of sofas, beds and lighting.",
+    "saleCta": "Shop the sale"
   },
   "catalog": {
     "allProducts": "All products",

@@ -27,7 +27,7 @@ export function CartButton({ locale, label, title }: { locale: string; label: st
         type='button'
         onClick={() => setOpen(true)}
         aria-label={label}
-        className='hover:bg-surface-secondary relative grid size-9 place-items-center rounded-lg transition-colors'>
+        className='relative grid size-9 place-items-center rounded-md text-white/85 transition-colors hover:bg-white/10 hover:text-white'>
         <IconBag />
         {/* empty:hidden + suppressHydrationWarning avoids an SSR/client count mismatch */}
         <span

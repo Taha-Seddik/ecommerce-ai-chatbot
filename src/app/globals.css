@@ -1,48 +1,54 @@
 /* HeroUI v3 brings in Tailwind v4 + tw-animate-css + base/components/theme. Keep this first. */
 @import '@heroui/styles';
 
-/* Design tokens exposed as Tailwind utilities (font-display, font-sans, shadow-soft, …). */
+/* Design tokens exposed as Tailwind utilities (font-display, font-sans, shadow-soft, bg-ink, bg-sale, …). */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
+  /* Retail chrome — dark header/footer (bg-ink) + amber deal badges (bg-sale). */
+  --color-ink: #131318;
+  --color-ink-foreground: #fafafa;
+  --color-sale: #f4b740;
+  --color-sale-foreground: #1a1206;
+
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 18px rgba(0, 0, 0, 0.06);
-  --shadow-lifted: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-lifted: 0 12px 34px rgba(0, 0, 0, 0.12);
 }
 
 /*
- * Brand theme — clean retail palette (light only). Declared UNLAYERED so it overrides
- * HeroUI's @layer theme defaults. `--accent` is HeroUI v3's primary/brand color.
+ * Brand theme — confident retail palette (light only). Declared UNLAYERED so it overrides
+ * HeroUI's @layer theme defaults. `--accent` is HeroUI v3's primary/brand color (deep teal).
  */
 :root,
 .light,
 [data-theme='light'] {
-  --radius: 0.5rem;
+  --radius: 0.375rem;
 
   --background: #ffffff;
-  --foreground: #18181b;
+  --foreground: #17171b;
 
   --surface: #ffffff;
-  --surface-secondary: #f5f5f6;
-  --surface-tertiary: #ececef;
+  --surface-secondary: #f4f4f5;
+  --surface-tertiary: #e8e8ec;
 
   --overlay: #ffffff;
-  --overlay-foreground: #18181b;
+  --overlay-foreground: #17171b;
 
-  --muted: #71717a;
+  --muted: #6b6b75;
 
   --default: #f4f4f5;
-  --default-foreground: #18181b;
+  --default-foreground: #17171b;
 
-  --accent: #c2613a;
+  --accent: #0f766e;
   --accent-foreground: #ffffff;
 
   --success: #15803d;
   --success-foreground: #ffffff;
   --warning: #b45309;
   --warning-foreground: #ffffff;
-  --danger: #dc2626;
+  --danger: #e11d48;
   --danger-foreground: #ffffff;
 
   --border: #e4e4e7;
@@ -55,6 +61,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Display headings: tighter tracking for a confident retail wordmark feel. */
+.font-display {
+  letter-spacing: -0.02em;
 }
 
 /* Prices and numeric tables read better with lining/tabular figures. */

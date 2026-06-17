@@ -15,7 +15,9 @@
     "about": "À propos",
     "account": "Compte",
     "wishlist": "Favoris",
-    "cart": "Panier"
+    "cart": "Panier",
+    "promo": "Livraison offerte dès 150 $  ·  Paiement à la livraison  ·  Retours sous 30 jours",
+    "allProducts": "Tous les produits"
   },
   "theme": {
     "toggle": "Changer de thème",
@@ -49,9 +51,22 @@
     "subtitle": "Du mobilier et des pièces art de vivre, choisis avec soin et conçus pour durer.",
     "cta": "Découvrir la collection",
     "secondaryCta": "Notre histoire",
+    "heroPromo": "Jusqu’à 30 % cette semaine",
     "featured": "Sélection",
     "featuredSubtitle": "Quelques pièces que nous aimons en ce moment.",
-    "shopByCategory": "Acheter par catégorie"
+    "shopByCategory": "Acheter par catégorie",
+    "vpDelivery": "Livraison offerte",
+    "vpDeliverySub": "Dès 150 $ d’achat",
+    "vpCod": "Paiement à la livraison",
+    "vpCodSub": "Payez à réception",
+    "vpReturns": "Retours sous 30 jours",
+    "vpReturnsSub": "Simples et gratuits",
+    "vpWarranty": "Garantie 2 ans",
+    "vpWarrantySub": "Sur chaque pièce",
+    "saleEyebrow": "Durée limitée",
+    "saleTitle": "Événement d’été",
+    "saleSubtitle": "Jusqu’à 30 % sur une sélection de canapés, lits et luminaires.",
+    "saleCta": "Voir les offres"
   },
   "catalog": {
     "allProducts": "Tous les produits",

@@ -13,6 +13,7 @@ export function CurrencySwitcher() {
       onChange={(v) => setCurrency(v as CurrencyCode)}
       ariaLabel='Currency'
       align='end'
+      tone='onDark'
       className='hidden sm:block'
     />
   );
