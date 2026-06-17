@@ -33,7 +33,7 @@ export function CartButton({ locale, label, title }: { locale: string; label: st
         <span
           key={count}
           suppressHydrationWarning
-          className='bg-accent text-accent-foreground animate-in zoom-in-50 absolute -top-0.5 -right-0.5 grid min-w-4 place-items-center rounded-full px-1 text-[10px] font-semibold duration-200 empty:hidden'>
+          className='bg-accent text-accent-foreground animate-in zoom-in-50 absolute -top-0.5 -inset-e-0.5 grid min-w-4 place-items-center rounded-full px-1 text-[10px] font-semibold duration-200 empty:hidden'>
           {count > 0 ? count : ''}
         </span>
       </button>
@@ -48,7 +48,7 @@ export function CartButton({ locale, label, title }: { locale: string; label: st
               className='animate-in fade-in absolute inset-0 bg-black/50 duration-200'
               onClick={() => setOpen(false)}
             />
-            <div className='bg-background animate-in slide-in-from-right shadow-lifted absolute top-0 right-0 flex h-full w-full max-w-md flex-col p-5 duration-300'>
+            <div className='bg-background animate-in ltr:slide-in-from-right rtl:slide-in-from-left shadow-lifted absolute top-0 inset-e-0 flex h-full w-full max-w-md flex-col p-5 duration-300'>
               <div className='flex items-center justify-between pb-4'>
                 <h2 className='font-display text-xl'>{title}</h2>
                 <button

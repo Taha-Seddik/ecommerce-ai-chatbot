@@ -34,7 +34,7 @@ export function CategoryNav({ categories, shopLabel }: { categories: NavCategory
             {pickLocale(c.title, locale)}
           </Link>
           {openId === c.id && c.children.length > 0 && (
-            <div className='border-border bg-overlay shadow-lifted animate-in fade-in slide-in-from-top-1 absolute left-0 z-50 mt-px min-w-48 rounded-xl border p-2 duration-150'>
+            <div className='border-border bg-overlay shadow-lifted animate-in fade-in slide-in-from-top-1 absolute inset-s-0 z-50 mt-px min-w-48 rounded-xl border p-2 duration-150'>
               {c.children.map((ch) => (
                 <Link
                   key={ch.id}

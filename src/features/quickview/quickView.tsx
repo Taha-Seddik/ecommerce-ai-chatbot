@@ -64,7 +64,7 @@ export function QuickView({ slug }: { slug: string }) {
                 type='button'
                 onClick={() => setOpen(false)}
                 aria-label='Close'
-                className='bg-surface/80 hover:bg-surface absolute top-3 right-3 z-10 grid size-8 place-items-center rounded-full text-lg'>
+                className='bg-surface/80 hover:bg-surface absolute top-3 inset-e-3 z-10 grid size-8 place-items-center rounded-full text-lg'>
                 ×
               </button>
               <div className='bg-surface-secondary relative aspect-square'>

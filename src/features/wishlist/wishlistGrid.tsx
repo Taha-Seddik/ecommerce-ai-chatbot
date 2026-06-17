@@ -43,7 +43,7 @@ export function WishlistGrid() {
     <div className='grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4'>
       {(items ?? []).map((p) => (
         <div key={p.id} className='group relative'>
-          <WishlistButton productId={p.id} className='absolute top-3 right-3 z-10' />
+          <WishlistButton productId={p.id} className='absolute top-3 inset-e-3 z-10' />
           <Link href={`/products/${p.slug}`} className='block'>
             <div className='bg-surface-secondary relative aspect-square overflow-hidden rounded-xl'>
               {p.thumbnail && (

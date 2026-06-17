@@ -45,7 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div className='mt-1 flex flex-wrap gap-3'>
               <ButtonLink href='/products' variant='primary' size='lg'>
                 {t('cta')}
-                <IconArrowRight className='size-4' />
+                <IconArrowRight className='size-4 rtl:rotate-180' />
               </ButtonLink>
               <ButtonLink href='/products' variant='outline' size='lg'>
                 {t('secondaryCta')}
@@ -96,7 +96,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </div>
               <Link href='/products' className='text-accent inline-flex items-center gap-1 text-sm font-semibold'>
                 {t('cta')}
-                <IconArrowRight className='size-4' />
+                <IconArrowRight className='size-4 rtl:rotate-180' />
               </Link>
             </div>
             <ProductGrid products={featured} locale={locale} priorityCount={4} />
@@ -116,11 +116,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 href='/products'
                 className='bg-sale text-sale-foreground mt-6 inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-0.5'>
                 {t('saleCta')}
-                <IconArrowRight className='size-4' />
+                <IconArrowRight className='size-4 rtl:rotate-180' />
               </Link>
             </div>
-            <div className='pointer-events-none absolute -top-24 -right-10 size-72 rounded-full bg-white/10' />
-            <div className='pointer-events-none absolute right-32 -bottom-28 size-80 rounded-full bg-white/5' />
+            <div className='pointer-events-none absolute -top-24 -inset-e-10 size-72 rounded-full bg-white/10' />
+            <div className='pointer-events-none absolute inset-e-32 -bottom-28 size-80 rounded-full bg-white/5' />
           </div>
         </Container>
       </section>
@@ -134,7 +134,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               href='/products'
               className='text-accent hidden items-center gap-1 text-sm font-semibold sm:inline-flex'>
               {t('cta')}
-              <IconArrowRight className='size-4' />
+              <IconArrowRight className='size-4 rtl:rotate-180' />
             </Link>
           </div>
           <div className='grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6'>
@@ -153,11 +153,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   />
                 )}
                 <div className='absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent' />
-                <span className='font-display absolute bottom-4 left-4 text-lg font-bold text-white'>
+                <span className='font-display absolute bottom-4 inset-s-4 text-lg font-bold text-white'>
                   {pickLocale(c.title, locale)}
                 </span>
-                <span className='absolute right-4 bottom-5 translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100'>
-                  <IconArrowRight className='size-5' />
+                <span className='absolute inset-e-4 bottom-5 translate-x-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 rtl:-translate-x-2 rtl:group-hover:translate-x-0'>
+                  <IconArrowRight className='size-5 rtl:rotate-180' />
                 </span>
               </Link>
             ))}

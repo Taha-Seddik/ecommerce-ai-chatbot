@@ -63,9 +63,20 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Arabic locale: swap to an Arabic-capable family for body + display. */
+html[lang='ar'] {
+  --font-sans: var(--font-cairo), 'Segoe UI', Tahoma, sans-serif;
+  --font-display: var(--font-cairo), 'Segoe UI', Tahoma, sans-serif;
+}
+
 /* Display headings: tighter tracking for a confident retail wordmark feel. */
 .font-display {
   letter-spacing: -0.02em;
+}
+
+/* Arabic text shouldn't use negative tracking. */
+html[lang='ar'] .font-display {
+  letter-spacing: normal;
 }
 
 /* Prices and numeric tables read better with lining/tabular figures. */

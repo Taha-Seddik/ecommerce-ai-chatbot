@@ -55,6 +55,22 @@ export function IconStar({ className = 'size-4', filled = false, ...props }: Ico
   );
 }
 
+export function IconChevronDown({ className = 'size-4', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='m6 9 6 6 6-6' />
+    </svg>
+  );
+}
+
+export function IconCheck({ className = 'size-4', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='m5 12 5 5 9-10' />
+    </svg>
+  );
+}
+
 export function IconChevronRight({ className = 'size-5', ...props }: IconProps) {
   return (
     <svg className={className} {...base} {...props}>

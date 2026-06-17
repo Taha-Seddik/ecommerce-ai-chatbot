@@ -118,7 +118,7 @@ export function SearchModal({ placeholder }: { placeholder: string }) {
                         <button
                           type='button'
                           onClick={() => go(`/products/${h.slug}`)}
-                          className='hover:bg-surface-secondary flex w-full items-center gap-3 rounded-lg p-2 text-left transition-colors'>
+                          className='hover:bg-surface-secondary flex w-full items-center gap-3 rounded-lg p-2 text-start transition-colors'>
                           <span className='bg-surface-secondary relative size-12 shrink-0 overflow-hidden rounded-md'>
                             {h.thumbnail && (
                               <Image src={h.thumbnail} alt='' fill sizes='48px' className='object-cover' />

@@ -34,7 +34,7 @@ export async function ProductCard({
             className='object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]'
           />
         )}
-        <div className='absolute top-3 left-3 flex flex-col gap-1.5'>
+        <div className='absolute top-3 inset-s-3 flex flex-col gap-1.5'>
           {product.discountPercentage > 0 && (
             <span className='bg-sale text-sale-foreground rounded-full px-2 py-0.5 text-xs font-bold'>
               −{product.discountPercentage}%
@@ -46,7 +46,7 @@ export async function ProductCard({
             </span>
           )}
         </div>
-        <WishlistButton productId={product.id} className='absolute top-3 right-3' />
+        <WishlistButton productId={product.id} className='absolute top-3 inset-e-3' />
         {!soldOut && <QuickView slug={product.slug} />}
         {soldOut && (
           <div className='bg-background/55 absolute inset-0 grid place-items-center'>

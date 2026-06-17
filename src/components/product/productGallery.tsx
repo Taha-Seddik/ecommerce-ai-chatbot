@@ -53,7 +53,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
           type='button'
           onClick={() => setFullscreen(true)}
           aria-label='View fullscreen'
-          className='bg-surface/85 shadow-soft hover:bg-surface absolute right-3 bottom-3 grid size-9 place-items-center rounded-full transition'>
+          className='bg-surface/85 shadow-soft hover:bg-surface absolute inset-e-3 bottom-3 grid size-9 place-items-center rounded-full transition'>
           <svg viewBox='0 0 24 24' className='size-5' fill='none' stroke='currentColor' strokeWidth='1.7'>
             <path d='M9 3H4v5M20 8V3h-5M15 21h5v-5M4 16v5h5' strokeLinecap='round' strokeLinejoin='round' />
           </svg>
@@ -65,15 +65,15 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
               type='button'
               onClick={() => go(-1)}
               aria-label='Previous image'
-              className={cn(navBtn, 'left-3 opacity-0 group-hover:opacity-100')}>
-              <IconChevronLeft className='size-5' />
+              className={cn(navBtn, 'inset-s-3 opacity-0 group-hover:opacity-100')}>
+              <IconChevronLeft className='size-5 rtl:rotate-180' />
             </button>
             <button
               type='button'
               onClick={() => go(1)}
               aria-label='Next image'
-              className={cn(navBtn, 'right-3 opacity-0 group-hover:opacity-100')}>
-              <IconChevronRight className='size-5' />
+              className={cn(navBtn, 'inset-e-3 opacity-0 group-hover:opacity-100')}>
+              <IconChevronRight className='size-5 rtl:rotate-180' />
             </button>
           </>
         )}
@@ -107,7 +107,7 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
               type='button'
               onClick={() => setFullscreen(false)}
               aria-label='Close'
-              className='absolute top-4 right-4 grid size-10 place-items-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20'>
+              className='absolute top-4 inset-e-4 grid size-10 place-items-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20'>
               ×
             </button>
             <div className='relative h-full max-h-[88vh] w-full max-w-5xl'>
@@ -119,15 +119,15 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
                   type='button'
                   onClick={() => go(-1)}
                   aria-label='Previous image'
-                  className='absolute top-1/2 left-4 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20'>
-                  <IconChevronLeft />
+                  className='absolute top-1/2 inset-s-4 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20'>
+                  <IconChevronLeft className='rtl:rotate-180' />
                 </button>
                 <button
                   type='button'
                   onClick={() => go(1)}
                   aria-label='Next image'
-                  className='absolute top-1/2 right-4 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20'>
-                  <IconChevronRight />
+                  className='absolute top-1/2 inset-e-4 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20'>
+                  <IconChevronRight className='rtl:rotate-180' />
                 </button>
                 <div className='tabular absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-3 py-1 text-sm text-white'>
                   {active + 1} / {count}

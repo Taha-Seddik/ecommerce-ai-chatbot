@@ -71,7 +71,7 @@ export function Select({
           role='listbox'
           className={cn(
             'border-border bg-overlay shadow-lifted absolute z-50 mt-1 min-w-40 overflow-hidden rounded-md border py-1',
-            align === 'end' ? 'right-0' : 'left-0',
+            align === 'end' ? 'inset-e-0' : 'inset-s-0',
           )}>
           {options.map((o) => (
             <li key={o.value}>
@@ -84,7 +84,7 @@ export function Select({
                   setOpen(false);
                 }}
                 className={cn(
-                  'hover:bg-surface-secondary block w-full px-3 py-1.5 text-left text-sm transition-colors',
+                  'hover:bg-surface-secondary block w-full px-3 py-1.5 text-start text-sm transition-colors',
                   o.value === value && 'text-accent font-medium',
                 )}>
                 {o.label}

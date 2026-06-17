@@ -19,7 +19,9 @@ export function convertFromBase(baseCents: number, code: CurrencyCode): number {
 }
 
 export function formatCurrency(cents: number, code: string, locale: string): string {
-  return new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+  // `ar-u-nu-latn` keeps Latin digits for readable prices while respecting Arabic conventions.
+  const bcp47 = locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-u-nu-latn' : 'en-US';
+  return new Intl.NumberFormat(bcp47, {
     style: 'currency',
     currency: code,
     maximumFractionDigits: 2,
