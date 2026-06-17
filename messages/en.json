@@ -15,9 +15,7 @@
     "about": "About",
     "account": "Account",
     "wishlist": "Wishlist",
-    "cart": "Cart",
-    "promo": "Free delivery over $150  ·  Cash on delivery available  ·  Easy 30-day returns",
-    "allProducts": "All products"
+    "cart": "Cart"
   },
   "theme": {
     "toggle": "Toggle theme",
