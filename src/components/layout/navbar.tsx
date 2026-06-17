@@ -27,16 +27,18 @@ export async function Navbar({ locale }: { locale: string }) {
     /* Sticky chrome: dark action row + light category bar */
     <header className='shadow-lifted sticky top-0 z-40'>
       <div className='bg-ink text-white'>
-        <Container className='flex h-16 items-center gap-3 md:gap-4'>
-          <Link href='/' className='font-display shrink-0 text-2xl font-bold tracking-tight text-white'>
+        <Container className='grid h-16 grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-4'>
+          <Link
+            href='/'
+            className='font-display justify-self-start text-2xl font-bold tracking-tight text-white'>
             {BRAND.name}
           </Link>
 
-          <div className='flex flex-1 justify-center px-1 md:px-8'>
+          <div className='flex justify-center px-1'>
             <SearchModal placeholder={t('search.placeholder')} />
           </div>
 
-          <div className='flex shrink-0 items-center gap-0.5 md:gap-1'>
+          <div className='flex items-center justify-self-end gap-0.5 md:gap-1'>
             <CurrencySwitcher />
             <LocaleSwitcher />
             <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
