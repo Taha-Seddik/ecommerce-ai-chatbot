@@ -71,7 +71,7 @@ export default async function SearchPage({
             <p className='text-muted text-sm'>
               {q ? t('search.resultsFor', { q, count: total }) : t('catalog.results', { count: total })}
             </p>
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center gap-4'>
               <GridDensityToggle />
               <SortSelect value={sort} basePath='/search' params={filterParams} />
             </div>

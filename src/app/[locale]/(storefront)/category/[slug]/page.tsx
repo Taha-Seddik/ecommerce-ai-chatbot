@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { EmptyState } from '@/components/catalog/emptyState';
+import { GridDensityToggle } from '@/components/catalog/gridDensityToggle';
 import { Pagination } from '@/components/catalog/pagination';
 import { SortSelect } from '@/components/catalog/sortSelect';
 import { ProductGrid } from '@/components/product/productGrid';
@@ -53,7 +54,10 @@ export default async function CategoryPage({
           <h1 className='font-display text-3xl tracking-tight md:text-4xl'>{title}</h1>
           <p className='text-muted mt-1 text-sm'>{t('catalog.results', { count: total })}</p>
         </div>
-        <SortSelect value={sort} basePath={`/category/${slug}`} />
+        <div className='flex items-center gap-4'>
+          <GridDensityToggle />
+          <SortSelect value={sort} basePath={`/category/${slug}`} />
+        </div>
       </div>
 
       {children.length > 0 && (

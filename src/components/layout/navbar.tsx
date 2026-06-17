@@ -58,6 +58,9 @@ export async function Navbar({ locale }: { locale: string }) {
               <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
                 <IconHeart />
               </Link>
+            </div>
+            <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
+            <div className='hidden md:block'>
               <AccountMenu
                 signInLabel={t('nav.account')}
                 accountLabel={t('nav.account')}
@@ -67,7 +70,6 @@ export async function Navbar({ locale }: { locale: string }) {
                 logoutLabel={t('auth.logout')}
               />
             </div>
-            <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
           </div>
         </Container>
       </div>

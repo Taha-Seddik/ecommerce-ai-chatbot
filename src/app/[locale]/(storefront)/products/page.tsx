@@ -36,7 +36,7 @@ export default async function ProductsPage({
           <h1 className='font-display text-3xl tracking-tight md:text-4xl'>{t('catalog.allProducts')}</h1>
           <p className='text-muted mt-1 text-sm'>{t('catalog.results', { count: total })}</p>
         </div>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-4'>
           <GridDensityToggle />
           <SortSelect value={sort} basePath='/products' />
         </div>

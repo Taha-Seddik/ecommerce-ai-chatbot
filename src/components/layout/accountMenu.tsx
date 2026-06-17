@@ -40,7 +40,7 @@ export function AccountMenu({
   return (
     <Popover
       ariaLabel={accountLabel}
-      triggerClassName='size-9 justify-center rounded-full bg-white/15 text-sm font-semibold text-white transition-colors hover:bg-white/25'
+      triggerClassName='bg-accent size-9 justify-center rounded-full text-sm font-bold text-white transition hover:brightness-110'
       trigger={() => <span aria-hidden>{account.email.charAt(0).toUpperCase()}</span>}>
       {(close) => (
         <>
