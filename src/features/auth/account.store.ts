@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type AccountSummary = { email: string; isAdmin: boolean } | null;
+export type AccountSummary = { email: string; firstName: string; lastName: string; isAdmin: boolean } | null;
 
 type AccountState = {
   account: AccountSummary;

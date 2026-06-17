@@ -1,6 +1,6 @@
 'use client';
 
-import { IconUser } from '@/components/ui/icons';
+import { IconChevronDown, IconUser } from '@/components/ui/icons';
 import { Popover } from '@/components/ui/popover';
 import { useAccount } from '@/features/auth/account.store';
 import { logoutAction } from '@/features/auth/auth.actions';
@@ -36,12 +36,18 @@ export function AccountMenu({
   }
 
   const item = 'hover:bg-surface-secondary block rounded-lg px-3 py-2 text-sm transition-colors';
+  const name = [account.firstName, account.lastName].filter(Boolean).join(' ') || account.email;
 
   return (
     <Popover
       ariaLabel={accountLabel}
-      triggerClassName='bg-accent size-9 justify-center rounded-full text-sm font-bold text-white transition hover:brightness-110'
-      trigger={() => <span aria-hidden>{account.email.charAt(0).toUpperCase()}</span>}>
+      triggerClassName='h-9 gap-1.5 rounded-md px-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white'
+      trigger={(open) => (
+        <>
+          <span className='max-w-36 truncate'>{name}</span>
+          <IconChevronDown className={cn('size-3.5 shrink-0 transition-transform duration-200', open && 'rotate-180')} />
+        </>
+      )}>
       {(close) => (
         <>
           <div className='text-muted truncate px-3 pt-1 pb-2 text-xs'>{account.email}</div>

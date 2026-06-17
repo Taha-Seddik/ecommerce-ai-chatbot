@@ -62,7 +62,23 @@ export async function logoutAction(): Promise<void> {
 }
 
 /** Lightweight session summary for client header hydration (keeps pages static). */
-export async function getAccountSummaryAction(): Promise<{ email: string; isAdmin: boolean } | null> {
+export async function getAccountSummaryAction(): Promise<{
+  email: string;
+  firstName: string;
+  lastName: string;
+  isAdmin: boolean;
+} | null> {
   const session = await getSession();
-  return session ? { email: session.email, isAdmin: session.roles.includes('admin') } : null;
+  if (!session) return null;
+  const [u] = await db
+    .select({ firstName: users.firstName, lastName: users.lastName })
+    .from(users)
+    .where(eq(users.id, session.userId))
+    .limit(1);
+  return {
+    email: session.email,
+    firstName: u?.firstName ?? '',
+    lastName: u?.lastName ?? '',
+    isAdmin: session.roles.includes('admin'),
+  };
 }

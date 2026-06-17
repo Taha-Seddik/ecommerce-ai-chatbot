@@ -24,8 +24,8 @@ export function IconSearch({ className = 'size-5', ...props }: IconProps) {
 export function IconBag({ className = 'size-5', ...props }: IconProps) {
   return (
     <svg className={className} {...base} {...props}>
-      <path d='M6 8h12l-1 12H7L6 8Z' />
-      <path d='M9 8a3 3 0 0 1 6 0' />
+      <path d='M5.5 7.5h13l-.8 11.2a2 2 0 0 1-2 1.8H8.3a2 2 0 0 1-2-1.8L5.5 7.5Z' />
+      <path d='M8.75 7.5V6.25a3.25 3.25 0 0 1 6.5 0V7.5' />
     </svg>
   );
 }
@@ -42,7 +42,7 @@ export function IconUser({ className = 'size-5', ...props }: IconProps) {
 export function IconHeart({ className = 'size-5', filled = false, ...props }: IconProps & { filled?: boolean }) {
   return (
     <svg className={className} {...base} fill={filled ? 'currentColor' : 'none'} {...props}>
-      <path d='M12 20s-7-4.35-9.5-8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9.5 5.5C19 15.65 12 20 12 20Z' />
+      <path d='M12 20.3c-.6-.45-7.5-5-7.5-10.1A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 7.5 3.2c0 5.1-6.9 9.65-7.5 10.1Z' />
     </svg>
   );
 }

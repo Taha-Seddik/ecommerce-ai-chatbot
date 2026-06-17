@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server';
 import { Container } from '@/components/ui/container';
-import { IconHeart } from '@/components/ui/icons';
 import { AccountHydrator } from '@/features/auth/accountHydrator';
 import { CartButton } from '@/features/cart/cartButton';
 import { getNavCategories } from '@/features/categories/categories.repo';
@@ -12,9 +11,7 @@ import { AccountMenu } from './accountMenu';
 import { CategoryNav } from './categoryNav';
 import { LocaleSwitcher } from './localeSwitcher';
 import { MobileMenu } from './mobileMenu';
-
-const iconBtn =
-  'grid size-9 place-items-center rounded-md text-white/85 transition-colors hover:bg-white/10 hover:text-white';
+import { WishlistLink } from './wishlistLink';
 
 export async function Navbar({ locale }: { locale: string }) {
   const t = await getTranslations();
@@ -55,9 +52,7 @@ export async function Navbar({ locale }: { locale: string }) {
             <div className='hidden items-center gap-0.5 md:flex md:gap-1'>
               <CurrencySwitcher />
               <LocaleSwitcher />
-              <Link href='/wishlist' aria-label={t('nav.wishlist')} className={iconBtn}>
-                <IconHeart />
-              </Link>
+              <WishlistLink label={t('nav.wishlist')} />
             </div>
             <CartButton locale={locale} label={t('nav.cart')} title={t('cart.title')} />
             <div className='hidden md:block'>
