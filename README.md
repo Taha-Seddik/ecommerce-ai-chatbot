@@ -17,6 +17,21 @@ checkout with Stripe — built as a portfolio piece to show how I write producti
 
 ---
 
+## 🤖 Ask Nora — the AI shopping assistant
+
+The headline feature: shoppers ask in plain language — *"a comfy sofa under $1,500"*, *"what do you sell?"* — and
+**Nora searches the real catalogue and answers with live product cards** (photo, price, link) right in the chat.
+
+- 🧠 **Agentic, not canned** — OpenAI **function-calling** over the live catalogue, so answers are always real and in-stock; she never invents a product or price.
+- 🛍️ **Cards in the conversation** — matched products render inline as clickable cards.
+- 🌍 **Trilingual & safe** — replies in EN / FR / AR, and it's rate-limited to run in public.
+
+<p align="center">
+  <img src="docs/screenshots/chatbot.png" alt="Nora — the AI shopping assistant embedding live product cards in the chat" width="42%">
+</p>
+
+---
+
 ## ▶️ Try it in 30 seconds
 
 ```bash
@@ -81,9 +96,7 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 
 ## 💡 A few things I'm proud of
 
-- 🤖 **An AI assistant that actually shops** — *Nora* uses **OpenAI function-calling** (an agentic tool loop, not canned RAG) to query the
-  live catalogue, then renders real product cards inline in the chat. Her tools return only real, in-stock products, so she never invents a
-  SKU or a price — ask for "a sofa under $1,500" and she'll tell you honestly if there isn't one.
+- 🤖 **An AI assistant that actually shops** — agentic OpenAI function-calling queries the live catalogue and renders real product cards inline; never invents a SKU or price.
 - 💳 **Payments you can trust** — the Stripe webhook is the source of truth: signature-verified, idempotent, and it
   marks the order paid, decrements stock, and clears the cart in a single transaction.
 - 💰 **No floating-point money** — prices are integer cents end-to-end; currency conversion happens at the edge.
@@ -95,12 +108,6 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 
 <p align="center">
   <img src="docs/screenshots/admin.png" alt="Admin dashboard" width="90%">
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/chatbot.png" alt="Nora — the AI shopping assistant embedding live product cards in the chat" width="34%">
-  <br>
-  <sub><em>Nora finds real products and embeds them as cards — right in the conversation.</em></sub>
 </p>
 
 ---
