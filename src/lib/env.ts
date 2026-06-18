@@ -33,6 +33,10 @@ const envSchema = z
     // Stripe (test mode). Optional — when unset, card checkout is hidden and only COD is offered.
     STRIPE_SECRET_KEY: z.string().optional(),
     STRIPE_WEBHOOK_SECRET: z.string().optional(),
+
+    // AI shopping assistant (OpenAI). Optional — when unset, the chat widget is hidden.
+    OPENAI_API_KEY: z.string().optional(),
+    OPENAI_MODEL: z.string().default('gpt-4o-mini'),
   })
   .superRefine((val, ctx) => {
     if (!enforceProd) return;

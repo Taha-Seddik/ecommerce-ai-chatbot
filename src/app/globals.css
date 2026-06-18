@@ -63,6 +63,43 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Tailwind v4 Preflight defaults <button> to the arrow cursor; restore the pointer on every
+   interactive control app-wide (disabled controls keep the default). */
+button:not(:disabled),
+[role='button']:not(:disabled),
+label[for],
+summary {
+  cursor: pointer;
+}
+
+/* Chat launcher — a soft coloured light orbiting the (black) trigger button. The blurred conic
+   gradient sits behind the opaque button, so only the halo around the edge shows and the bright
+   arc appears to travel around it. */
+@keyframes chat-orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.chat-launcher-glow {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--accent) 50deg,
+    #5eead4 90deg,
+    var(--accent) 135deg,
+    transparent 210deg,
+    transparent 360deg
+  );
+  filter: blur(8px);
+  animation: chat-orbit 2.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-launcher-glow {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
 /* Arabic locale: swap to an Arabic-capable family for body + display. */
 html[lang='ar'] {
   --font-sans: var(--font-cairo), 'Segoe UI', Tahoma, sans-serif;

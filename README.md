@@ -8,6 +8,10 @@ checkout with Stripe — built as a portfolio piece to show how I write producti
   <img src="docs/screenshots/home-en.png" alt="Norden storefront" width="90%">
 </p>
 
+<p align="center">
+  <strong>🔗 Live demo &nbsp;·&nbsp; <a href="https://ecommerce.taha-seddik.online">ecommerce.taha-seddik.online</a></strong>
+</p>
+
 > A ground-up rebuild of an older Express / MySQL shop, redone with today's stack (Next.js 16, React 19,
 > TypeScript). "Norden" is a placeholder brand (home & furniture) — no real customers.
 
@@ -27,7 +31,7 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 - 👤 **Customer** — `customer@norden.example` · `password123`
 - 🔑 **Admin** — `admin@norden.example` · `password123`
 
-*Live demo: coming once deployed.*
+*…or just browse the **[live demo](https://ecommerce.taha-seddik.online)**.*
 
 ---
 
@@ -40,6 +44,7 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 - Cart & wishlist that survive a refresh and merge into your account on login
 - Checkout with **Cash on Delivery** or **Stripe** card payment
 - Product reviews & star ratings
+- **AI shopping assistant** — ask *Nora* in plain language; she searches the live catalogue and drops product cards into the chat
 
 **Admin panel** (`/admin`)
 
@@ -69,12 +74,16 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 | **Database** | SQLite via Drizzle ORM — *just a file, no database server to run* |
 | **Auth** | Custom JWT (`jose`) + `bcrypt`, role-based |
 | **Payments** | Stripe Checkout + Cash on Delivery |
+| **AI assistant** | OpenAI function-calling — *Nora* searches the real catalogue and embeds product cards |
 | **i18n** | next-intl (EN / FR / AR + RTL) |
 
 ---
 
 ## 💡 A few things I'm proud of
 
+- 🤖 **An AI assistant that actually shops** — *Nora* uses **OpenAI function-calling** (an agentic tool loop, not canned RAG) to query the
+  live catalogue, then renders real product cards inline in the chat. Her tools return only real, in-stock products, so she never invents a
+  SKU or a price — ask for "a sofa under $1,500" and she'll tell you honestly if there isn't one.
 - 💳 **Payments you can trust** — the Stripe webhook is the source of truth: signature-verified, idempotent, and it
   marks the order paid, decrements stock, and clears the cart in a single transaction.
 - 💰 **No floating-point money** — prices are integer cents end-to-end; currency conversion happens at the edge.
@@ -86,6 +95,12 @@ Then sign in with the **one-click demo buttons** on the login page — or:
 
 <p align="center">
   <img src="docs/screenshots/admin.png" alt="Admin dashboard" width="90%">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/chatbot.png" alt="Nora — the AI shopping assistant embedding live product cards in the chat" width="34%">
+  <br>
+  <sub><em>Nora finds real products and embeds them as cards — right in the conversation.</em></sub>
 </p>
 
 ---

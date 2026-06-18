@@ -229,5 +229,22 @@
     "emailPlaceholder": "Email address",
     "subscribe": "Subscribe",
     "rights": "All rights reserved."
+  },
+  "chat": {
+    "launch": "Chat with Nora",
+    "title": "Nora",
+    "subtitle": "AI shopping assistant",
+    "greeting": "Hi! I'm Nora, your shopping assistant. Looking for something for your home? Ask away ✨",
+    "placeholder": "Ask about products, shipping, sizes…",
+    "send": "Send",
+    "close": "Close",
+    "error": "Sorry, something went wrong. Please try again.",
+    "suggest1": "Show me sofas",
+    "suggest2": "Gifts under $100",
+    "suggest3": "What do you sell?",
+    "poweredBy": "Powered by OpenAI",
+    "thinking": "Nora is typing…",
+    "unavailable": "The assistant isn't available right now.",
+    "rateLimited": "You're sending messages too fast — please wait a moment and try again."
   }
 }

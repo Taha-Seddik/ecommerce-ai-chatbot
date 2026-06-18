@@ -142,3 +142,28 @@ export function IconShield({ className = 'size-6', ...props }: IconProps) {
     </svg>
   );
 }
+
+export function IconSparkles({ className = 'size-5', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M12 4.5 13.6 9 18 10.5 13.6 12 12 16.5 10.4 12 6 10.5 10.4 9 12 4.5Z' />
+      <path d='M18.5 4v3M20 5.5h-3M5.5 16v2.5M6.75 17.25h-2.5' />
+    </svg>
+  );
+}
+
+export function IconSend({ className = 'size-5', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M5 12 20 5l-4.5 14-3.2-6.3L5 12Z' />
+    </svg>
+  );
+}
+
+export function IconClose({ className = 'size-5', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M6 6l12 12M18 6 6 18' />
+    </svg>
+  );
+}
