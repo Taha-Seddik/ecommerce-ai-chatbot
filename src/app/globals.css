@@ -72,54 +72,22 @@ summary {
   cursor: pointer;
 }
 
-/* Chat launcher — a premium dark pill with a slow white shine sweeping across, and a gently
-   twinkling spark. No coloured border; the motion is a soft sheen, not a glow. */
-@keyframes ask-ai-shine {
-  0%,
-  55% {
-    transform: translateX(-130%) skewX(-12deg);
-  }
-  100% {
-    transform: translateX(130%) skewX(-12deg);
+/* Chat launcher — a soft colour glow orbiting the round trigger button (recoloured to the app's
+   teal/cyan). A blurred conic gradient rotates behind the opaque button, so a coloured glow rings
+   the edge and travels around it. */
+@keyframes bot-glow-spin {
+  to {
+    transform: rotate(1turn);
   }
 }
-.ask-ai-shine {
-  position: relative;
-  overflow: hidden;
-}
-.ask-ai-shine::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.14) 45%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0.14) 55%,
-    transparent 100%
-  );
-  transform: translateX(-130%) skewX(-12deg);
-  animation: ask-ai-shine 5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes ask-ai-twinkle {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 0.55;
-    transform: scale(0.86) rotate(-10deg);
-  }
-}
-.ask-ai-spark {
-  animation: ask-ai-twinkle 2.6s ease-in-out infinite;
+.bot-glow {
+  background: conic-gradient(from 0deg, #5eead4, #38bdf8, #22d3ee, #2dd4bf, #5eead4, #22d3ee, #5eead4);
+  filter: blur(7px);
+  opacity: 0.9;
+  animation: bot-glow-spin 3s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .ask-ai-shine::after,
-  .ask-ai-spark {
+  .bot-glow {
     animation: none;
   }
 }

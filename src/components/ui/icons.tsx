@@ -167,3 +167,15 @@ export function IconClose({ className = 'size-5', ...props }: IconProps) {
     </svg>
   );
 }
+
+export function IconBot({ className = 'size-6', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <rect x='4.5' y='8.5' width='15' height='11' rx='4' />
+      <path d='M12 8.5v-3' />
+      <circle cx='12' cy='4.2' r='1.15' fill='currentColor' stroke='none' />
+      <circle cx='9.5' cy='14' r='1.05' fill='currentColor' stroke='none' />
+      <circle cx='14.5' cy='14' r='1.05' fill='currentColor' stroke='none' />
+    </svg>
+  );
+}

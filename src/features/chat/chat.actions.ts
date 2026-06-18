@@ -18,12 +18,20 @@ const MAX_TOOL_ROUNDS = 4;
 const MAX_COMPLETION_TOKENS = 2048;
 const REQUEST_TIMEOUT_MS = 30_000;
 
-// Lightweight in-memory per-IP rate limit. The VPS runs a single PM2 instance, so a module-level
-// map is sufficient to stop an anonymous visitor from running up OpenAI spend. Not a substitute for
-// a real limiter in a multi-instance deploy, but right-sized for this demo.
-const RATE_WINDOW_MS = 60_000;
-const RATE_MAX = 12;
-const hits = new Map<string, number[]>();
+// In-memory abuse / cost guard — protects OpenAI credits from being drained by anonymous traffic.
+// Three tiers: per-IP burst (per minute), per-IP per day, and a GLOBAL daily ceiling that hard-caps
+// total spend regardless of how many IPs hit it. The VPS runs a single PM2 instance, so module-level
+// state is sufficient here. Tune the numbers below to your budget.
+const MINUTE_MS = 60_000;
+const PER_IP_PER_MIN = 8;
+const PER_IP_PER_DAY = 60;
+const GLOBAL_PER_DAY = 1500;
+
+const ipMinute = new Map<string, number[]>();
+const ipDay = new Map<string, { day: number; count: number }>();
+let globalDay = { day: -1, count: 0 };
+
+const dayOf = (now: number): number => Math.floor(now / 86_400_000);
 
 async function clientKey(): Promise<string> {
   try {
@@ -36,22 +44,43 @@ async function clientKey(): Promise<string> {
   }
 }
 
+/** Returns true (and does NOT record a hit) when the request should be rejected. */
 function isRateLimited(key: string): boolean {
   const now = Date.now();
-  const recent = (hits.get(key) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  if (recent.length >= RATE_MAX) {
-    hits.set(key, recent);
+  const day = dayOf(now);
+
+  // Global daily ceiling — the backstop against distributed abuse draining credits.
+  if (globalDay.day !== day) globalDay = { day, count: 0 };
+  if (globalDay.count >= GLOBAL_PER_DAY) return true;
+
+  // Per-IP burst (per-minute) limit.
+  const recent = (ipMinute.get(key) ?? []).filter((t) => now - t < MINUTE_MS);
+  if (recent.length >= PER_IP_PER_MIN) {
+    ipMinute.set(key, recent);
     return true;
   }
+
+  // Per-IP daily limit.
+  const perDay = ipDay.get(key);
+  const dayCount = perDay && perDay.day === day ? perDay.count : 0;
+  if (dayCount >= PER_IP_PER_DAY) return true;
+
+  // Passed all tiers — record the hit.
   recent.push(now);
-  hits.set(key, recent);
-  // Opportunistic prune so the map can't grow unbounded.
-  if (hits.size > 5000) {
-    for (const [k, v] of hits) {
-      const fresh = v.filter((t) => now - t < RATE_WINDOW_MS);
-      if (fresh.length) hits.set(k, fresh);
-      else hits.delete(k);
+  ipMinute.set(key, recent);
+  ipDay.set(key, { day, count: dayCount + 1 });
+  globalDay.count += 1;
+
+  // Bound memory (prune stale entries).
+  if (ipMinute.size > 5000) {
+    for (const [k, v] of ipMinute) {
+      const fresh = v.filter((t) => now - t < MINUTE_MS);
+      if (fresh.length) ipMinute.set(k, fresh);
+      else ipMinute.delete(k);
     }
+  }
+  if (ipDay.size > 20000) {
+    for (const [k, v] of ipDay) if (v.day !== day) ipDay.delete(k);
   }
   return false;
 }

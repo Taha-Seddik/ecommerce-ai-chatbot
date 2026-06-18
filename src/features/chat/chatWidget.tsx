@@ -2,7 +2,7 @@
 
 import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { IconClose, IconSend, IconSparkles } from '@/components/ui/icons';
+import { IconBot, IconClose, IconSend, IconSparkles } from '@/components/ui/icons';
 import { cn } from '@/lib/cn';
 import { ChatMessage } from './chatMessage';
 import { sendChatMessage } from './chat.actions';
@@ -237,28 +237,26 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Launcher — premium dark "Ask AI" pill (closed) / compact icon button (open) */}
-      <button
-        ref={launcherRef}
-        type='button'
-        onClick={() => (open ? close() : setOpen(true))}
-        aria-label={open ? t('close') : t('launch')}
-        aria-expanded={open}
-        className={cn(
-          'relative text-white shadow-lifted transition-transform duration-200 hover:scale-105 active:scale-95',
-          open
-            ? 'bg-ink animate-in zoom-in-90 grid size-12 place-items-center rounded-full duration-200'
-            : 'ask-ai-shine animate-in fade-in zoom-in-95 inline-flex h-14 items-center gap-2.5 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 px-7 ring-1 ring-white/10 duration-500',
-        )}>
-        {open ? (
-          <IconClose className='size-5' />
-        ) : (
-          <>
-            <IconSparkles className='ask-ai-spark size-5' />
-            <span className='font-display text-base font-semibold'>{t('askAi')}</span>
-          </>
-        )}
-      </button>
+      {/* Launcher — round bot button with a soft colour glow orbiting it (closed) / X (open) */}
+      <div className='relative'>
+        {!open && <span aria-hidden className='bot-glow pointer-events-none absolute -inset-1.5 rounded-full' />}
+        <button
+          ref={launcherRef}
+          type='button'
+          onClick={() => (open ? close() : setOpen(true))}
+          aria-label={open ? t('close') : t('launch')}
+          aria-expanded={open}
+          className={cn(
+            'bg-ink shadow-lifted relative z-10 grid size-14 place-items-center rounded-full ring-1 ring-white/10 transition-transform duration-200 hover:scale-105 active:scale-95',
+            open && 'animate-in zoom-in-90 duration-200',
+          )}>
+          {open ? (
+            <IconClose className='size-5 text-white' />
+          ) : (
+            <IconBot className='size-7 text-[#5eead4]' />
+          )}
+        </button>
+      </div>
     </div>
   );
 }
