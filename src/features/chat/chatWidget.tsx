@@ -237,24 +237,20 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Launcher — black button with a glowing light orbiting it when closed */}
-      <div className='relative'>
-        {!open && (
-          <span aria-hidden className='chat-launcher-glow pointer-events-none absolute -inset-1.5 rounded-full' />
-        )}
-        <button
-          ref={launcherRef}
-          type='button'
-          onClick={() => (open ? close() : setOpen(true))}
-          aria-label={t('launch')}
-          aria-expanded={open}
-          className={cn(
-            'bg-ink text-ink-foreground shadow-lifted relative z-10 grid size-14 place-items-center rounded-full transition-transform hover:scale-105 active:scale-95',
-            open && 'scale-90',
-          )}>
-          {open ? <IconClose className='size-6' /> : <IconSparkles className='size-6' />}
-        </button>
-      </div>
+      {/* Launcher — black "Ask AI" pill with a light running around its border */}
+      <button
+        ref={launcherRef}
+        type='button'
+        onClick={() => (open ? close() : setOpen(true))}
+        aria-label={t('launch')}
+        aria-expanded={open}
+        className={cn(
+          'bg-ink text-ink-foreground shadow-lifted relative inline-flex h-12 items-center gap-2 rounded-full px-5 transition-transform hover:scale-[1.03] active:scale-95',
+          !open && 'ask-ai-glow',
+        )}>
+        {open ? <IconClose className='size-5' /> : <IconSparkles className='size-5' />}
+        <span className='text-sm font-semibold tracking-wide uppercase'>{open ? t('close') : t('askAi')}</span>
+      </button>
     </div>
   );
 }

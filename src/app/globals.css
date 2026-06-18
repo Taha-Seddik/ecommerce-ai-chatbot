@@ -72,31 +72,47 @@ summary {
   cursor: pointer;
 }
 
-/* Chat launcher — a soft coloured light orbiting the (black) trigger button. The blurred conic
-   gradient sits behind the opaque button, so only the halo around the edge shows and the bright
-   arc appears to travel around it. */
-@keyframes chat-orbit {
+/* Chat launcher — a light travelling around the button's border. A rotating conic gradient is
+   masked to a 2px ring (border only), so a bright arc appears to run along the pill's edge. */
+@property --ask-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes ask-ai-spin {
   to {
-    transform: rotate(1turn);
+    --ask-angle: 360deg;
   }
 }
-.chat-launcher-glow {
+.ask-ai-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px; /* ring (border) thickness */
   background: conic-gradient(
-    from 0deg,
+    from var(--ask-angle),
     transparent 0deg,
-    var(--accent) 50deg,
+    var(--accent) 55deg,
     #5eead4 90deg,
-    var(--accent) 135deg,
-    transparent 210deg,
+    var(--accent) 125deg,
+    transparent 200deg,
     transparent 360deg
   );
-  filter: blur(8px);
-  animation: chat-orbit 2.6s linear infinite;
+  /* Show only the padding ring: subtract the content box from the full box. */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: ask-ai-spin 3s linear infinite;
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .chat-launcher-glow {
+  .ask-ai-glow::before {
     animation: none;
-    opacity: 0.55;
+    background: var(--accent);
+    opacity: 0.6;
   }
 }
 

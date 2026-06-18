@@ -232,6 +232,7 @@
   },
   "chat": {
     "launch": "Chat with Nora",
+    "askAi": "Ask AI",
     "title": "Nora",
     "subtitle": "AI shopping assistant",
     "greeting": "Hi! I'm Nora, your shopping assistant. Looking for something for your home? Ask away ✨",

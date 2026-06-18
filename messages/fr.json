@@ -232,6 +232,7 @@
   },
   "chat": {
     "launch": "Discuter avec Nora",
+    "askAi": "Assistant IA",
     "title": "Nora",
     "subtitle": "Assistante shopping IA",
     "greeting": "Bonjour ! Je suis Nora, votre assistante shopping. Vous cherchez quelque chose pour la maison ? N'hésitez pas ✨",
