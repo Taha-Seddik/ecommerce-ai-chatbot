@@ -239,7 +239,7 @@ export function ChatWidget() {
 
       {/* Launcher — round bot button with a soft colour glow orbiting it (closed) / X (open) */}
       <div className='relative'>
-        {!open && <span aria-hidden className='bot-glow pointer-events-none absolute -inset-1.5 rounded-full' />}
+        {!open && <span aria-hidden className='bot-glow pointer-events-none absolute -inset-1 rounded-full' />}
         <button
           ref={launcherRef}
           type='button'

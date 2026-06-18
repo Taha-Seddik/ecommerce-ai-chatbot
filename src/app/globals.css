@@ -81,10 +81,18 @@ summary {
   }
 }
 .bot-glow {
-  background: conic-gradient(from 0deg, #5eead4, #38bdf8, #22d3ee, #2dd4bf, #5eead4, #22d3ee, #5eead4);
-  filter: blur(7px);
-  opacity: 0.9;
-  animation: bot-glow-spin 3s linear infinite;
+  /* A concentrated bright arc (rest transparent) so it reads as a single light orbiting the edge. */
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #5eead4 35deg,
+    #22d3ee 65deg,
+    #38bdf8 95deg,
+    transparent 150deg,
+    transparent 360deg
+  );
+  filter: blur(6px);
+  animation: bot-glow-spin 2.5s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .bot-glow {
