@@ -72,52 +72,55 @@ summary {
   cursor: pointer;
 }
 
-/* Chat launcher — a light travelling around the button's border. A rotating conic gradient is
-   masked to a 2px ring (border only), so a bright arc appears to run along the pill's edge. */
-@property --ask-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes ask-ai-spin {
-  to {
-    --ask-angle: 360deg;
+/* Chat launcher — a premium dark pill with a slow white shine sweeping across, and a gently
+   twinkling spark. No coloured border; the motion is a soft sheen, not a glow. */
+@keyframes ask-ai-shine {
+  0%,
+  55% {
+    transform: translateX(-130%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(130%) skewX(-12deg);
   }
 }
-.ask-ai-glow::before {
+.ask-ai-shine {
+  position: relative;
+  overflow: hidden;
+}
+.ask-ai-shine::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  padding: 2.5px; /* ring (border) thickness */
-  /* Two layers: a faint always-on teal track + a bright white-hot comet that sweeps around. */
-  background:
-    conic-gradient(
-      from var(--ask-angle),
-      transparent 0deg,
-      #5eead4 28deg,
-      #ffffff 55deg,
-      #5eead4 82deg,
-      transparent 150deg,
-      transparent 360deg
-    ),
-    linear-gradient(0deg, rgba(94, 234, 212, 0.35), rgba(94, 234, 212, 0.35));
-  /* Show only the padding ring: subtract the content box from the full box. */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  /* Tight neon bloom that hugs the border (not a fuzzy halo). */
-  filter: drop-shadow(0 0 4px rgba(94, 234, 212, 0.55));
-  animation: ask-ai-spin 2.5s linear infinite;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 45%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.14) 55%,
+    transparent 100%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  animation: ask-ai-shine 5s ease-in-out infinite;
   pointer-events: none;
 }
+@keyframes ask-ai-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.86) rotate(-10deg);
+  }
+}
+.ask-ai-spark {
+  animation: ask-ai-twinkle 2.6s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
-  .ask-ai-glow::before {
+  .ask-ai-shine::after,
+  .ask-ai-spark {
     animation: none;
-    background: linear-gradient(0deg, var(--accent), var(--accent));
-    filter: none;
   }
 }
 

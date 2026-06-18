@@ -237,7 +237,7 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Launcher — big "Ask AI" pill (closed) / compact icon button (open) */}
+      {/* Launcher — premium dark "Ask AI" pill (closed) / compact icon button (open) */}
       <button
         ref={launcherRef}
         type='button'
@@ -245,17 +245,17 @@ export function ChatWidget() {
         aria-label={open ? t('close') : t('launch')}
         aria-expanded={open}
         className={cn(
-          'bg-ink text-ink-foreground shadow-lifted relative transition-transform duration-200 hover:scale-105 active:scale-95',
+          'relative text-white shadow-lifted transition-transform duration-200 hover:scale-105 active:scale-95',
           open
-            ? 'animate-in zoom-in-90 grid size-12 place-items-center rounded-full duration-200'
-            : 'ask-ai-glow animate-in fade-in zoom-in-95 inline-flex h-14 items-center gap-2.5 rounded-full px-6 duration-500',
+            ? 'bg-ink animate-in zoom-in-90 grid size-12 place-items-center rounded-full duration-200'
+            : 'ask-ai-shine animate-in fade-in zoom-in-95 inline-flex h-14 items-center gap-2.5 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-950 px-7 ring-1 ring-white/10 duration-500',
         )}>
         {open ? (
           <IconClose className='size-5' />
         ) : (
           <>
-            <IconSparkles className='size-6' />
-            <span className='text-base font-semibold tracking-wide uppercase'>{t('askAi')}</span>
+            <IconSparkles className='ask-ai-spark size-5' />
+            <span className='font-display text-base font-semibold'>{t('askAi')}</span>
           </>
         )}
       </button>
