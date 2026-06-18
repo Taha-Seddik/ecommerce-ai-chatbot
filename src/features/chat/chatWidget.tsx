@@ -120,7 +120,7 @@ export function ChatWidget() {
   const showSuggestions = messages.length <= 1 && !loading;
 
   return (
-    <div className='fixed bottom-4 inset-e-4 z-50 flex flex-col items-end gap-3 print:hidden'>
+    <div className='fixed bottom-6 inset-e-6 z-50 flex flex-col items-end gap-3 print:hidden'>
       {open && (
         <div
           ref={dialogRef}
@@ -128,7 +128,7 @@ export function ChatWidget() {
           role='dialog'
           aria-modal='true'
           aria-label={t('title')}
-          className='bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 flex h-[min(70vh,560px)] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border duration-200'>
+          className='bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 flex h-[min(70vh,560px)] w-[calc(100vw-3rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border duration-200'>
           {/* Header */}
           <div className='bg-ink text-ink-foreground flex items-center gap-3 px-4 py-3'>
             <span className='bg-ink-foreground/10 grid size-9 place-items-center rounded-full'>
@@ -237,19 +237,27 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Launcher — black "Ask AI" pill with a light running around its border */}
+      {/* Launcher — big "Ask AI" pill (closed) / compact icon button (open) */}
       <button
         ref={launcherRef}
         type='button'
         onClick={() => (open ? close() : setOpen(true))}
-        aria-label={t('launch')}
+        aria-label={open ? t('close') : t('launch')}
         aria-expanded={open}
         className={cn(
-          'bg-ink text-ink-foreground shadow-lifted relative inline-flex h-12 items-center gap-2 rounded-full px-5 transition-transform hover:scale-[1.03] active:scale-95',
-          !open && 'ask-ai-glow',
+          'bg-ink text-ink-foreground shadow-lifted relative transition-transform duration-200 hover:scale-105 active:scale-95',
+          open
+            ? 'animate-in zoom-in-90 grid size-12 place-items-center rounded-full duration-200'
+            : 'ask-ai-glow animate-in fade-in zoom-in-95 inline-flex h-14 items-center gap-2.5 rounded-full px-6 duration-500',
         )}>
-        {open ? <IconClose className='size-5' /> : <IconSparkles className='size-5' />}
-        <span className='text-sm font-semibold tracking-wide uppercase'>{open ? t('close') : t('askAi')}</span>
+        {open ? (
+          <IconClose className='size-5' />
+        ) : (
+          <>
+            <IconSparkles className='size-6' />
+            <span className='text-base font-semibold tracking-wide uppercase'>{t('askAi')}</span>
+          </>
+        )}
       </button>
     </div>
   );

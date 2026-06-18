@@ -89,30 +89,35 @@ summary {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 2px; /* ring (border) thickness */
-  background: conic-gradient(
-    from var(--ask-angle),
-    transparent 0deg,
-    var(--accent) 55deg,
-    #5eead4 90deg,
-    var(--accent) 125deg,
-    transparent 200deg,
-    transparent 360deg
-  );
+  padding: 2.5px; /* ring (border) thickness */
+  /* Two layers: a faint always-on teal track + a bright white-hot comet that sweeps around. */
+  background:
+    conic-gradient(
+      from var(--ask-angle),
+      transparent 0deg,
+      #5eead4 28deg,
+      #ffffff 55deg,
+      #5eead4 82deg,
+      transparent 150deg,
+      transparent 360deg
+    ),
+    linear-gradient(0deg, rgba(94, 234, 212, 0.35), rgba(94, 234, 212, 0.35));
   /* Show only the padding ring: subtract the content box from the full box. */
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: ask-ai-spin 3s linear infinite;
+  /* Tight neon bloom that hugs the border (not a fuzzy halo). */
+  filter: drop-shadow(0 0 4px rgba(94, 234, 212, 0.55));
+  animation: ask-ai-spin 2.5s linear infinite;
   pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .ask-ai-glow::before {
     animation: none;
-    background: var(--accent);
-    opacity: 0.6;
+    background: linear-gradient(0deg, var(--accent), var(--accent));
+    filter: none;
   }
 }
 
