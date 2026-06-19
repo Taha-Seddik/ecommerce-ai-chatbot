@@ -1,12 +1,6 @@
 ---
 name: clean-architecture
-description: >-
-  Structure and build TypeScript / Next.js projects the clean way — feature-folder layout, layered
-  data access (component/action → service → repo → db), server-first components, typed end-to-end,
-  validation at every boundary, and a strict definition-of-done. Use when scaffolding a new app,
-  adding a feature / module / page / endpoint, reviewing structure, or refactoring toward a clean
-  architecture. The defaults below assume Next.js (App Router) + TypeScript; keep the principles even
-  when the stack differs, and always defer to a project's own CLAUDE.md/AGENTS.md when present.
+description: Structure and build TypeScript/Next.js projects cleanly - feature-folder layout, layered data access (component/action -> service -> repo -> db), server-first components, typed end-to-end, validation at boundaries, and a strict definition-of-done. Use when scaffolding a new app, adding a feature/module/page/endpoint, reviewing structure, or refactoring toward clean architecture. Defer to a project's own CLAUDE.md / AGENTS.md when present.
 ---
 
 # Clean architecture & project structure
