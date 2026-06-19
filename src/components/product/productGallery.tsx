@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { IconChevronLeft, IconChevronRight } from '@/components/ui/icons';
+import { IconChevronLeft, IconChevronRight, IconClose } from '@/components/ui/icons';
 import { cn } from '@/lib/cn';
 
 type GalleryImage = { url: string; alt?: string | null };
@@ -107,8 +107,8 @@ export function ProductGallery({ images, title }: { images: GalleryImage[]; titl
               type='button'
               onClick={() => setFullscreen(false)}
               aria-label='Close'
-              className='absolute top-4 inset-e-4 grid size-10 place-items-center rounded-full bg-white/10 text-xl text-white transition hover:bg-white/20'>
-              ×
+              className='absolute top-4 inset-e-4 z-10 grid size-10 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20'>
+              <IconClose className='size-5' />
             </button>
             <div className='relative h-full max-h-[88vh] w-full max-w-5xl'>
               {main && <Image src={main.url} alt={main.alt ?? title} fill sizes='90vw' className='object-contain' />}
