@@ -239,6 +239,8 @@
     "placeholder": "Posez une question sur les produits, la livraison…",
     "send": "Envoyer",
     "close": "Fermer",
+    "expand": "Agrandir",
+    "collapse": "Réduire",
     "error": "Désolée, une erreur s'est produite. Veuillez réessayer.",
     "suggest1": "Montrez-moi des canapés",
     "suggest2": "Cadeaux à moins de 100 $",

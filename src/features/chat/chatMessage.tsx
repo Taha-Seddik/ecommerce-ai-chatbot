@@ -1,5 +1,6 @@
 'use client';
 
+import ReactMarkdown from 'react-markdown';
 import { ChatProductCard } from './chatProductCard';
 import type { ChatProductCardData } from './chat.types';
 
@@ -32,9 +33,9 @@ export function ChatMessage({
         const trimmed = part.replace(/^\n+|\n+$/g, '');
         if (!trimmed) return null;
         return (
-          <p key={`t-${i}`} className='text-sm leading-relaxed whitespace-pre-wrap'>
-            {trimmed}
-          </p>
+          <div key={`t-${i}`} className='chat-prose text-sm leading-relaxed'>
+            <ReactMarkdown>{trimmed}</ReactMarkdown>
+          </div>
         );
       })}
     </div>

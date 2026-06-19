@@ -100,6 +100,58 @@ summary {
   }
 }
 
+/* Markdown rendered inside chat bubbles — tight, readable spacing for bold, lists, links, code. */
+.chat-prose > :first-child {
+  margin-top: 0;
+}
+.chat-prose > :last-child {
+  margin-bottom: 0;
+}
+.chat-prose p {
+  margin: 0.3rem 0;
+}
+.chat-prose strong {
+  font-weight: 600;
+}
+.chat-prose em {
+  font-style: italic;
+}
+.chat-prose ul,
+.chat-prose ol {
+  margin: 0.35rem 0;
+  padding-inline-start: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.chat-prose ul {
+  list-style: disc;
+}
+.chat-prose ol {
+  list-style: decimal;
+}
+.chat-prose li {
+  padding-inline-start: 0.1rem;
+}
+.chat-prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.chat-prose code {
+  background: var(--surface-tertiary);
+  padding: 0.05rem 0.3rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+.chat-prose h1,
+.chat-prose h2,
+.chat-prose h3 {
+  font-weight: 600;
+  margin: 0.4rem 0 0.2rem;
+}
+
 /* Arabic locale: swap to an Arabic-capable family for body + display. */
 html[lang='ar'] {
   --font-sans: var(--font-cairo), 'Segoe UI', Tahoma, sans-serif;

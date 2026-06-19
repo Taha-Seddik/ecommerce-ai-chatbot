@@ -179,3 +179,19 @@ export function IconBot({ className = 'size-6', ...props }: IconProps) {
     </svg>
   );
 }
+
+export function IconExpand({ className = 'size-5', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5' />
+    </svg>
+  );
+}
+
+export function IconCollapse({ className = 'size-5', ...props }: IconProps) {
+  return (
+    <svg className={className} {...base} {...props}>
+      <path d='M9 4v5H4M15 20v-5h5M20 9h-5V4M4 15h5v5' />
+    </svg>
+  );
+}

@@ -2,7 +2,7 @@
 
 import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { IconBot, IconClose, IconSend, IconSparkles } from '@/components/ui/icons';
+import { IconBot, IconClose, IconCollapse, IconExpand, IconSend, IconSparkles } from '@/components/ui/icons';
 import { cn } from '@/lib/cn';
 import { ChatMessage } from './chatMessage';
 import { sendChatMessage } from './server/chat.actions';
@@ -23,6 +23,7 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const idRef = useRef(0);
   const seededRef = useRef(false);
@@ -35,6 +36,7 @@ export function ChatWidget() {
 
   function close() {
     setOpen(false);
+    setExpanded(false);
     launcherRef.current?.focus(); // return focus to the trigger (dialog focus management)
   }
 
@@ -120,7 +122,7 @@ export function ChatWidget() {
   const showSuggestions = messages.length <= 1 && !loading;
 
   return (
-    <div className='fixed bottom-6 inset-e-6 z-50 flex flex-col items-end gap-3 print:hidden'>
+    <>
       {open && (
         <div
           ref={dialogRef}
@@ -128,16 +130,28 @@ export function ChatWidget() {
           role='dialog'
           aria-modal='true'
           aria-label={t('title')}
-          className='bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 flex h-[min(70vh,560px)] w-[calc(100vw-3rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border duration-200'>
+          className={cn(
+            'bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 fixed z-50 flex flex-col overflow-hidden border transition-all duration-300 ease-out print:hidden',
+            expanded
+              ? 'inset-e-0 bottom-0 h-dvh w-screen max-w-md rounded-none border-s'
+              : 'bottom-24 inset-e-6 h-[min(70vh,560px)] w-[calc(100vw-3rem)] max-w-[380px] rounded-2xl',
+          )}>
           {/* Header */}
-          <div className='bg-ink text-ink-foreground flex items-center gap-3 px-4 py-3'>
-            <span className='bg-ink-foreground/10 grid size-9 place-items-center rounded-full'>
+          <div className='bg-ink text-ink-foreground flex items-center gap-2 px-4 py-3'>
+            <span className='bg-ink-foreground/10 grid size-9 shrink-0 place-items-center rounded-full'>
               <IconSparkles className='size-5' />
             </span>
             <span className='flex flex-1 flex-col leading-tight'>
               <span className='font-display font-semibold'>{t('title')}</span>
               <span className='text-ink-foreground/70 text-xs'>{t('subtitle')}</span>
             </span>
+            <button
+              type='button'
+              onClick={() => setExpanded((v) => !v)}
+              aria-label={expanded ? t('collapse') : t('expand')}
+              className='hover:bg-ink-foreground/10 grid size-8 place-items-center rounded-full transition-colors'>
+              {expanded ? <IconCollapse className='size-[18px]' /> : <IconExpand className='size-[18px]' />}
+            </button>
             <button
               type='button'
               onClick={close}
@@ -238,25 +252,23 @@ export function ChatWidget() {
       )}
 
       {/* Launcher — round bot button with a soft colour glow orbiting it (closed) / X (open) */}
-      <div className='relative'>
-        {!open && <span aria-hidden className='bot-glow pointer-events-none absolute -inset-1 rounded-full' />}
-        <button
-          ref={launcherRef}
-          type='button'
-          onClick={() => (open ? close() : setOpen(true))}
-          aria-label={open ? t('close') : t('launch')}
-          aria-expanded={open}
-          className={cn(
-            'bg-ink shadow-lifted relative z-10 grid size-14 place-items-center rounded-full ring-1 ring-white/10 transition-transform duration-200 hover:scale-105 active:scale-95',
-            open && 'animate-in zoom-in-90 duration-200',
-          )}>
-          {open ? (
-            <IconClose className='size-5 text-white' />
-          ) : (
-            <IconBot className='size-7 text-[#5eead4]' />
-          )}
-        </button>
+      <div className='fixed bottom-6 inset-e-6 z-40 print:hidden'>
+        <div className='relative'>
+          {!open && <span aria-hidden className='bot-glow pointer-events-none absolute -inset-1 rounded-full' />}
+          <button
+            ref={launcherRef}
+            type='button'
+            onClick={() => (open ? close() : setOpen(true))}
+            aria-label={open ? t('close') : t('launch')}
+            aria-expanded={open}
+            className={cn(
+              'bg-ink shadow-lifted relative z-10 grid size-14 place-items-center rounded-full ring-1 ring-white/10 transition-transform duration-200 hover:scale-105 active:scale-95',
+              open && 'animate-in zoom-in-90 duration-200',
+            )}>
+            {open ? <IconClose className='size-5 text-white' /> : <IconBot className='size-7 text-[#5eead4]' />}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -239,6 +239,8 @@
     "placeholder": "Ask about products, shipping, sizes…",
     "send": "Send",
     "close": "Close",
+    "expand": "Expand",
+    "collapse": "Collapse",
     "error": "Sorry, something went wrong. Please try again.",
     "suggest1": "Show me sofas",
     "suggest2": "Gifts under $100",
