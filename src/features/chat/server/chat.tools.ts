@@ -4,7 +4,7 @@ import { searchProducts } from '@/features/products/products.repo';
 import { getNavCategories } from '@/features/categories/categories.repo';
 import { pickLocale } from '@/lib/content';
 import { formatPrice } from '@/lib/money';
-import type { ChatProductCardData } from './chat.types';
+import type { ChatProductCardData } from '../chat.types';
 
 /** Tool (function) schemas advertised to the model. Descriptions are prescriptive about WHEN to
  *  call — smaller models reach for tools more reliably when the trigger conditions are explicit. */

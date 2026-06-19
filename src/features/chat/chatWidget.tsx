@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { IconBot, IconClose, IconSend, IconSparkles } from '@/components/ui/icons';
 import { cn } from '@/lib/cn';
 import { ChatMessage } from './chatMessage';
-import { sendChatMessage } from './chat.actions';
+import { sendChatMessage } from './server/chat.actions';
 import type { ChatProductCardData, ChatTurn } from './chat.types';
 
 type UiMessage = {
