@@ -63,6 +63,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Prevent any stray element (RTL inline-axis bleed, 100vw children) from making the page
+   horizontally scrollable. On mobile that horizontal scroll makes the `sticky` header appear
+   to drift/detach as you scroll — most visible in Arabic (RTL), which starts at the opposite
+   scroll edge. `clip` (not `hidden`) doesn't create a scroll container, so the sticky header
+   keeps sticking to the viewport. */
+html {
+  overflow-x: clip;
+}
+
 /* Tailwind v4 Preflight defaults <button> to the arrow cursor; restore the pointer on every
    interactive control app-wide (disabled controls keep the default). */
 button:not(:disabled),

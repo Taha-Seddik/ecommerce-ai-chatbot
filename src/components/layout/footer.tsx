@@ -11,8 +11,8 @@ export async function Footer({ locale }: { locale: string }) {
   const tagline = locale === 'fr' ? BRAND.taglineFr : locale === 'ar' ? BRAND.taglineAr : BRAND.taglineEn;
 
   return (
-    <footer className='bg-ink text-ink-foreground mt-20'>
-      <Container className='grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4'>
+    <footer className='bg-ink text-ink-foreground mt-12 md:mt-20'>
+      <Container className='grid gap-8 py-10 md:grid-cols-2 md:gap-10 md:py-14 lg:grid-cols-4'>
         <div className='flex flex-col gap-3'>
           <span className='font-display text-2xl font-bold tracking-tight text-white'>{BRAND.name}</span>
           <p className='max-w-xs text-sm leading-relaxed text-white/60'>{tagline}</p>
@@ -32,7 +32,7 @@ export async function Footer({ locale }: { locale: string }) {
           <p className='text-xs text-white/40'>{t('newsletterHint')}</p>
         </div>
 
-        <div className='flex flex-col gap-3 text-sm'>
+        <div className='hidden flex-col gap-3 text-sm md:flex'>
           <span className='font-semibold text-white'>{t('shop')}</span>
           {categories.map((c) => (
             <Link key={c.id} href={`/category/${c.slug}`} className='text-white/60 transition-colors hover:text-white'>
@@ -41,7 +41,7 @@ export async function Footer({ locale }: { locale: string }) {
           ))}
         </div>
 
-        <div className='flex flex-col gap-3 text-sm'>
+        <div className='hidden flex-col gap-3 text-sm md:flex'>
           <span className='font-semibold text-white'>{t('company')}</span>
           <Link href='/products' className='text-white/60 transition-colors hover:text-white'>
             {t('about')}
@@ -51,7 +51,7 @@ export async function Footer({ locale }: { locale: string }) {
           </Link>
         </div>
 
-        <div className='flex flex-col gap-3 text-sm'>
+        <div className='hidden flex-col gap-3 text-sm md:flex'>
           <span className='font-semibold text-white'>{t('help')}</span>
           <Link href='/products' className='text-white/60 transition-colors hover:text-white'>
             {t('shipping')}

@@ -131,10 +131,13 @@ export function ChatWidget() {
           aria-modal='true'
           aria-label={t('title')}
           className={cn(
-            'bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 fixed z-50 flex flex-col overflow-hidden border transition-all duration-300 ease-out print:hidden',
+            'bg-surface border-border shadow-lifted animate-in fade-in slide-in-from-bottom-4 fixed z-50 flex flex-col overflow-hidden transition-all duration-300 ease-out print:hidden',
+            // Phone: always fullscreen — no intermediate floating panel.
+            'inset-0 h-dvh w-full rounded-none',
+            // Desktop (sm+): a floating bubble that can expand into a full-height side sheet.
             expanded
-              ? 'inset-e-0 bottom-0 h-dvh w-screen max-w-md rounded-none border-s'
-              : 'bottom-24 inset-e-6 h-[min(70vh,560px)] w-[calc(100vw-3rem)] max-w-[380px] rounded-2xl',
+              ? 'sm:inset-s-auto sm:inset-e-0 sm:top-0 sm:bottom-0 sm:h-dvh sm:w-screen sm:max-w-md sm:rounded-none sm:border-s'
+              : 'sm:inset-auto sm:bottom-24 sm:inset-e-6 sm:h-[min(70vh,560px)] sm:w-[calc(100vw-3rem)] sm:max-w-[380px] sm:rounded-2xl sm:border',
           )}>
           {/* Header */}
           <div className='bg-ink text-ink-foreground flex items-center gap-2 px-4 py-3'>
@@ -149,7 +152,7 @@ export function ChatWidget() {
               type='button'
               onClick={() => setExpanded((v) => !v)}
               aria-label={expanded ? t('collapse') : t('expand')}
-              className='hover:bg-ink-foreground/10 grid size-8 place-items-center rounded-full transition-colors'>
+              className='hover:bg-ink-foreground/10 hidden size-8 place-items-center rounded-full transition-colors sm:grid'>
               {expanded ? <IconCollapse className='size-[18px]' /> : <IconExpand className='size-[18px]' />}
             </button>
             <button
